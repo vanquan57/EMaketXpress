@@ -7,9 +7,9 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-# Hướng đẫn cài đặt project
+## Hướng đẫn cài đặt project
 ```git clone https://github.com/vanquan57/EMaketXpress.git```
-# Set up môi trường 
+## Set up môi trường 
 - tạo file môi trường và thiết lập các giá trị cần thiết với thiết bị của bạn
   .env
   # mở terminal và thực hiện 
@@ -21,8 +21,9 @@
       ```php artisan migrate```
     - cài đặt môi trường và các tệp liên quan với npm
        ``` npm install ```
-      
-# Khởi chạy ứng dụng trên thiết bị của bạn
-    mở 2 cửa sổ terminal trong vscode
-    terminal 1 ``` npm run dev ```
-    terminal 2 ``` php artisan serve ```
+ #  mở 2 cửa sổ terminal trong vscode thực hiện việc chạy project
+    - terminal 1 ``` npm run dev ```
+    - terminal 2 ``` php artisan serve ```
+
+
+    
