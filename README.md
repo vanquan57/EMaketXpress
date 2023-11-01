@@ -24,7 +24,5 @@
       
 ## Khởi chạy ứng dụng trên thiết bị của bạn
     - mở 2 cửa sổ terminal trong vscode
-        - terminal 1 
-           ```npm run dev```
-        - terminal 2
-           ``` php artisan serve ```
+        - terminal 1 ``` npm run dev ```
+        - terminal 2 ``` php artisan serve ```
