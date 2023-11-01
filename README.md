@@ -12,16 +12,16 @@
 ## Set up môi trường 
 - tạo file môi trường và thiết lập các giá trị cần thiết với thiết bị của bạn
   .env
-  # mở terminal và thực hiện 
+  # Mở terminal và thực hiện 
     - Chạy lệnh sau để tạo khóa ứng dụng trong tệp .env
        ```php artisan key:generate ```
-    - cài đặt môi trường composer trong project
+    - Cài đặt môi trường composer trong project
       ```composer install```
-    - tạo table user bằng câu lệnh 
+    - Tạo table user bằng câu lệnh 
       ```php artisan migrate```
-    - cài đặt môi trường và các tệp liên quan với npm
+    - Cài đặt môi trường và các tệp liên quan với npm
        ``` npm install ```
- ##  mở 2 cửa sổ terminal trong vscode thực hiện việc chạy project
+ ##  Mở 2 cửa sổ terminal trong vscode thực hiện việc chạy project
     `npm run dev`
     `php artisan serve`
 
