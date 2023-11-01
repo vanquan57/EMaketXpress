@@ -1,0 +1,35 @@
+.login_input-element {
+    position: relative;
+    display: flex;
+    input {
+        border: 1px solid #c0c0c0;
+        height: 48px;
+        flex: 1;
+        outline: none;
+        padding: 2px 18px;
+        border-radius: 3px;
+    }
+    label {
+        top: 50%;
+        left: 18px;
+        transform: translateY(-50%);
+        font-size: 15px;
+        color: #8c8c8c;
+        position: absolute;
+        transition: all 0.2s;
+
+        pointer-events: none;
+    }
+    input.hasvalue + label {
+        top: 10px;
+        font-size: 9px;
+        font-weight: 700;
+        color: #8c8c8c;
+    }
+    input:focus + label {
+        top: 10px;
+        font-size: 9px;
+        font-weight: 700;
+        color: #8c8c8c;
+    }
+}
