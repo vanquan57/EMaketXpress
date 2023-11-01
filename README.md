@@ -22,8 +22,8 @@
     - cài đặt môi trường và các tệp liên quan với npm
        ``` npm install ```
  ##  mở 2 cửa sổ terminal trong vscode thực hiện việc chạy project
-    * terminal 1 `npm run dev`
-    * terminal 2 `php artisan serve`
+    `npm run dev`
+    `php artisan serve`
 
 
     
