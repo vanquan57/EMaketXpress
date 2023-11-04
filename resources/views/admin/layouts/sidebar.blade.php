@@ -5,7 +5,7 @@
         </div>
     </div>
     <div class="menu is-menu-main">
-        <p class="menu-label">General</p>
+        <p class="menu-label">Tổng Quan</p>
         <ul class="menu-list">
             <li class="active">
                 <a href="/admin">
@@ -14,8 +14,29 @@
                 </a>
             </li>
         </ul>
-        <p class="menu-label">Examples</p>
+        <p class="menu-label">Thành Phần Giao Diện</p>
         <ul class="menu-list">
+            <li>
+                <a class="dropdown">
+                    <span class="icon"><i class="mdi mdi-view-list"></i></span>
+                    <span class="menu-item-label">Quản lý sản phẩm</span>
+                    <span class="icon"><i class="mdi mdi-plus"></i></span>
+                </a>
+                <ul class="pl-3">
+                    <li >
+                        <a href="/admin/category" class="flex items-center">
+                            <i class="fa-solid fa-layer-group px-1"></i>
+                            <span>Danh mục sản phẩm</span>
+                        </a>
+                    </li>
+                    <li >
+                        <a href="#void" class="flex items-center">
+                            <i class="fa-solid fa-barcode px-1"></i>
+                            <span>Danh sách sản phẩm</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
             <li class="--set-active-tables-html">
                 <a href="/admin/tables">
                     <span class="icon"><i class="mdi mdi-table"></i></span>

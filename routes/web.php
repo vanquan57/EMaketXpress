@@ -72,7 +72,7 @@ Route::prefix('register')->group(function () {
 
 // Admin
 Route::prefix('admin')->group(function () {
-    Route::get('/login', [AdminAccountController::class , 'index'])->name('loginAdmin');
+    Route::get('/login', [AdminAccountController::class, 'index'])->name('loginAdmin');
     Route::post('/login', [AdminAccountController::class, 'loginAdmin']);
     Route::get('/logout', [AdminAccountController::class, 'logoutAdmin']);
 });
@@ -83,15 +83,19 @@ Route::group(['middleware' => 'admin'], function () {
         Route::get('/', function () {
             return view('admin.index', ['title' => 'Admin']);
         })->name('admin');
-        Route::get('/profile', [ProfileController::class , 'index']);
-        Route::post('/profile', [ProfileController::class , 'update']);
-        Route::post('/profile/upload',[UploadController::class, 'upload']);
+        Route::get('/profile', [ProfileController::class, 'index']);
+        Route::post('/profile', [ProfileController::class, 'update']);
+        Route::post('/profile/upload', [UploadController::class, 'upload']);
         Route::get('/tables', function () {
             return view('admin.tables', ['title' => 'Table']);
         });
         Route::get('/forms', function () {
             return view('admin.forms', ['title' => 'Forms']);
         });
+        Route::prefix('category')->group(function () {
+            Route::get('/', function () {
+                return view('admin.category', ['title' => 'Category']);
+            });
+        });
     });
-    
 });
