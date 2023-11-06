@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminAccountController;
+use App\Http\Controllers\Admin\CategoriesController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\UploadController;
 use App\Http\Controllers\Users\AccountsController;
@@ -93,9 +94,12 @@ Route::group(['middleware' => 'admin'], function () {
             return view('admin.forms', ['title' => 'Forms']);
         });
         Route::prefix('category')->group(function () {
-            Route::get('/', function () {
-                return view('admin.category', ['title' => 'Category']);
-            });
+            Route::get('/', [CategoriesController::class, 'index']);
+            Route::post('/', [CategoriesController::class, 'store']);
+            Route::get('/list', [CategoriesController::class, 'showViewListCategories'])->name('listCategories');
+            Route::get('/edit-{id}', [CategoriesController::class, 'show']);
+            Route::post('/edit-{id}', [CategoriesController::class, 'update']);
+            Route::delete('/destroy', [CategoriesController::class, 'destroy']);
         });
     });
 });
