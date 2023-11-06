@@ -14,7 +14,6 @@ class UploadController extends Controller
                 $image = $request->file('image');
                 $name = $image->getClientOriginalName();
                 $image->storeAs('uploads', $name, 'public');
-                
                 return response()->json(['success' => true, 'url' => '/storage/uploads/' . $name]);
 
             } catch (\Throwable $th) {
