@@ -16,7 +16,7 @@
                 </a>
             </li>
             <li class="ml-2">
-                <a href="/admin/category/edit"
+                <a href="#"
                     class="inline-flex border items-center justify-center p-2 text-base font-medium text-gray-500 rounded-lg bg-gray-100 hover:text-gray-900 hover:bg-gray-300 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700 dark:hover:text-white">
                     <span class="w-full">Cập Nhật Danh Mục Sản Phẩm</span>
                 </a>

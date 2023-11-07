@@ -15,7 +15,7 @@
                 </a>
             </li>
             <li class="ml-2">
-                <a href="/admin/category/edit"
+                <a href="#"
                     class="inline-flex border items-center justify-center p-2 text-base font-medium text-gray-900 rounded-lg bg-gray-300  hover:text-gray-900 hover:bg-gray-300 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700 dark:hover:text-white">
                     <span class="w-full">Cập Nhật Danh Mục Sản Phẩm</span>
                 </a>
@@ -74,7 +74,7 @@
             </div>
             <div class="mt-2">
                 <button type="submit"
-                    class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Thêm
+                    class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Cập nhật
                     Danh Mục</button>
             </div>
             @csrf
