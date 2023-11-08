@@ -3,6 +3,7 @@
 @tailwind utilities;
 @import './variables';
 @import './login.scss';
+@import './user/index.scss';
 
 * {
     box-sizing: border-box;

@@ -17,7 +17,7 @@ class CategoriesController extends Controller
     public function index()
     {
         $categories = Categories::whereBetween('ParentId', [0, 9])->get();
-        return view( 'admin.category.category',[
+        return view('admin.category.category', [
             'title' => 'Category',
             'categories' => $categories
         ]);
@@ -45,11 +45,10 @@ class CategoriesController extends Controller
             Categories::create([
                 'Name' => (string)$request->input('category_name'),
                 'Description' => (string)$request->input('category_description'),
-                'ParentId' => (integer)$request->input('parentId'),
-                'Active' => (integer)$request->input('active'),
+                'ParentId' => (int)$request->input('parentId'),
+                'Active' => (int)$request->input('active'),
             ]);
             return redirect()->back();
-
         } catch (\Throwable $th) {
             Log::info($th->getMessage());
             return redirect()->back()->with('errorInsertCategory', 'Thêm Danh mục thất bại vui lòng thử lại sau');
@@ -64,14 +63,13 @@ class CategoriesController extends Controller
         $categories = Categories::whereBetween('ParentId', [0, 9])->get();
 
         $category = Categories::where('CategoryID', $id)->first();
-        return view('admin.category.editcategories', ['title' => 'Edit Category','category' => $category, 'categories' => $categories]);
+        return view('admin.category.editcategories', ['title' => 'Edit Category', 'category' => $category, 'categories' => $categories]);
     }
     /**
      * Show the form for editing the specified resource.
      */
     public function edit(string $id)
     {
-        
     }
 
     /**
@@ -88,15 +86,14 @@ class CategoriesController extends Controller
             Categories::where('CategoryID', $id)->update([
                 'Name' => (string)$request->input('category_name'),
                 'Description' => (string)$request->input('category_description'),
-                'ParentId' =>(integer)$request->input('parentId'),
-                'Active' => (integer)$request->input('active')
+                'ParentId' => (int)$request->input('parentId'),
+                'Active' => (int)$request->input('active')
             ]);
             return redirect()->route('listCategories');
         } catch (\Throwable $th) {
             Log::info($th->getMessage());
             return redirect()->back()->with('errorUpdateCategory', 'Thêm Danh mục thất bại vui lòng thử lại sau');
         }
-        
     }
 
     /**
@@ -104,11 +101,31 @@ class CategoriesController extends Controller
      */
     public function destroy(Request $request)
     {
-        
-        Categories::where('CategoryID', $request->input('id'))->delete();
+        $categoryId = $request->input('id');
+        $category = Categories::where('CategoryID', $categoryId)->first();
+
+        $this->deleteCategoryAndChildren($categoryId);
+        return response()->json(['success' => true]);
     }
-    public function showViewListCategories(){
+    protected function deleteCategoryAndChildren($categoryId)
+    {
+        $category = Categories::where('CategoryID', $categoryId)->first();
+        if (!$category) {
+            return response()->json(['success' => false]);
+        }
+        $children = Categories::where('ParentId', $categoryId)->get();
+
+        foreach ($children as $child) {
+            $this->deleteCategoryAndChildren($child->CategoryID);
+        }
+
+        $category = Categories::where('CategoryID', $categoryId)->delete();
+
+    }
+
+    public function showViewListCategories()
+    {
         $listCategories = Categories::get();
-        return view('admin.category.listcategories', ['title'=> 'List categories', 'listCategories'=>$listCategories]);
+        return view('admin.category.listcategories', ['title' => 'List categories', 'listCategories' => $listCategories]);
     }
 }

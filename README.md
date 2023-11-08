@@ -21,6 +21,8 @@
       ```php artisan migrate```
     - Cài đặt môi trường và các tệp liên quan với npm
        ``` npm install ```
+  # xóa bỏ foulder storage trong thư mục public rồi chạy lại câu lệnh 
+      ``` php artisan storage:link```
  ##  Mở 2 cửa sổ terminal trong vscode thực hiện việc chạy project
     `npm run dev`
     `php artisan serve`

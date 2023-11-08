@@ -4,17 +4,21 @@ $.ajaxSetup({
     }
 });
 function removeRow(id, url) {
-    $.ajax({
-        type: 'DELETE',
-        datatype: 'JSON',
-        data: { id },
-        url: url,
-        success: function (response) {
-            if (response.success) {
-
-            } else {
-
+    if(confirm('Bạn chắc chắn muốn xóa danh mục này và không thể khôi phục ?')){
+        $.ajax({
+            type: 'DELETE',
+            datatype: 'JSON',
+            data: { id },
+            url: url,
+            success: function (response) {
+                if (response.success) {
+                    alert('Xóa thành công ... !');
+                    location.reload();
+                } else {
+                    alert('Đã có lỗi xảy ra vui lòng thử lại sau  ... !');
+                }
             }
-        }
-    });
+        });
+    }
+    
 }

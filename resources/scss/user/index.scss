@@ -1,0 +1,13 @@
+.custom-transition-active {
+    transition: all 0.2s ease-in;
+    visibility: hidden;
+    transform: translateY(10%);
+}
+
+.custom-transition:hover{
+    .custom-transition-active{
+        transform: translateY(0);
+        visibility: visible;
+    }
+   
+}
