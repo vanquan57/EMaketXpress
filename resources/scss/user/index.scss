@@ -11,3 +11,11 @@
     }
    
 }
+.nav_mobile{
+    transform: translateX(-100%);
+    transition: all 0.3s ease-in-out;
+    &.active{
+    transform: translateX(0);
+
+    }
+}
