@@ -21,7 +21,25 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        $mainCategories = Categories::where('ParentId' , 0)->get();
-        View::share(['mainCategories' , $mainCategories]);
+        $listCategories = $this->getCategories();
+        View::share('listCategories', $listCategories);
+    }
+    private function getCategories($parentId = 0)
+    {
+        $categories = Categories::where('ParentId', $parentId)->get();
+
+        $result = [];
+
+        foreach ($categories as $category) {
+            $children = $this->getCategories($category->CategoryID);
+
+            $result[] = [
+                'CategoryID' => $category->CategoryID,
+                'Name' => $category->Name,
+                'children' => $children,
+            ];
+        }
+
+        return $result;
     }
 }
