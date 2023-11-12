@@ -17,6 +17,11 @@ class Helper
                     <td>' . $charLevel . $category->Name . '</td>
                     <td>' . $category->Description . '</td>
                     <td>' . self::Active($category->Active) . ' </td>
+                    <td class="image-cell">
+                        <div class="image">
+                        <img src="'.($category->Image ? $category->Image : 'https://avatars.dicebear.com/v2/initials/felicita-yundt.svg').'" class="rounded-full">
+                        </div>
+                    </td>
                     <td>' . $category->ParentId . '</td>
                     <td>
                     
@@ -46,5 +51,5 @@ class Helper
     }
 
     // Header 
-    
+
 }

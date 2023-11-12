@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\CategoriesController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\UploadController;
 use App\Http\Controllers\Users\AccountsController;
+use App\Http\Controllers\Users\IndexController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
@@ -20,9 +21,7 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::get('/', function () {
-    return view('index', ['title' => 'Trang chủ']);
-})->name('index');
+Route::get('/', [IndexController::class, 'index'])->name('index');
 
 
 
@@ -84,9 +83,9 @@ Route::group(['middleware' => 'admin'], function () {
         Route::get('/', function () {
             return view('admin.index', ['title' => 'Admin']);
         })->name('admin');
+        Route::post('/upload', [UploadController::class, 'upload']);
         Route::get('/profile', [ProfileController::class, 'index']);
         Route::post('/profile', [ProfileController::class, 'update']);
-        Route::post('/profile/upload', [UploadController::class, 'upload']);
         Route::get('/tables', function () {
             return view('admin.tables', ['title' => 'Table']);
         });

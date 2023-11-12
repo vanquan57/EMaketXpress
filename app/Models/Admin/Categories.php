@@ -14,6 +14,7 @@ class Categories extends Model
         'Name',
         'Description',
         'ParentId',
-        'Active'
+        'Active',
+        'Image'
     ];
 }

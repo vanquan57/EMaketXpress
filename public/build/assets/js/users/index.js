@@ -31,12 +31,12 @@ const app = {
             button.onclick = () => {
                 const icon = button.firstChild;
                 const contentElement = button.parentNode.nextElementSibling;
-                
-                if(contentElement.style.display === 'block'){
+
+                if (contentElement.style.display === 'block') {
                     contentElement.style.display = 'none';
                     icon.style.transform = 'rotate(0deg)';
 
-                }else{
+                } else {
                     contentElement.style.display = 'block';
                     icon.style.transform = 'rotate(180deg)';
 
@@ -46,10 +46,31 @@ const app = {
 
         });
     },
+    moveCategoryList: () => {
+        const category_listItem = Array.from(document.querySelector('.category_list').children);
+        const allCategoryItems = document.querySelectorAll('.category_item_');
+        category_listItem.forEach((clickedItem) => {
+            clickedItem.onclick = () => {
+                category_listItem.forEach((item) => {
+                    item.classList.remove('active');
+                });
+                clickedItem.classList.add('active');
+                const category_itemElement = document.querySelector(`.category_item_${clickedItem.getAttribute('data')}`);
+                if (category_itemElement) {
+                    allCategoryItems.forEach((allCategoryItem) => {
+                        allCategoryItem.classList.add('invisible');
+                    });
+                    category_itemElement.classList.remove('invisible');
+
+                }
+            }
+        });
+    },
     start: function () {
         this.showNavMobile();
         this.hiddenNavMobile();
         this.dropDownCategory();
+        this.moveCategoryList();
     }
 }
 app.start();

@@ -72,9 +72,28 @@
                     class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
                 <label for="default-radio-2" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Không</label>
             </div>
+            <div class="field mt-2">
+                <label class="label ">Hình Ảnh Mô Tả Danh Mục</label>
+                <div class="field-body flex items-center">
+                    <div class="field file">
+                        <label class="upload control">
+                            <a class="button blue h-10">
+                                Upload
+                            </a>
+                            <input type="file" name="avatar" id="avatarUpload">
+                        </label>
+                        <input type="text" name="newAvatar" value="{{ $category->Image ? $category->Image : ''}}" id="newAvatar" hidden>
+                    </div>
+                    <div class="image w-40 h-40 mx-auto">
+                        <img id="avatarUploadProfile" src="{{ $category->Image ? $category->Image : 'https://avatars.dicebear.com/v2/initials/felicita-yundt.svg' }}"
+                            class="rounded-full">
+                    </div>
+                </div>
+            </div>
             <div class="mt-2">
                 <button type="submit"
-                    class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Cập nhật
+                    class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Cập
+                    nhật
                     Danh Mục</button>
             </div>
             @csrf

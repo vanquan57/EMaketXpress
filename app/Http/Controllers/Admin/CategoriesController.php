@@ -47,6 +47,7 @@ class CategoriesController extends Controller
                 'Description' => (string)$request->input('category_description'),
                 'ParentId' => (int)$request->input('parentId'),
                 'Active' => (int)$request->input('active'),
+                'Image' => (string)$request->input('newAvatar')
             ]);
             return redirect()->back();
         } catch (\Throwable $th) {
@@ -87,7 +88,8 @@ class CategoriesController extends Controller
                 'Name' => (string)$request->input('category_name'),
                 'Description' => (string)$request->input('category_description'),
                 'ParentId' => (int)$request->input('parentId'),
-                'Active' => (int)$request->input('active')
+                'Active' => (int)$request->input('active'),
+                'Image' => (string)$request->input('newAvatar')
             ]);
             return redirect()->route('listCategories');
         } catch (\Throwable $th) {
@@ -126,6 +128,7 @@ class CategoriesController extends Controller
     public function showViewListCategories()
     {
         $listCategories = Categories::get();
+       
         return view('admin.category.listcategories', ['title' => 'List categories', 'listCategories' => $listCategories]);
     }
 }

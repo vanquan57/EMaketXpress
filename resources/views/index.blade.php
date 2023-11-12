@@ -37,7 +37,8 @@
             <ul class="xl:flex items-center text-[#221f20] font-medium text-xs hidden">
                 @foreach ($listCategories as $category)
                     <li class="mr-4 p-2 custom-transition">
-                        <a href="{{ Str::slug($category['Name'], '-') }}" class="transition-colors hover:text-[#FCAF17]">
+                        <a href="{{ Str::slug($category['Description'], '-') }}"
+                            class="transition-colors hover:text-[#FCAF17]">
                             {{ $category['Name'] }}
                         </a>
                         @if (!empty($category['children']))
@@ -46,7 +47,8 @@
                                     class="flex flex-wrap max-w-[150px] h-auto absolute rounded-sm z-10 border-slate-300 border bg-[#fff] custom-transition-active">
                                     @foreach ($category['children'] as $child)
                                         <li class="p-2 border-b w-[100%]">
-                                            <a href="{{ Str::slug($child['Name'], '-') }}" class="hover:text-[#FCAF17]">
+                                            <a href="{{ Str::slug($child['Description'], '-') }}"
+                                                class="hover:text-[#FCAF17]">
                                                 {{ $child['Name'] }}
                                             </a>
                                         </li>
@@ -57,14 +59,15 @@
                                     class="p-2 flex flex-wrap max-w-[500px] h-auto absolute rounded-sm z-10 border-slate-300 border bg-[#fff] custom-transition-active">
                                     @foreach ($category['children'] as $child)
                                         <li class="mb-3 p-2">
-                                            <a href="{{ Str::slug($child['Name'], '-') }}" class="hover:text-[#FCAF17]">
+                                            <a href="{{ Str::slug($child['Description'], '-') }}"
+                                                class="hover:text-[#FCAF17]">
                                                 {{ $child['Name'] }}
                                             </a>
                                             @if (!empty($child['children']))
                                                 <ul class="text-sm pt-1">
                                                     @foreach ($child['children'] as $grandchild)
                                                         <li class="mb-3 font-light text-[#57585A] hover:text-[#FCAF17]">
-                                                            <a href="{{ Str::slug($grandchild['Name'], '-') }}">
+                                                            <a href="{{ Str::slug($grandchild['Description'], '-') }}">
                                                                 {{ $grandchild['Name'] }}
                                                             </a>
                                                         </li>
@@ -113,26 +116,27 @@
         <ul class="pl-2">
             @foreach ($listCategories as $category)
                 <li class="mr-4 p-2">
-                   <div class="flex justify-between items-center">
-                        <a href="{{ Str::slug($category['Name'], '-') }}" class=" flex-1 transition-colors hover:text-[#FCAF17]">
+                    <div class="flex justify-between items-center">
+                        <a href="{{ Str::slug($category['Description'], '-') }}"
+                            class=" flex-1 transition-colors hover:text-[#FCAF17]">
                             {{ $category['Name'] }}
                         </a>
-                        <button class="dropDownBtn p-2"><i class="transition-all duration-200 fa-solid fa-chevron-down"></i></button>
-                   </div>
+                        <button class="dropDownBtn p-2"><i
+                                class="transition-all duration-200 fa-solid fa-chevron-down"></i></button>
+                    </div>
                     @if (!empty($category['children']))
-                       <div class="hidden transition-all duration-200">
-                            <ul
-                                class=" p-2 flex flex-wrap h-auto rounded-sm z-10 border-slate-300 border bg-[#fff] ">
+                        <div class="hidden transition-all duration-200">
+                            <ul class=" p-2 flex flex-wrap h-auto rounded-sm z-10 border-slate-300 border bg-[#fff] ">
                                 @foreach ($category['children'] as $child)
                                     <li class="mb-3 p-2">
-                                        <a href="{{ Str::slug($child['Name'], '-') }}" class="hover:text-[#FCAF17]">
+                                        <a href="{{ Str::slug($child['Description'], '-') }}" class="hover:text-[#FCAF17]">
                                             {{ $child['Name'] }}
                                         </a>
                                         @if (!empty($child['children']))
                                             <ul class="text-sm pt-1">
                                                 @foreach ($child['children'] as $grandchild)
                                                     <li class="mb-3 font-light text-[#57585A] hover:text-[#FCAF17]">
-                                                        <a href="{{ Str::slug($grandchild['Name'], '-') }}">
+                                                        <a href="{{ Str::slug($grandchild['Description'], '-') }}">
                                                             {{ $grandchild['Name'] }}
                                                         </a>
                                                     </li>
@@ -142,7 +146,7 @@
                                     </li>
                                 @endforeach
                             </ul>
-                       </div>
+                        </div>
                     @endif
                 </li>
             @endforeach
@@ -162,5 +166,62 @@
             </ul>
         </div>
     </nav>
+    {{-- End navMobile --}}
+    <div class="w-[100%]">
+        <div class="flex justify-center category_list">
+            <div data ="girl"
+                class="active max-w-[220px] min-w-[70px] border-b-2 font-medium text-[#97A0AD] border-[#97A0AD] mx-4 py-4 text-center hover:text-[#FCAF17] hover:border-[#FCAF17]">
+                NỮ</div>
+            <div data ="boy"
+                class="max-w-[220px] min-w-[70px] border-b-2 font-medium text-[#97A0AD] border-[#97A0AD] mx-4 py-4 text-center hover:text-[#FCAF17] hover:border-[#FCAF17]">
+                NAM</div>
+            <div data ="children"
+                class="max-w-[220px] min-w-[70px] border-b-2 font-medium text-[#97A0AD] border-[#97A0AD] mx-4 py-4 text-center hover:text-[#FCAF17] hover:border-[#FCAF17]">
+                TRẺ EM</div>
+        </div>
+    </div>
+    <div class="relative parent_category_item">
+        <ul class="absolute top-0 left-0 w-[100%] flex flex-wrap  mt-5 justify-around items-center category_item_ category_item_girl">
+            @if ($arrayCategoriesGirls)
+                @foreach ($arrayCategoriesGirls as $arrayCategoriesGirl)
+                <li class="w-[150px] h-[130px]  text-center group hover:mt-[-3px] box-border ">
+                    <a href="{{ Str::slug($arrayCategoriesGirl->Description, '-')}}" class="flex flex-col justify-center items-center">
+                        <img class="rounded-full object-cover w-[90px] h-[90px] transition-all group-hover:rounded-full group-hover:shadow-[0_10px_5px_-5px_rgba(0,0,0,0.3)]" src="{{$arrayCategoriesGirl->Image}}"
+                            alt="">
+                        <span class="font-medium mt-1 transition-colors group-hover:text-[#FCAF17] text-[#11007D]">{{$arrayCategoriesGirl->Name}}</span>
+                    </a>
+                </li>
+                @endforeach
+            @endif
+            
+
+        </ul>
+        <ul class="invisible absolute  top-0 left-0 w-[100%] flex flex-wrap  mt-5 justify-around items-center category_item_ category_item_boy">
+            @if ($arrayCategoriesBoys)
+            @foreach ($arrayCategoriesBoys as $arrayCategoriesBoy)
+            <li class=" w-[150px] h-[130px]  text-center group hover:mt-[-3px] box-border ">
+                <a href="{{ Str::slug($arrayCategoriesBoy->Description, '-')}}" class="flex flex-col justify-center items-center">
+                    <img class="rounded-full object-cover w-[90px] h-[90px] transition-all group-hover:rounded-full group-hover:shadow-[0_10px_5px_-5px_rgba(0,0,0,0.3)]" src="{{$arrayCategoriesBoy->Image}}"
+                        alt="">
+                    <span class="font-medium mt-1 transition-colors group-hover:text-[#FCAF17] text-[#11007D]">{{$arrayCategoriesBoy->Name}}</span>
+                </a>
+            </li>
+            @endforeach
+        @endif
+        </ul>
+        <ul class="invisible absolute top-0 left-0 w-[100%] flex flex-wrap mt-5 justify-around items-center category_item_ category_item_children">
+            @if ($arrayCategoriesChildrens)
+                @foreach ($arrayCategoriesChildrens as $arrayCategoriesChildren)
+                <li class=" w-[150px] h-[130px]  text-center group hover:mt-[-3px] box-border ">
+                    <a href="{{ Str::slug($arrayCategoriesChildren->Description, '-')}}" class="flex flex-col justify-center items-center">
+                        <img class="rounded-full object-cover w-[90px] h-[90px] transition-all group-hover:rounded-full group-hover:shadow-[0_10px_5px_-5px_rgba(0,0,0,0.3)]" src="{{$arrayCategoriesChildren->Image}}"
+                            alt="">
+                        <span class="font-medium mt-1 transition-colors group-hover:text-[#FCAF17] text-[#11007D]">{{$arrayCategoriesChildren->Name}}</span>
+                    </a>
+                </li>
+                @endforeach
+            @endif
+        </ul>
+    </div>
 
 @endsection

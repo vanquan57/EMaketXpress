@@ -36,6 +36,8 @@ class AppServiceProvider extends ServiceProvider
             $result[] = [
                 'CategoryID' => $category->CategoryID,
                 'Name' => $category->Name,
+                'Description' => $category->Description,
+                'Image' => $category->Image,
                 'children' => $children,
             ];
         }
