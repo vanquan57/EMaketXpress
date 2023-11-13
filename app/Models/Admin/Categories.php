@@ -17,4 +17,7 @@ class Categories extends Model
         'Active',
         'Image'
     ];
+    public function promotions(){
+        return $this->hasMany(Promotions::class);
+    }
 }

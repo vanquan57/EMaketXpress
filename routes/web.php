@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\AdminAccountController;
 use App\Http\Controllers\Admin\CategoriesController;
 use App\Http\Controllers\Admin\ProfileController;
+use App\Http\Controllers\Admin\PromotionController;
 use App\Http\Controllers\Admin\UploadController;
 use App\Http\Controllers\Users\AccountsController;
 use App\Http\Controllers\Users\IndexController;
@@ -99,6 +100,14 @@ Route::group(['middleware' => 'admin'], function () {
             Route::get('/edit-{id}', [CategoriesController::class, 'show']);
             Route::post('/edit-{id}', [CategoriesController::class, 'update']);
             Route::delete('/destroy', [CategoriesController::class, 'destroy']);
+        });
+        Route::prefix('promotions')->group(function () {
+            Route::get('/', [PromotionController::class, 'index']);
+            Route::post('/', [PromotionController::class, 'store']);
+            Route::get('/list', [PromotionController::class, 'showListPromotions'])->name('showListPromotions');
+            Route::get('/edit-{id}', [PromotionController::class, 'show']);
+            Route::post('/edit-{id}', [PromotionController::class, 'update']);
+            Route::delete('/destroy', [PromotionController::class, 'destroy']);
         });
     });
 });

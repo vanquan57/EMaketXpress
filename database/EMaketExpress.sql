@@ -38,7 +38,7 @@ CREATE TABLE Product(
   );
 CREATE TABLE Promotions (
   PromotionID INT AUTO_INCREMENT PRIMARY KEY,
-  PromotionCode VARCHAR(20),
+  PromotionCode NVARCHAR(20),
   DiscountAmount DOUBLE,
   StartDate DATE,
   EndDate DATE,
