@@ -25,10 +25,10 @@ use Illuminate\Http\Request;
 Route::get('/', [IndexController::class, 'index'])->name('index');
 
 
-
 Route::group(['middleware' => 'auth'], function () {
-    // Các route hoặc controller dành cho người dùng
-    Route::get('/abc', [AccountsController::class, 'abc']);
+    // Các route hoặc controller dành cho người dùng phải đăng nhập
+
+    Route::get('/logout', [AccountsController::class, 'logout']);
 });
 // Route Login Socialite
 Route::prefix('login')->group(function () {

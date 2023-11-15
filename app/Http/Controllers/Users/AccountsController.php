@@ -212,4 +212,8 @@ class AccountsController extends Controller
             return redirect()->back()->with('errorConfirmPassword', 'Mật khẩu không trùng khớp');
         }
     }
+    public function logout(){
+        Auth::logout();
+        return redirect()->route('login');
+    }
 }

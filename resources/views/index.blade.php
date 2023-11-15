@@ -95,9 +95,169 @@
                             class="fa-solid fa-magnifying-glass"></i></button>
                 </form>
                 <div>
+
+                    <span class="group relative">
+                        <i class="inline-block px-[10px] hover:text-[#FCAF17] fa-solid fa-cart-shopping"></i>
+                        <div
+                            class="absolute rounded-md right-0 top-[35px] w-[400px]   invisible group-hover:visible bg-white before:bg-transparent before:absolute before:top-[-17px] before:w-[100%] before:py-3 before:content-['']">
+                            @if (!Auth::check())
+                                <div class="bg-gradient-to-b from-[#D7F2FE] to-[#FEFEFC]">
+                                    <a href="/login" class="flex items-center">
+                                        <span class="py-4 px-1 min-w-[90px] inline-block border-r  text-sm font-medium">ĐĂNG
+                                            NHÂP</span>
+                                        <span class="py-4 px-2 text-xs"> Đăng nhập và đồng bộ sản phẩm đến giỏ hàng của
+                                            bạn</span>
+                                    </a>
+                                </div>
+                            @endif
+                            <div class="py-1 border-y  max-h-[360px] overflow-y-auto">
+                                <div class="flex mt-2 borde px-1 ">
+                                    <div class="w-[90px] h-[120px] flex items-center rounded">
+                                        <img class="object-cover rounded"
+                                            src="https://bizweb.dktcdn.net/thumb/compact/100/438/408/products/smn6016-kdm-ao-so-mi-nu-3.jpg"
+                                            alt="">
+                                    </div>
+                                    <div class="flex-1 pl-2 group_UpAndDown_Number">
+                                        <a class="py-1" href="">Áo Sơ Mi Nữ Dài Tay Cơ Bản Nano</a>
+                                        <p class="font-medium text-[#FCAF17] py-1">249.500đ</p>
+                                        <span class="rounded-full py-1 px-2 bg-[#F8F8F8] w-auto mt-1">Kẻ xanh đậm / M</span>
+                                        <div class="flex justify-between mt-2">
+                                            <div class="flex">
+                                                <button class="px-2 rounded-l-full border buttonReduced">-</button>
+                                                <input class="border w-[40px] pl-3 numberProduct" type="number"
+                                                    value="1" inputmode="numeric">
+                                                <button class="px-2 rounded-r-full border buttonIncrease">+</button>
+                                            </div>
+                                            <div class="pr-2">
+                                                Tổng cộng: <span class="font-medium text-[#FF5500]">249.500đ</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="flex mt-2 borde px-1 ">
+                                    <div class="w-[90px] h-[120px] flex items-center rounded">
+                                        <img class="object-cover rounded"
+                                            src="https://bizweb.dktcdn.net/thumb/compact/100/438/408/products/smn6016-kdm-ao-so-mi-nu-3.jpg"
+                                            alt="">
+                                    </div>
+                                    <div class="flex-1 pl-2 group_UpAndDown_Number">
+                                        <a class="py-1" href="">Áo Sơ Mi Nữ Dài Tay Cơ Bản Nano</a>
+                                        <p class="font-medium text-[#FCAF17] py-1">249.500đ</p>
+                                        <span class="rounded-full py-1 px-2 bg-[#F8F8F8] w-auto mt-1">Kẻ xanh đậm / M</span>
+                                        <div class="flex justify-between mt-2">
+                                            <div class="flex">
+                                                <button class="px-2 rounded-l-full border buttonReduced">-</button>
+                                                <input class="border w-[40px] pl-3 numberProduct" type="number"
+                                                    value="1" inputmode="numeric">
+                                                <button class="px-2 rounded-r-full border buttonIncrease">+</button>
+                                            </div>
+                                            <div class="pr-2">
+                                                Tổng cộng: <span class="font-medium text-[#FF5500]">249.500đ</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="flex mt-2 borde px-1 ">
+                                    <div class="w-[90px] h-[120px] flex items-center rounded">
+                                        <img class="object-cover rounded"
+                                            src="https://bizweb.dktcdn.net/thumb/compact/100/438/408/products/smn6016-kdm-ao-so-mi-nu-3.jpg"
+                                            alt="">
+                                    </div>
+                                    <div class="flex-1 pl-2 group_UpAndDown_Number">
+                                        <a class="py-1" href="">Áo Sơ Mi Nữ Dài Tay Cơ Bản Nano</a>
+                                        <p class="font-medium text-[#FCAF17] py-1">249.500đ</p>
+                                        <span class="rounded-full py-1 px-2 bg-[#F8F8F8] w-auto mt-1">Kẻ xanh đậm /
+                                            M</span>
+                                        <div class="flex justify-between mt-2">
+                                            <div class="flex">
+                                                <button class="px-2 rounded-l-full border buttonReduced">-</button>
+                                                <input class="border w-[40px] pl-3 numberProduct" type="number"
+                                                    value="1" inputmode="numeric">
+                                                <button class="px-2 rounded-r-full border buttonIncrease">+</button>
+                                            </div>
+                                            <div class="pr-2">
+                                                Tổng cộng: <span class="font-medium text-[#FF5500]">249.500đ</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div
+                                class="mt-2 bg-gradient-to-b from-[#D7F2FE] to-[#FEFEFC] h-[40px] flex items-center w-[100%] justify-end pr-2">
+                                Tổng cộng: <span class="font-medium text-[#FF5500]">249.500đ</span>
+                            </div>
+                            <button
+                                class="transition-colors h-[35px] w-[100%]  hover:text-[#816a38] hover:bg-[#52C9F7] bg-[#aadff6] ">XEM
+                                GIỎ HÀNG</button>
+
+                        </div>
+                    </span>
+                    <span class="group relative">
+                        <i class="inline-block px-[10px] hover:text-[#FCAF17] fa-solid fa-user  "></i>
+                        <div
+                            class="group-hover:visible transition-all w-[200px] absolute top-0 right-0 mt-[30px] z-10 invisible bg-white  rounded-lg shadow dark:bg-gray-700   before:bg-transparent before:absolute before:top-[-17px] before:w-[100%] before:py-3 before:content-['']">
+                            <ul>
+                                @if (Auth::check())
+                                    <li class="border py-1 rounded-lg flex items-center px-1">
+
+                                        <img src="@if (Auth::check()) {{ Auth::user()->avatar ? Auth::user()->avatar : 'https://avatars.dicebear.com/v2/initials/felicita-yundt.svg' }} @endif"
+                                            alt="@if (Auth::check()) {{ Auth::user()->username }} @endif "
+                                            class="rounded-full w-[48px] h-[48px]">
+                                        <span class="pl-2">
+                                            @if (Auth::check())
+                                                {{ Auth::user()->username }}
+                                            @endif
+                                        </span>
+
+                                    </li>
+                                @else
+                                    <li
+                                        class="border py-1 rounded-lg flex items-center px-1  hover:text-[#FCAF17] hover:cursor-pointer">
+                                        <img class="w-[24px] h-[24px] rounded-full"
+                                            src="https://cdn-icons-png.flaticon.com/512/4034/4034219.png" alt="Đăng Nhập">
+                                        <a href="/login" class="pl-2 flex-1">Đăng Nhập</a>
+                                    </li>
+                                @endif
+                                <li
+                                    class="border py-1 rounded-lg flex items-center px-1  hover:text-[#FCAF17] hover:cursor-pointer">
+                                    <img class="w-[24px] h-[24px] rounded-full"
+                                        src="https://st.chotot.com/storage/chotot-icons/svg/circle-list.svg"
+                                        alt="Lịch sử giao dịch">
+                                    <a href="#" class="pl-2 flex-1">Lịch sử giao dịch</a>
+                                </li>
+                                <li
+                                    class="border py-1 rounded-lg flex items-center px-1  hover:text-[#FCAF17] hover:cursor-pointer">
+                                    <img class="w-[24px] h-[24px] rounded-full"
+                                        src="https://static.chotot.com/storage/chotot-icons/svg/escrow_buy_orders.svg"
+                                        alt="Đơn hàng của tôi">
+                                    <a href="#" class="pl-2 flex-1 ">Đơn hàng của tôi</a>
+                                </li>
+                                <li
+                                    class="border py-1 rounded-lg flex items-center px-1  hover:text-[#FCAF17] hover:cursor-pointer">
+                                    <img class="w-[24px] h-[24px] rounded-full"
+                                        src="https://static.chotot.com/storage/icons/svg/help.svg" alt="Trợ giúp">
+                                    <a href="#" class="pl-2 flex-1">Trợ giúp</a>
+                                </li>
+                                <li
+                                    class="border py-1 rounded-lg flex items-center px-1  hover:text-[#FCAF17] hover:cursor-pointer">
+                                    <img class="w-[24px] h-[24px] rounded-full"
+                                        src="	https://static.chotot.com/storage/chotot-icons/svg/rate-review.svg"
+                                        alt="Đóng góp ý kiến">
+                                    <a href="#" class="pl-2 flex-1">Đóng góp ý kiến</a>
+                                </li>
+                                @if (Auth::check())
+                                    <li
+                                        class="border py-1 rounded-lg flex items-center px-1  hover:text-[#FCAF17] hover:cursor-pointer">
+                                        <img class="w-[24px] h-[24px] rounded-full"
+                                            src="https://www.svgrepo.com/download/199922/logout.svg" alt="Đăng Xuất">
+                                        <a href="/logout" class="pl-2 flex-1">Đăng Xuất</a>
+                                    </li>
+                                @endif
+
+                            </ul>
+                        </div>
+                    </span>
                     <i class="inline-block px-[10px] hover:text-[#FCAF17] fa-solid fa-headphones"></i>
-                    <i class="inline-block px-[10px] hover:text-[#FCAF17] fa-solid fa-user"></i>
-                    <i class="inline-block px-[10px] hover:text-[#FCAF17] fa-solid fa-cart-shopping"></i>
                 </div>
             </div>
         </div>
@@ -129,7 +289,8 @@
                             <ul class=" p-2 flex flex-wrap h-auto rounded-sm z-10 border-slate-300 border bg-[#fff] ">
                                 @foreach ($category['children'] as $child)
                                     <li class="mb-3 p-2">
-                                        <a href="{{ Str::slug($child['Description'], '-') }}" class="hover:text-[#FCAF17]">
+                                        <a href="{{ Str::slug($child['Description'], '-') }}"
+                                            class="hover:text-[#FCAF17]">
                                             {{ $child['Name'] }}
                                         </a>
                                         @if (!empty($child['children']))
@@ -153,16 +314,48 @@
         </ul>
         <div>
             <ul class="px-2 py-1 border-t">
-                <li class="text-left flex items-center py-1"><a href=""><i class="px-1 fa-regular fa-comments"></i>
+                @if (Auth::check())
+                    <li class="flex items-center px-1">
+
+                        <img src="@if (Auth::check()) {{ Auth::user()->avatar ? Auth::user()->avatar : 'https://avatars.dicebear.com/v2/initials/felicita-yundt.svg' }} @endif"
+                            alt="@if (Auth::check()) {{ Auth::user()->username }} @endif "
+                            class="rounded-full w-[48px] h-[48px]">
+                        <span class="pl-2">
+                            @if (Auth::check())
+                                {{ Auth::user()->username }}
+                            @endif
+                        </span>
+
+
+                    </li>
+                @else
+                    <li class="flex items-center px-1  hover:text-[#FCAF17] hover:cursor-pointer">
+                        <img class="w-[24px] h-[24px] rounded-full"
+                            src="https://cdn-icons-png.flaticon.com/512/4034/4034219.png" alt="Đăng Nhập">
+                        <a href="/login" class="pl-2 flex-1">Đăng Nhập</a>
+                    </li>
+                @endif
+                <li class="text-left flex items-center py-1"><a href=""><i
+                            class="px-1 fa-regular fa-comments"></i>
                         Tư vấn qua zalo</a></li>
-                <li class="text-left flex items-center py-1"><a href="/login"><i
-                            class="px-1 fa-regular fa-circle-user"></i> Đăng nhập</a></li>
-                <li class="text-left flex items-center py-1"><a href=""><i class="px-1 fa-solid fa-truck-fast"></i>
+
+
+                <li class="text-left flex items-center py-1"><a href=""><i
+                            class="px-1 fa-solid fa-truck-fast"></i>
                         Đơn hàng của tôi</a></li>
-                <li class="text-left flex items-center py-1"><a href=""><i class="px-1 fa-solid fa-location-dot"></i>
+                <li class="text-left flex items-center py-1"><a href=""><i
+                            class="px-1 fa-solid fa-location-dot"></i>
                         Hệ thống cửa hàng</a></li>
-                <li class="text-left flex items-center py-1"><a href=""><i class="px-1 fa-solid fa-shield"></i>Chính
+                <li class="text-left flex items-center py-1"><a href=""><i
+                            class="px-1 fa-solid fa-shield"></i>Chính
                         sách hỗ trợ khách hàng</a></li>
+                @if (Auth::check())
+                    <li class="py-1 flex items-center px-1  hover:text-[#FCAF17] hover:cursor-pointer">
+                        <img class="w-[24px] h-[24px] rounded-full"
+                            src="https://www.svgrepo.com/download/199922/logout.svg" alt="Đăng Xuất">
+                        <a href="/logout" class="pl-2 flex-1">Đăng Xuất</a>
+                    </li>
+                @endif
             </ul>
         </div>
     </nav>
@@ -180,48 +373,188 @@
                 TRẺ EM</div>
         </div>
     </div>
-    <div class="relative parent_category_item">
-        <ul class="absolute top-0 left-0 w-[100%] flex flex-wrap  mt-5 justify-around items-center category_item_ category_item_girl">
-            @if ($arrayCategoriesGirls)
-                @foreach ($arrayCategoriesGirls as $arrayCategoriesGirl)
-                <li class="w-[150px] h-[130px]  text-center group hover:mt-[-3px] box-border ">
-                    <a href="{{ Str::slug($arrayCategoriesGirl->Description, '-')}}" class="flex flex-col justify-center items-center">
-                        <img class="rounded-full object-cover w-[90px] h-[90px] transition-all group-hover:rounded-full group-hover:shadow-[0_10px_5px_-5px_rgba(0,0,0,0.3)]" src="{{$arrayCategoriesGirl->Image}}"
-                            alt="">
-                        <span class="font-medium mt-1 transition-colors group-hover:text-[#FCAF17] text-[#11007D]">{{$arrayCategoriesGirl->Name}}</span>
-                    </a>
-                </li>
-                @endforeach
-            @endif
-            
-
+    <div class="parent_category_item  ">
+        <ul class="block w-[100%]  mt-5  items-center category_item_ category_item_girl">
+            <div class="flex flex-wrap justify-around">
+                @if ($arrayCategoriesGirls)
+                    @foreach ($arrayCategoriesGirls as $arrayCategoriesGirl)
+                        <li class="w-[150px] h-[130px]  text-center group hover:mt-[-3px] box-border ">
+                            <a href="{{ Str::slug($arrayCategoriesGirl->Description, '-') }}"
+                                class="flex flex-col justify-center items-center">
+                                <img class="rounded-full object-cover w-[90px] h-[90px] transition-all group-hover:rounded-full group-hover:shadow-[0_10px_5px_-5px_rgba(0,0,0,0.3)]"
+                                    src="{{ $arrayCategoriesGirl->Image }}" alt="">
+                                <span
+                                    class="font-medium mt-1 transition-colors group-hover:text-[#FCAF17] text-[#11007D]">{{ $arrayCategoriesGirl->Name }}</span>
+                            </a>
+                        </li>
+                    @endforeach
+                @endif
+            </div>
         </ul>
-        <ul class="invisible absolute  top-0 left-0 w-[100%] flex flex-wrap  mt-5 justify-around items-center category_item_ category_item_boy">
-            @if ($arrayCategoriesBoys)
-            @foreach ($arrayCategoriesBoys as $arrayCategoriesBoy)
-            <li class=" w-[150px] h-[130px]  text-center group hover:mt-[-3px] box-border ">
-                <a href="{{ Str::slug($arrayCategoriesBoy->Description, '-')}}" class="flex flex-col justify-center items-center">
-                    <img class="rounded-full object-cover w-[90px] h-[90px] transition-all group-hover:rounded-full group-hover:shadow-[0_10px_5px_-5px_rgba(0,0,0,0.3)]" src="{{$arrayCategoriesBoy->Image}}"
-                        alt="">
-                    <span class="font-medium mt-1 transition-colors group-hover:text-[#FCAF17] text-[#11007D]">{{$arrayCategoriesBoy->Name}}</span>
-                </a>
-            </li>
-            @endforeach
-        @endif
+        <ul class="hidden  w-[100%]  mt-5  items-center category_item_ category_item_boy">
+            <div class="flex flex-wrap justify-around">
+                @if ($arrayCategoriesBoys)
+                    @foreach ($arrayCategoriesBoys as $arrayCategoriesBoy)
+                        <li class=" w-[150px] h-[130px]  text-center group hover:mt-[-3px] box-border ">
+                            <a href="{{ Str::slug($arrayCategoriesBoy->Description, '-') }}"
+                                class="flex flex-col justify-center items-center">
+                                <img class="rounded-full object-cover w-[90px] h-[90px] transition-all group-hover:rounded-full group-hover:shadow-[0_10px_5px_-5px_rgba(0,0,0,0.3)]"
+                                    src="{{ $arrayCategoriesBoy->Image }}" alt="">
+                                <span
+                                    class="font-medium mt-1 transition-colors group-hover:text-[#FCAF17] text-[#11007D]">{{ $arrayCategoriesBoy->Name }}</span>
+                            </a>
+                        </li>
+                    @endforeach
+                @endif
+            </div>
         </ul>
-        <ul class="invisible absolute top-0 left-0 w-[100%] flex flex-wrap mt-5 justify-around items-center category_item_ category_item_children">
-            @if ($arrayCategoriesChildrens)
-                @foreach ($arrayCategoriesChildrens as $arrayCategoriesChildren)
-                <li class=" w-[150px] h-[130px]  text-center group hover:mt-[-3px] box-border ">
-                    <a href="{{ Str::slug($arrayCategoriesChildren->Description, '-')}}" class="flex flex-col justify-center items-center">
-                        <img class="rounded-full object-cover w-[90px] h-[90px] transition-all group-hover:rounded-full group-hover:shadow-[0_10px_5px_-5px_rgba(0,0,0,0.3)]" src="{{$arrayCategoriesChildren->Image}}"
-                            alt="">
-                        <span class="font-medium mt-1 transition-colors group-hover:text-[#FCAF17] text-[#11007D]">{{$arrayCategoriesChildren->Name}}</span>
-                    </a>
-                </li>
-                @endforeach
-            @endif
+        <ul class="hidden  w-[100%]  mt-5  items-center category_item_ category_item_children">
+            <div class="flex flex-wrap justify-around">
+                @if ($arrayCategoriesChildrens)
+                    @foreach ($arrayCategoriesChildrens as $arrayCategoriesChildren)
+                        <li class=" w-[150px] h-[130px]  text-center group hover:mt-[-3px] box-border ">
+                            <a href="{{ Str::slug($arrayCategoriesChildren->Description, '-') }}"
+                                class="flex flex-col justify-center items-center">
+                                <img class="rounded-full object-cover w-[90px] h-[90px] transition-all group-hover:rounded-full group-hover:shadow-[0_10px_5px_-5px_rgba(0,0,0,0.3)]"
+                                    src="{{ $arrayCategoriesChildren->Image }}" alt="">
+                                <span
+                                    class="font-medium mt-1 transition-colors group-hover:text-[#FCAF17] text-[#11007D]">{{ $arrayCategoriesChildren->Name }}</span>
+                            </a>
+                        </li>
+                    @endforeach
+                @endif
+            </div>
         </ul>
+    </div>
+    {{-- Product --}}
+    <div class="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-5">
+        <div class="col-span-1 p-2 group_Product">
+            <a href="" class="inline-block overflow-hidden relative rounded">
+                <img src="https://bizweb.dktcdn.net/thumb/large/100/438/408/products/apn5390-hog-ao-polo-nu-yody-3.jpg?v=1684810027840"
+                    alt="" class="main_image object-cover transition-all  w-[100%] hover:scale-105 ">
+                <span class=" absolute top-0 left-0 rounded-tl px-2 rounded-br bg-[#5E5E5E] text-white font-medium text-sm"><span class="border-r pr-1"><i class="text-[#FFC016] pr-1 fa-solid fa-star"></i>5</span> Đã bán 307</span>
+            </a>
+            <div>
+                <a href="" class="text-sm font-normal">Áo Polo Nữ Mắt Chim Phối Bo (Form Rộng)</a>
+                <div class="py-1">
+                    <span class="font-medium text-[#CD151C]">164.500đ</span>
+                    <span class="font-medium text-[#8A8A8F]"><s>329.000đ</s></span>
+                </div>
+            </div>
+            <ul class="flex item_image">
+                <li class="mr-2 inline-block cursor-pointer w-[48px] h-[48px] rounded-full hover:shadow-md"><img class="h-[100%] w-[100%] object-cover rounded-full" src="https://bizweb.dktcdn.net/thumb/large/100/438/408/products/apn5390-xxm-ao-polo-nu-mat-chim-yody-3.jpg?v=1699328545820" alt=""></li>
+                <li class="inline-block cursor-pointer w-[48px] h-[48px] rounded-full hover:shadow-md"><img class="h-[100%] w-[100%] object-cover rounded-full" src="https://bizweb.dktcdn.net/thumb/large/100/438/408/products/apn5390-hog-ao-polo-nu-yody-3.jpg?v=1684810027840" alt=""></li>
+            </ul>
+        </div>
+        <div class="col-span-1 p-2 group_Product">
+            <a href="" class="inline-block overflow-hidden relative rounded">
+                <img src="https://bizweb.dktcdn.net/thumb/large/100/438/408/products/apn5390-hog-ao-polo-nu-yody-3.jpg?v=1684810027840"
+                    alt="" class="main_image object-cover transition-all  w-[100%] hover:scale-105 ">
+                <span class=" absolute top-0 left-0 rounded-tl px-2 rounded-br bg-[#5E5E5E] text-white font-medium text-sm"><span class="border-r pr-1"><i class="text-[#FFC016] pr-1 fa-solid fa-star"></i>5</span> Đã bán 307</span>
+            </a>
+            <div>
+                <a href="" class="text-sm font-normal">Áo Polo Nữ Mắt Chim Phối Bo (Form Rộng)</a>
+                <div class="py-1">
+                    <span class="font-medium text-[#CD151C]">164.500đ</span>
+                    <span class="font-medium text-[#8A8A8F]"><s>329.000đ</s></span>
+                </div>
+            </div>
+            <ul class="flex item_image">
+                <li class="mr-2 inline-block cursor-pointer w-[48px] h-[48px] rounded-full hover:shadow-md"><img class="h-[100%] w-[100%] object-cover rounded-full" src="https://bizweb.dktcdn.net/thumb/large/100/438/408/products/apn5390-xxm-ao-polo-nu-mat-chim-yody-3.jpg?v=1699328545820" alt=""></li>
+                <li class="inline-block cursor-pointer w-[48px] h-[48px] rounded-full hover:shadow-md"><img class="h-[100%] w-[100%] object-cover rounded-full" src="https://bizweb.dktcdn.net/thumb/large/100/438/408/products/apn5390-hog-ao-polo-nu-yody-3.jpg?v=1684810027840" alt=""></li>
+            </ul>
+        </div>
+        <div class="col-span-1 p-2 group_Product">
+            <a href="" class="inline-block overflow-hidden relative rounded">
+                <img src="https://bizweb.dktcdn.net/thumb/large/100/438/408/products/apn5390-hog-ao-polo-nu-yody-3.jpg?v=1684810027840"
+                    alt="" class="main_image object-cover transition-all  w-[100%] hover:scale-105 ">
+                <span class=" absolute top-0 left-0 rounded-tl px-2 rounded-br bg-[#5E5E5E] text-white font-medium text-sm"><span class="border-r pr-1"><i class="text-[#FFC016] pr-1 fa-solid fa-star"></i>5</span> Đã bán 307</span>
+            </a>
+            <div>
+                <a href="" class="text-sm font-normal">Áo Polo Nữ Mắt Chim Phối Bo (Form Rộng)</a>
+                <div class="py-1">
+                    <span class="font-medium text-[#CD151C]">164.500đ</span>
+                    <span class="font-medium text-[#8A8A8F]"><s>329.000đ</s></span>
+                </div>
+            </div>
+            <ul class="flex item_image">
+                <li class="mr-2 inline-block cursor-pointer w-[48px] h-[48px] rounded-full hover:shadow-md"><img class="h-[100%] w-[100%] object-cover rounded-full" src="https://bizweb.dktcdn.net/thumb/large/100/438/408/products/apn5390-xxm-ao-polo-nu-mat-chim-yody-3.jpg?v=1699328545820" alt=""></li>
+                <li class="inline-block cursor-pointer w-[48px] h-[48px] rounded-full hover:shadow-md"><img class="h-[100%] w-[100%] object-cover rounded-full" src="https://bizweb.dktcdn.net/thumb/large/100/438/408/products/apn5390-hog-ao-polo-nu-yody-3.jpg?v=1684810027840" alt=""></li>
+            </ul>
+        </div>
+        <div class="col-span-1 p-2 group_Product">
+            <a href="" class="inline-block overflow-hidden relative rounded">
+                <img src="https://bizweb.dktcdn.net/thumb/large/100/438/408/products/apn5390-hog-ao-polo-nu-yody-3.jpg?v=1684810027840"
+                    alt="" class="main_image object-cover transition-all  w-[100%] hover:scale-105 ">
+                <span class=" absolute top-0 left-0 rounded-tl px-2 rounded-br bg-[#5E5E5E] text-white font-medium text-sm"><span class="border-r pr-1"><i class="text-[#FFC016] pr-1 fa-solid fa-star"></i>5</span> Đã bán 307</span>
+            </a>
+            <div>
+                <a href="" class="text-sm font-normal">Áo Polo Nữ Mắt Chim Phối Bo (Form Rộng)</a>
+                <div class="py-1">
+                    <span class="font-medium text-[#CD151C]">164.500đ</span>
+                    <span class="font-medium text-[#8A8A8F]"><s>329.000đ</s></span>
+                </div>
+            </div>
+            <ul class="flex item_image">
+                <li class="mr-2 inline-block cursor-pointer w-[48px] h-[48px] rounded-full hover:shadow-md"><img class="h-[100%] w-[100%] object-cover rounded-full" src="https://bizweb.dktcdn.net/thumb/large/100/438/408/products/apn5390-xxm-ao-polo-nu-mat-chim-yody-3.jpg?v=1699328545820" alt=""></li>
+                <li class="inline-block cursor-pointer w-[48px] h-[48px] rounded-full hover:shadow-md"><img class="h-[100%] w-[100%] object-cover rounded-full" src="https://bizweb.dktcdn.net/thumb/large/100/438/408/products/apn5390-hog-ao-polo-nu-yody-3.jpg?v=1684810027840" alt=""></li>
+            </ul>
+        </div>
+        <div class="col-span-1 p-2 group_Product">
+            <a href="" class="inline-block overflow-hidden relative rounded">
+                <img src="https://bizweb.dktcdn.net/thumb/large/100/438/408/products/apn5390-hog-ao-polo-nu-yody-3.jpg?v=1684810027840"
+                    alt="" class="main_image object-cover transition-all  w-[100%] hover:scale-105 ">
+                <span class=" absolute top-0 left-0 rounded-tl px-2 rounded-br bg-[#5E5E5E] text-white font-medium text-sm"><span class="border-r pr-1"><i class="text-[#FFC016] pr-1 fa-solid fa-star"></i>5</span> Đã bán 307</span>
+            </a>
+            <div>
+                <a href="" class="text-sm font-normal">Áo Polo Nữ Mắt Chim Phối Bo (Form Rộng)</a>
+                <div class="py-1">
+                    <span class="font-medium text-[#CD151C]">164.500đ</span>
+                    <span class="font-medium text-[#8A8A8F]"><s>329.000đ</s></span>
+                </div>
+            </div>
+            <ul class="flex item_image">
+                <li class="mr-2 inline-block cursor-pointer w-[48px] h-[48px] rounded-full hover:shadow-md"><img class="h-[100%] w-[100%] object-cover rounded-full" src="https://bizweb.dktcdn.net/thumb/large/100/438/408/products/apn5390-xxm-ao-polo-nu-mat-chim-yody-3.jpg?v=1699328545820" alt=""></li>
+                <li class="inline-block cursor-pointer w-[48px] h-[48px] rounded-full hover:shadow-md"><img class="h-[100%] w-[100%] object-cover rounded-full" src="https://bizweb.dktcdn.net/thumb/large/100/438/408/products/apn5390-hog-ao-polo-nu-yody-3.jpg?v=1684810027840" alt=""></li>
+            </ul>
+        </div>
+        <div class="col-span-1 p-2 group_Product">
+            <a href="" class="inline-block overflow-hidden relative rounded">
+                <img src="https://bizweb.dktcdn.net/thumb/large/100/438/408/products/apn5390-hog-ao-polo-nu-yody-3.jpg?v=1684810027840"
+                    alt="" class="main_image object-cover transition-all  w-[100%] hover:scale-105 ">
+                <span class=" absolute top-0 left-0 rounded-tl px-2 rounded-br bg-[#5E5E5E] text-white font-medium text-sm"><span class="border-r pr-1"><i class="text-[#FFC016] pr-1 fa-solid fa-star"></i>5</span> Đã bán 307</span>
+            </a>
+            <div>
+                <a href="" class="text-sm font-normal">Áo Polo Nữ Mắt Chim Phối Bo (Form Rộng)</a>
+                <div class="py-1">
+                    <span class="font-medium text-[#CD151C]">164.500đ</span>
+                    <span class="font-medium text-[#8A8A8F]"><s>329.000đ</s></span>
+                </div>
+            </div>
+            <ul class="flex item_image">
+                <li class="mr-2 inline-block cursor-pointer w-[48px] h-[48px] rounded-full hover:shadow-md"><img class="h-[100%] w-[100%] object-cover rounded-full" src="https://bizweb.dktcdn.net/thumb/large/100/438/408/products/apn5390-xxm-ao-polo-nu-mat-chim-yody-3.jpg?v=1699328545820" alt=""></li>
+                <li class="inline-block cursor-pointer w-[48px] h-[48px] rounded-full hover:shadow-md"><img class="h-[100%] w-[100%] object-cover rounded-full" src="https://bizweb.dktcdn.net/thumb/large/100/438/408/products/apn5390-hog-ao-polo-nu-yody-3.jpg?v=1684810027840" alt=""></li>
+            </ul>
+        </div>
+        <div class="col-span-1 p-2 group_Product">
+            <a href="" class="inline-block overflow-hidden relative rounded">
+                <img src="https://bizweb.dktcdn.net/thumb/large/100/438/408/products/apn5390-hog-ao-polo-nu-yody-3.jpg?v=1684810027840"
+                    alt="" class="main_image object-cover transition-all  w-[100%] hover:scale-105 ">
+                <span class=" absolute top-0 left-0 rounded-tl px-2 rounded-br bg-[#5E5E5E] text-white font-medium text-sm"><span class="border-r pr-1"><i class="text-[#FFC016] pr-1 fa-solid fa-star"></i>5</span> Đã bán 307</span>
+            </a>
+            <div>
+                <a href="" class="text-sm font-normal">Áo Polo Nữ Mắt Chim Phối Bo (Form Rộng)</a>
+                <div class="py-1">
+                    <span class="font-medium text-[#CD151C]">164.500đ</span>
+                    <span class="font-medium text-[#8A8A8F]"><s>329.000đ</s></span>
+                </div>
+            </div>
+            <ul class="flex item_image">
+                <li class="mr-2 inline-block cursor-pointer w-[48px] h-[48px] rounded-full hover:shadow-md"><img class="h-[100%] w-[100%] object-cover rounded-full" src="https://bizweb.dktcdn.net/thumb/large/100/438/408/products/apn5390-xxm-ao-polo-nu-mat-chim-yody-3.jpg?v=1699328545820" alt=""></li>
+                <li class="inline-block cursor-pointer w-[48px] h-[48px] rounded-full hover:shadow-md"><img class="h-[100%] w-[100%] object-cover rounded-full" src="https://bizweb.dktcdn.net/thumb/large/100/438/408/products/apn5390-hog-ao-polo-nu-yody-3.jpg?v=1684810027840" alt=""></li>
+            </ul>
+        </div>
+        
     </div>
 
 @endsection
