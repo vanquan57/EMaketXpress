@@ -3,12 +3,14 @@
 use App\Http\Controllers\Admin\AdminAccountController;
 use App\Http\Controllers\Admin\CategoriesController;
 use App\Http\Controllers\Admin\ProfileController;
+use App\Http\Controllers\Admin\PromotionController;
 use App\Http\Controllers\Admin\UploadController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\Product_detailsController;
 use App\Http\Controllers\Admin\Product_imgController;
 use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\Users\AccountsController;
+use App\Http\Controllers\Users\IndexController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
@@ -24,15 +26,13 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::get('/', function () {
-    return view('index', ['title' => 'Trang chủ']);
-})->name('index');
 
 
 
 Route::group(['middleware' => 'auth'], function () {
-    // Các route hoặc controller dành cho người dùng
-    Route::get('/abc', [AccountsController::class, 'abc']);
+    // Các route hoặc controller dành cho người dùng phải đăng nhập
+
+    Route::get('/logout', [AccountsController::class, 'logout']);
 });
 // Route Login Socialite
 Route::prefix('login')->group(function () {
@@ -88,9 +88,9 @@ Route::group(['middleware' => 'admin'], function () {
         Route::get('/', function () {
             return view('admin.index', ['title' => 'Admin']);
         })->name('admin');
+        Route::post('/upload', [UploadController::class, 'upload']);
         Route::get('/profile', [ProfileController::class, 'index']);
         Route::post('/profile', [ProfileController::class, 'update']);
-        Route::post('/profile/upload', [UploadController::class, 'upload']);
         Route::get('/tables', function () {
             return view('admin.tables', ['title' => 'Table']);
         });
@@ -104,6 +104,14 @@ Route::group(['middleware' => 'admin'], function () {
             Route::get('/edit-{id}', [CategoriesController::class, 'show']);
             Route::post('/edit-{id}', [CategoriesController::class, 'update']);
             Route::delete('/destroy', [CategoriesController::class, 'destroy']);
+        });
+        Route::prefix('promotions')->group(function () {
+            Route::get('/', [PromotionController::class, 'index']);
+            Route::post('/', [PromotionController::class, 'store']);
+            Route::get('/list', [PromotionController::class, 'showListPromotions'])->name('showListPromotions');
+            Route::get('/edit-{id}', [PromotionController::class, 'show']);
+            Route::post('/edit-{id}', [PromotionController::class, 'update']);
+            Route::delete('/destroy', [PromotionController::class, 'destroy']);
         });
 
         Route::prefix('sliders')->group(function(){
@@ -145,3 +153,8 @@ Route::group(['middleware' => 'admin'], function () {
 
     });
 });
+Route::get('/', [IndexController::class, 'index'])->name('index');
+Route::get('/{slug}', [IndexController::class, 'directionalView']);
+Route::get('/{slug}-nu', [IndexController::class, 'directionalView']);
+Route::get('/{slug}-nam', [IndexController::class, 'directionalView']);
+Route::get('/{slug}-tre-em', [IndexController::class, 'directionalView']);

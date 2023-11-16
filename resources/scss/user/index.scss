@@ -19,3 +19,15 @@
 
     }
 }
+.category_list{
+    .active{
+        border-color: #FCAF17;
+        color:#FCAF17 ;
+    }
+}
+.dot {
+    background-color: #8785854d;
+    &.active {
+        background-color: #636262;
+    }
+}

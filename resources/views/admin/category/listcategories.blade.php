@@ -30,6 +30,7 @@
                         <th>Name</th>
                         <th>Description</th>
                         <th>Active</th>
+                        <th>Image</th>
                         <th>Parent_Id</th>
                         <th>&nbsp;</th>
                     </tr>

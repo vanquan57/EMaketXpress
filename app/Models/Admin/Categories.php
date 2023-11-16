@@ -14,6 +14,10 @@ class Categories extends Model
         'Name',
         'Description',
         'ParentId',
-        'Active'
+        'Active',
+        'Image'
     ];
+    public function promotions(){
+        return $this->hasMany(Promotions::class);
+    }
 }

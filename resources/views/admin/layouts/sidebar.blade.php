@@ -86,6 +86,12 @@
                 </ul>
             </li>
             <li class="--set-active-tables-html">
+                <a href="/admin/promotions">
+                    <span class="icon"><i class="fa-solid fa-percent"></i></span>
+                    <span class="menu-item-label">Quản lý mã khuyến mãi</span>
+                </a>
+            </li>
+            <li class="--set-active-tables-html">
                 <a href="/admin/tables">
                     <span class="icon"><i class="mdi mdi-table"></i></span>
                     <span class="menu-item-label">Tables</span>

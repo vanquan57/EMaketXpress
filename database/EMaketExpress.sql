@@ -1,13 +1,120 @@
 create database EMaketXpress;
 use EmaketXpress;
-insert into users (username, email, password, active, role, avatar) value
- ('Admin', 'huydq.22it@vku.udn.vn','$2a$12$QJwEgTfFsn86hK1bIC62U.xDh0BdRP1x/t.oVf8rvAWfyFSaiXJ7C', 1, 1,'https://scontent.fdad1-3.fna.fbcdn.net/v/t39.30808-1/347220650_194442323507849_9136892268408847233_n.jpg?stp=dst-jpg_s320x320&_nc_cat=111&ccb=1-7&_nc_sid=5f2048&_nc_ohc=7mYhHZtEso0AX-7pXRe&_nc_ht=scontent.fdad1-3.fna&oh=00_AfD5CbwiaxhXPurz10H3zVGkybIePjaOaTYTLPj-So2PhQ&oe=6544F236');
-insert into users (username, email, password, active, role, avatar) value
- ('Admin', 'quanlv.22it@vku.udn.vn','$2a$12$3JBfWkSFc2GP04.tKNnCG.Q.m8cKI0/ke3cVDjGTzW8/cr4AdyPua', 1, 1,'https://scontent.fdad1-2.fna.fbcdn.net/v/t39.30808-6/306309861_793441178669656_7390791038038886716_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=5f2048&_nc_ohc=xIS8TaGzhGYAX_yrgvK&_nc_ht=scontent.fdad1-2.fna&oh=00_AfAducSNqrba1KMHxoShxbn-z46doaRW6gK6n2hcswk8dQ&oe=6545A072');
 
-create table Categories(
+CREATE TABLE users (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(255),
+    email VARCHAR(255) NULL,
+    password VARCHAR(255) NULL,
+    active INT NULL,
+    role INT NOT NULL,
+    provider VARCHAR(255) NULL,
+    provider_id VARCHAR(255) NULL,
+    access_token TEXT NULL,
+    refresh_token TEXT NULL,
+    access_token_expires_at TIMESTAMP NULL,
+    avatar TEXT NULL,
+    remember_token VARCHAR(100) NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+CREATE TABLE Categories(
 CategoryID int auto_increment primary key,
 Name nvarchar(150),
 Description nvarchar(255),
-ParentId int
+ParentId int,
+Active int,
+Image text
+);
+
+CREATE TABLE Product(
+  ProductID INT AUTO_INCREMENT PRIMARY KEY,
+  Name NVARCHAR(40),
+  Price  double,
+  Price_sale  double,
+  CategoryID INT,
+  FOREIGN KEY (CategoryID) REFERENCES Categories(CategoryID) ON UPDATE CASCADE ON DELETE CASCADE
+  );
+CREATE TABLE Promotions (
+  PromotionID INT AUTO_INCREMENT PRIMARY KEY,
+  PromotionCode NVARCHAR(20),
+  DiscountAmount DOUBLE,
+  StartDate DATE,
+  EndDate DATE,
+  CategoryID INT,
+FOREIGN KEY (CategoryID) REFERENCES Categories(CategoryID) ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+CREATE TABLE Product_details (
+  Product_detailsID INT AUTO_INCREMENT PRIMARY KEY,
+  Quantity_sold  INT,
+  Available_quantity tinyint,
+  Description  VARCHAR(255),
+  Color VARCHAR(255),
+  Size VARCHAR(255),
+  ProductID INT,
+  FOREIGN KEY (ProductID) REFERENCES Product(ProductID) ON UPDATE CASCADE ON DELETE CASCADE
+);
+CREATE TABLE Product_img (
+  Product_imgID INT AUTO_INCREMENT PRIMARY KEY,
+  Img VARCHAR(255),
+  ProductID INT,
+  FOREIGN KEY (ProductID) REFERENCES Product(ProductID) ON UPDATE CASCADE ON DELETE CASCADE
+);
+ 
+CREATE TABLE Shopping_cart (
+  Shopping_cartID INT AUTO_INCREMENT PRIMARY KEY,
+  ID_account BIGINT,
+  FOREIGN KEY (ID_account) REFERENCES users(id) ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+
+-- nhiều nhiều tạo ra 1 cái mới
+CREATE TABLE Product_and_cart (
+  Product_cartID INT AUTO_INCREMENT PRIMARY KEY,
+  Shopping_cartID INT,
+  ProductID INT ,
+  FOREIGN KEY (Shopping_cartID) REFERENCES Shopping_cart(Shopping_cartID) ON UPDATE CASCADE,
+  FOREIGN KEY (ProductID) REFERENCES Product(ProductID) ON UPDATE CASCADE ON DELETE CASCADE
+);
+CREATE TABLE Purchase_order(
+  Purchase_order_ID INT AUTO_INCREMENT PRIMARY KEY,
+  Name VARCHAR(255),
+  Address VARCHAR(255),
+  Time DATETIME,
+  Phone_number VARCHAR(10),
+  DeliveryMethod INT,
+  ID_account BIGINT,
+  FOREIGN KEY (ID_account) REFERENCES users(id) ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+CREATE TABLE Payments (
+  PaymentID INT AUTO_INCREMENT PRIMARY KEY,
+  PaymentDate DATETIME,
+  PaymentMethod INT,
+  Status INT,
+  CardNumber VARCHAR(16), -- Số thẻ tín dụng
+  Purchase_order_ID INT,
+  FOREIGN KEY (Purchase_order_ID) REFERENCES Purchase_order(Purchase_order_ID) ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+CREATE TABLE Order_details (
+  Order_detailsID INT AUTO_INCREMENT PRIMARY KEY,
+  Quantity  tinyint,
+  Price  double,
+  Purchase_order_ID INT,
+  ProductID INT,
+  FOREIGN KEY (ProductID) REFERENCES Product(ProductID) ON UPDATE CASCADE,
+  FOREIGN KEY (Purchase_order_ID) REFERENCES Purchase_order(Purchase_order_ID) ON UPDATE CASCADE ON DELETE CASCADE
+);
+CREATE TABLE Comments (
+  ID_bl INT AUTO_INCREMENT PRIMARY KEY,
+  Content TEXT,
+  Star TINYINT,
+  Time DATETIME,
+  ProductID INT,
+  ID_account BIGINT,
+  FOREIGN KEY (ProductID) REFERENCES Product(ProductID) ON UPDATE CASCADE ON DELETE CASCADE,
+  FOREIGN KEY (ID_account) REFERENCES Users(id) ON UPDATE CASCADE ON DELETE CASCADE
 );
