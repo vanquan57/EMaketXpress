@@ -20,5 +20,25 @@ class UploadController extends Controller
                 return response()->json(['success' => false, 'url' => '']);
             }
         }
+        if ($request->hasFile('avatar')) {
+            if ($request->hasFile('avatar')) {
+                $urls = []; // Mảng để lưu trữ URL
+            
+                foreach ($request->file('avatar') as $image) {
+                    try {
+                        $name = $image->getClientOriginalName();
+                        $image->storeAs('uploads', $name, 'public');
+                        $urls[] = '/storage/uploads/' . $name; // Lưu mỗi URL vào mảng
+                    } catch (\Throwable $th) {
+                        return response()->json(['success' => false, 'url' => '']);
+                    }
+                }
+            
+                return response()->json(['success' => true, 'urls' => $urls]);
+            } else {
+                return response()->json(['success' => false, 'url' => '']);
+            }
+        }
+        
     }
 }

@@ -4,6 +4,10 @@ use App\Http\Controllers\Admin\AdminAccountController;
 use App\Http\Controllers\Admin\CategoriesController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\UploadController;
+use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\Product_detailsController;
+use App\Http\Controllers\Admin\Product_imgController;
+use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\Users\AccountsController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
@@ -101,5 +105,43 @@ Route::group(['middleware' => 'admin'], function () {
             Route::post('/edit-{id}', [CategoriesController::class, 'update']);
             Route::delete('/destroy', [CategoriesController::class, 'destroy']);
         });
+
+        Route::prefix('sliders')->group(function(){
+            Route::get('add', [SliderController::class, 'index']);
+            Route::post('add',[SliderController::class,'store']);
+            Route::get('list',[SliderController::class,'showViewListSlider'])->name('listsliders');;
+            Route::get('edit/{slider}',[SliderController::class,'show']);
+            Route::post('edit/{slider}',[SliderController::class,'update']);
+            Route::delete('destroy',[SliderController::class,'destroy']);   
+        });
+
+        Route::prefix('products')->group(function(){
+            Route::get('add', [ProductController::class, 'index']);
+            Route::post('add',[ProductController::class,'store']);
+            Route::get('list',[ProductController::class,'showViewListProduct'])->name('listproduct');;
+            Route::get('edit/{product}',[ProductController::class,'show']);
+            Route::post('edit/{product}',[ProductController::class,'update']);
+            Route::delete('destroy',[ProductController::class,'destroy']);   
+
+        });
+        Route::prefix('product_imgs')->group(function(){
+            Route::get('add/{product_img}',[Product_imgController::class,'index']);
+            Route::post('add/{product_img}',[Product_imgController::class,'store']);
+            Route::get('list/{product_img}',[Product_imgController::class,'showViewListProduct_img'])->name('listproduct_img');;
+            Route::get('edit/{product_img}',[Product_imgController::class,'show']);
+            Route::post('edit/{product_img}',[Product_imgController::class,'update']);
+            Route::delete('destroy',[Product_imgController::class,'destroy']);   
+        });
+        Route::prefix('product_details')->group(function(){
+            Route::get('add/{product_details}',[Product_detailsController::class,'index']);
+            Route::post('add/{product_details}',[Product_detailsController::class,'store']);
+            Route::get('list',[Product_detailsController::class,'showViewListProduct_details'])->name('listproduct_details');;
+            Route::get('edit/{product}',[Product_detailsController::class,'show']);
+            Route::post('edit/{product}',[Product_detailsController::class,'update']);
+            Route::delete('destroy',[Product_detailsController::class,'destroy']);   
+
+        });
+        
+
     });
 });

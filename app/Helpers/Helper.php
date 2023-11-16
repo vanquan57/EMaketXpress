@@ -45,6 +45,36 @@ class Helper
         return $active  == 0 ? '<span class="bg-red-500 text-[#6F7E87] font-normal p-2 rounded-full text-xs">NO</span>' : '<span class="bg-green-500 text-[#6F7E87] font-normal p-2 rounded-full text-xs">YES</span>';
     }
 
-    // Header 
-    
+        public static function getProduct_img($listproduct_img, $parent_id = 0, $charLevel = '')
+    {
+        $result = '';
+        foreach($listproduct_img as $key => $product_img){
+            if ($product_img->ParentId == $parent_id) {
+                $result .= '
+                <tr id="' . $product_img->Product_imgID . '">
+                    <td>'. $charLevel  . $product_img->Product_imgID . '</td>
+                    <td><img class="w-24 h-32" src="/storage/uploads/' . $product_img->Img . '" alt=""></td>
+                    <td>' . $product_img->ParentId . '</td>
+                    <td>' . $product_img->ProductID . '</td>
+                    <td>
+                        <a href="/admin/product_imgs/edit/' . $product_img->Product_imgID . '">
+                            <button class="button small blue --jb-modal" data-target="sample-modal-2" type="button">
+                                <span class="icon"><i class="fas fa-edit"></i></span>
+                            </button>
+                        </a>
+                        <a href="#" onclick="removeRow1(' . $product_img->Product_imgID . ', \'/admin/product_imgs/destroy\')">
+                            <button class="button small red --jb-modal" data-target="sample-modal-2" type="button">
+                                <span class="icon"><i class="fas fa-trash"></i></span>
+                            </button>
+                        </a>
+                    </td>
+                </tr>';
+                unset($listproduct_img[$key]);
+                $result .= self::getProduct_img($listproduct_img, $product_img->Product_imgID, $charLevel . '|--');
+            }
+        }
+        
+        return $result; 
+    }
+
 }
