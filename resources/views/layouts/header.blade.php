@@ -1,5 +1,5 @@
 <div id="overlay"
-class="hidden z-20 fixed top-0 left-0 w-full h-full bg-[#909090] opacity-50 transition-all duration-200"></div>
+class="hidden z-50 fixed top-0 left-0 w-full h-full bg-[#909090] opacity-50 transition-all duration-200"></div>
 <header class="xl:w-full fixed mx-auto h-[100px] bg-[#fff] z-10  border-b bg-gradient-to-b from-[#D7F2FE] to-[#FEFEFC] ">
 <div class="xl:flex justify-end pt-1 hidden">
     <div class="flex items-center text-xs">

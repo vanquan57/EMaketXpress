@@ -1,40 +1,40 @@
 const app = {
     slideShow: function () {
-        const sliderElement  = document.querySelector('.slider');
-        if(sliderElement){
+        const sliderElement = document.querySelector('.slider');
+        if (sliderElement) {
             const imgPosition = document.querySelectorAll(".aspect-ratio-169 img");
-        const imgContainer = document.querySelector(".aspect-ratio-169");
-        const imgNumber = imgPosition.length;
-        const dotItem = document.querySelectorAll(".dot");
-        let indexImg = 0;
-        let windowWidth;
-        imgPosition.forEach((image, index) => {
-            image.style.left = index * 100 + "%";
-            dotItem[index].onclick = () => {
-                slider(index);
-                indexImg = index;
-            };
-        });
-        function slide() {
-            indexImg++;
-            if (indexImg >= imgNumber) {
-                indexImg = 0;
+            const imgContainer = document.querySelector(".aspect-ratio-169");
+            const imgNumber = imgPosition.length;
+            const dotItem = document.querySelectorAll(".dot");
+            let indexImg = 0;
+            let windowWidth;
+            imgPosition.forEach((image, index) => {
+                image.style.left = index * 100 + "%";
+                dotItem[index].onclick = () => {
+                    slider(index);
+                    indexImg = index;
+                };
+            });
+            function slide() {
+                indexImg++;
+                if (indexImg >= imgNumber) {
+                    indexImg = 0;
+                }
+                slider(indexImg);
+                windowWidth = window.innerWidth;
             }
-            slider(indexImg);
-            windowWidth = window.innerWidth;
-        }
-        function slider(indexImg) {
-            imgContainer.style.left = "-" + indexImg * 100 + "%";
-            if (windowWidth >= 1279) {
-                const dotActive = document.querySelector(".dot.active");
-                dotActive.classList.remove("active");
-                dotItem[indexImg].classList.add("active");
+            function slider(indexImg) {
+                imgContainer.style.left = "-" + indexImg * 100 + "%";
+                if (windowWidth >= 1279) {
+                    const dotActive = document.querySelector(".dot.active");
+                    dotActive.classList.remove("active");
+                    dotItem[indexImg].classList.add("active");
+                }
             }
-        }
-        if (imgPosition && imgContainer) {
-            setInterval(slide, 5000);
-            console.log(imgPosition);
-        }
+            if (imgPosition && imgContainer) {
+                setInterval(slide, 5000);
+                console.log(imgPosition);
+            }
         }
     },
     showNavMobile: () => {
@@ -138,16 +138,21 @@ const app = {
     },
     changeMainImage: function () {
         const group_Product = [...document.querySelectorAll('.group_Product')];
+
         group_Product.forEach((group_ProductItem) => {
             const main_image = group_ProductItem.querySelector('.main_image');
             const item_image = group_ProductItem.querySelector('.item_image');
-            const arrImageItems = [...item_image.querySelectorAll('img')];
-            arrImageItems.forEach((imageItem) => {
-                imageItem.onclick = () => {
-                    main_image.src = imageItem.src;
-                }
-            });
+            if (item_image) {
+                const arrImageItems = [...item_image.querySelectorAll('img')];
+                arrImageItems.forEach((imageItem) => {
+                    imageItem.onclick = () => {
+                        main_image.src = imageItem.src;
+                    }
+                });
+            }
         });
+
+
 
 
     },
@@ -170,6 +175,28 @@ const app = {
                 }
             };
         });
+    },
+    countdownTimeSale: function () {
+        const groupTimeSale = document.querySelector('.group-time-sale');
+        if (groupTimeSale) {
+            const hoursSale = groupTimeSale.querySelector('.hours-sale ');
+            const minutesSale = groupTimeSale.querySelector('.minutes-sale ');
+            const secondsSale = groupTimeSale.querySelector('.second-sale ');
+            let countdownTime = 2 * 60 * 60 * 1000;
+            let countdownInterval = setInterval(() => {
+                countdownTime -= 1000;
+                let hours = Math.floor((countdownTime % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                let minutes = Math.floor((countdownTime % (1000 * 60 * 60)) / (1000 * 60));
+                let seconds = Math.floor((countdownTime % (1000 * 60)) / 1000);
+                hoursSale.innerText = hours;
+                minutesSale.innerText = minutes;
+                secondsSale.innerText = seconds;
+
+                if (countdownTime < 0) {
+                    clearInterval(countdownInterval);
+                }
+            }, 1000)
+        }
     },
     // function specialtyEvent
     wrapProductSpecialtyEvent: function () {
@@ -212,6 +239,7 @@ const app = {
         this.upAndDownNumberProductInCart();
         this.changeMainImage();
         this.MenuDropDown();
+        this.countdownTimeSale();
         //  // function specialtyEvent
         this.wrapProductSpecialtyEvent();
 
