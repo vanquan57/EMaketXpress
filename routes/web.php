@@ -22,7 +22,7 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::get('/', [IndexController::class, 'index'])->name('index');
+
 
 
 Route::group(['middleware' => 'auth'], function () {
@@ -111,3 +111,8 @@ Route::group(['middleware' => 'admin'], function () {
         });
     });
 });
+Route::get('/', [IndexController::class, 'index'])->name('index');
+Route::get('/{slug}', [IndexController::class, 'directionalView']);
+Route::get('/{slug}-nu', [IndexController::class, 'directionalView']);
+Route::get('/{slug}-nam', [IndexController::class, 'directionalView']);
+Route::get('/{slug}-tre-em', [IndexController::class, 'directionalView']);

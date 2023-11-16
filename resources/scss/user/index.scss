@@ -25,3 +25,9 @@
         color:#FCAF17 ;
     }
 }
+.dot {
+    background-color: #8785854d;
+    &.active {
+        background-color: #636262;
+    }
+}

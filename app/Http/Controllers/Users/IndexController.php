@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Users;
 use App\Http\Controllers\Controller;
 use App\Models\Admin\Categories;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class IndexController extends Controller
 {
@@ -28,11 +29,21 @@ class IndexController extends Controller
         
       
     }
+    
     private function getCategoryItems($parentId, $number){
         return Categories::where('ParentId', $parentId)
                         ->whereNotNull('Image')
                         ->take($number)
                         ->get();
+    }
+    // function directional view
+    public function directionalView($slug){
+        if($slug == 'coupon-xin'){
+            return view('discountevent', ['title' => Str::title(Str::slug($slug, ' '))]);
+        }
+        if($slug == 'emaketxpress-yeu'){
+            return view('specialtyevent', ['title' => Str::title(Str::slug($slug, ' '))]);
+        }
     }
     /**
      * Show the form for creating a new resource.
@@ -81,4 +92,6 @@ class IndexController extends Controller
     {
         //
     }
+
+    
 }
