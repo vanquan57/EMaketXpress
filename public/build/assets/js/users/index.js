@@ -123,12 +123,12 @@ const app = {
                 const buttonIncrease = groupUpAndDownItem.querySelector('.buttonIncrease');
                 buttonReduced.onclick = () => {
 
-                    if (parseInt(numberProduct.value) > 0) {
-                        numberProduct.value = parseInt(numberProduct.value) - 1;
+                    if (parseInt(numberProduct.innerHTML) > 0) {
+                        numberProduct.innerHTML = parseInt(numberProduct.innerHTML) - 1;
                     }
                 }
                 buttonIncrease.onclick = () => {
-                    numberProduct.value = parseInt(numberProduct.value) + 1;
+                    numberProduct.innerHTML = parseInt(numberProduct.innerHTML) + 1;
                 }
             })
         }
