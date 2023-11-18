@@ -29,8 +29,10 @@
                         <th>ID</th>
                         <th>Name</th>
                         <th>Description</th>
+                        <th>Slug</th>
                         <th>Active</th>
                         <th>Image</th>
+                        <th class="w-[100px]">Hình Đại Điện Sản Phẩm</th>
                         <th>Parent_Id</th>
                         <th>&nbsp;</th>
                     </tr>

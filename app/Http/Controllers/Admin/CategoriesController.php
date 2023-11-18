@@ -8,6 +8,7 @@ use App\Models\Admin\Categories;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Ramsey\Uuid\Type\Integer;
+use Illuminate\Support\Str;
 
 class CategoriesController extends Controller
 {
@@ -42,12 +43,15 @@ class CategoriesController extends Controller
             'category_name.required' => 'Tên danh mục không được để trống'
         ]);
         try {
+            $slug = Str::of($request->input('category_description'))->slug('-');
             Categories::create([
                 'Name' => (string)$request->input('category_name'),
                 'Description' => (string)$request->input('category_description'),
+                'Slug' => (string)$slug,
                 'ParentId' => (int)$request->input('parentId'),
                 'Active' => (int)$request->input('active'),
-                'Image' => (string)$request->input('newAvatar')
+                'Image' => (string)$request->input('newAvatar'),
+                'CategoryProductAvatar' => (string)$request->input('urlCategoryProductAvatar'),
             ]);
             return redirect()->back();
         } catch (\Throwable $th) {
@@ -84,12 +88,17 @@ class CategoriesController extends Controller
             'category_name.required' => 'Tên danh mục không được để trống'
         ]);
         try {
+        $slug = Str::of($request->input('category_description'))->slug('-');
+
             Categories::where('CategoryID', $id)->update([
                 'Name' => (string)$request->input('category_name'),
                 'Description' => (string)$request->input('category_description'),
+                'Slug' => (string)$slug,
                 'ParentId' => (int)$request->input('parentId'),
                 'Active' => (int)$request->input('active'),
-                'Image' => (string)$request->input('newAvatar')
+                'Image' => (string)$request->input('newAvatar'),
+                'CategoryProductAvatar' => (string)$request->input('urlCategoryProductAvatar'),
+
             ]);
             return redirect()->route('listCategories');
         } catch (\Throwable $th) {

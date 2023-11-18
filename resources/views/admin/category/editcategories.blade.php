@@ -84,10 +84,32 @@
                         </label>
                         <input type="text" name="newAvatar" value="{{ $category->Image ? $category->Image : ''}}" id="newAvatar" hidden>
                     </div>
-                    <div class="image w-40 h-40 mx-auto">
+                    <div class="w-40 h-40 mx-auto">
                         <img id="avatarUploadProfile" src="{{ $category->Image ? $category->Image : 'https://avatars.dicebear.com/v2/initials/felicita-yundt.svg' }}"
-                            class="rounded-full">
+                            class="rounded-full w-40 h-40 object-cover">
                     </div>
+                </div>
+            </div>
+            <div class="field mt-2">
+                <label class="label ">Hình Ảnh Đại diện cho sản phẩm danh mục</label>
+                <div class="field-body flex items-center">
+                    <div class="field file">
+                        <label class="upload control">
+                            <a class="button blue h-10">
+                                Upload
+                            </a>
+                            <input type="file" name="categoryProductAvatar" id="categoryProductAvatar">
+                        </label>
+                        <input type="text" name="urlCategoryProductAvatar" value="{{ $category->Image ? $category->Image : ''}}" id="urlCategoryProductAvatar" hidden>
+                        
+                    </div>
+                    <div class="w-[100%] h-[300px]">
+                        
+                        <img id="viewCategoryProductAvatar"
+                        src="{{ $category->CategoryProductAvatar ? $category->CategoryProductAvatar : 'https://avatars.dicebear.com/v2/initials/felicita-yundt.svg' }}" class="object-contain w-[100%] h-[100%]">
+                       
+                    </div>
+                    
                 </div>
             </div>
             <div class="mt-2">
