@@ -77,12 +77,31 @@
                         </label>
                         <input type="text" name="newAvatar" id="newAvatar" hidden>
                     </div>
-                    <div class="image w-40 h-40 mx-auto">
+                    <div class="w-40 h-40 mx-auto">
                         <img id="avatarUploadProfile"
-                            src="https://avatars.dicebear.com/v2/initials/felicita-yundt.svg"class="rounded-full">
+                            src="https://avatars.dicebear.com/v2/initials/felicita-yundt.svg"class="rounded-full w-40 h-40 object-cover">
                     </div>
                 </div>
             </div>
+            <div class="field mt-2">
+                <label class="label ">Hình Ảnh Đại diện cho sản phẩm danh mục</label>
+                <div class="field-body flex items-center">
+                    <div class="field file">
+                        <label class="upload control">
+                            <a class="button blue h-10">
+                                Upload
+                            </a>
+                            <input type="file" name="categoryProductAvatar" id="categoryProductAvatar">
+                        </label>
+                        <input type="text" name="urlCategoryProductAvatar" id="urlCategoryProductAvatar" hidden>
+                    </div>
+                    <div class="w-[100%] h-[300px]">
+                        <img id="viewCategoryProductAvatar"
+                        src="https://avatars.dicebear.com/v2/initials/felicita-yundt.svg" class="object-contain w-[100%] h-[100%]">
+                    </div>
+                </div>
+            </div>
+            
             <div class="mt-2">
                 <button type="submit"
                     class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Thêm

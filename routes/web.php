@@ -10,6 +10,10 @@ use App\Http\Controllers\Admin\Product_detailsController;
 use App\Http\Controllers\Admin\Product_imgController;
 use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\Users\AccountsController;
+use App\Http\Controllers\Users\ChildBoysController;
+use App\Http\Controllers\Users\ChildChildrensController;
+use App\Http\Controllers\Users\ChildGirlsController;
+use App\Http\Controllers\Users\DirectionalViewController;
 use App\Http\Controllers\Users\IndexController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
@@ -154,7 +158,10 @@ Route::group(['middleware' => 'admin'], function () {
     });
 });
 Route::get('/', [IndexController::class, 'index'])->name('index');
-Route::get('/{slug}', [IndexController::class, 'directionalView']);
-Route::get('/{slug}-nu', [IndexController::class, 'directionalView']);
-Route::get('/{slug}-nam', [IndexController::class, 'directionalView']);
-Route::get('/{slug}-tre-em', [IndexController::class, 'directionalView']);
+// Trong này xử lý trả về giao diện của các thằng con của 3 thằng Nam , Nữ , Trẻ Em
+Route::get('/{slug}-nu', [ChildGirlsController::class, 'index'])
+    ->where('slug', '.*');
+Route::get('/{slug}-nam', [ChildBoysController::class, 'index']);
+Route::get('/{slug}-tre-em', [ChildChildrensController::class, 'index']);
+// các thằng sản phẩm hắn sẽ nằm ở đây
+Route::get('/{slug}', [DirectionalViewController::class, 'directionalView']);

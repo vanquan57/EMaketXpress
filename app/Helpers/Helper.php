@@ -16,10 +16,16 @@ class Helper
                     <td>' . $category->CategoryID . '</td>
                     <td>' . $charLevel . $category->Name . '</td>
                     <td>' . $category->Description . '</td>
+                    <td>' . $category->Slug . '</td>
                     <td>' . self::Active($category->Active) . ' </td>
                     <td class="image-cell">
                         <div class="image">
                         <img src="'.($category->Image ? $category->Image : 'https://avatars.dicebear.com/v2/initials/felicita-yundt.svg').'" class="rounded-full">
+                        </div>
+                    </td>
+                    <td class="image-cell">
+                        <div class=" w-[100px] h-[50px]">
+                        <img src="'.($category->CategoryProductAvatar ? $category->CategoryProductAvatar : 'https://avatars.dicebear.com/v2/initials/felicita-yundt.svg').'" class="object-contain h-[100%] w-[100%]">
                         </div>
                     </td>
                     <td>' . $category->ParentId . '</td>

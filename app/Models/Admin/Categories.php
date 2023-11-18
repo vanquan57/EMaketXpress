@@ -13,9 +13,11 @@ class Categories extends Model
     protected $fillable =[
         'Name',
         'Description',
+        'Slug',
         'ParentId',
         'Active',
-        'Image'
+        'Image',
+        'CategoryProductAvatar'
     ];
     public function promotions(){
         return $this->hasMany(Promotions::class);

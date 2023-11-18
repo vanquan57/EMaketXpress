@@ -25,7 +25,6 @@ class IndexController extends Controller
              'arrayCategoriesBoys' => $arrayCategoriesBoys,
              'arrayCategoriesChildrens' => $arrayCategoriesChildrens,
         ]);
-        dd ($this->getCategoryItems(10, 5));
         
       
     }
@@ -36,15 +35,8 @@ class IndexController extends Controller
                         ->take($number)
                         ->get();
     }
-    // function directional view
-    public function directionalView($slug){
-        if($slug == 'coupon-xin'){
-            return view('discountevent', ['title' => Str::title(Str::slug($slug, ' '))]);
-        }
-        if($slug == 'emaketxpress-yeu'){
-            return view('specialtyevent', ['title' => Str::title(Str::slug($slug, ' '))]);
-        }
-    }
+   
+    
     /**
      * Show the form for creating a new resource.
      */
