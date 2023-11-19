@@ -261,7 +261,7 @@
     class="after:relative after:z-0 after:content-'' after:top-0 after:left-0 after:h-[100px] after:w-full after:block">
 </div>
 <nav
-    class="nav_mobile  fixed top-0 left-0 z-30 w-[320px] h-full bg-gradient-to-b from-[#D7F2FE] to-[#FEFEFC] border overflow-y-auto">
+    class="nav_mobile  fixed top-0 left-0 z-50 w-[320px] h-full bg-gradient-to-b from-[#D7F2FE] to-[#FEFEFC] border overflow-y-auto">
     <div class="flex justify-between">
         <a href="/" class="w-[100%] flex justify-center"><img src="/images/logo-removebg-preview.png"
                 alt="" class="object-cover w-[55px]"></a>

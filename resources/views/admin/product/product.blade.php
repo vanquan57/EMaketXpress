@@ -32,17 +32,10 @@
                                 </div>
                             @endif
                     </div>
-            <div class="mb-4 flex">
-            <div class=" flex flex-col flex-1"> 
+            <div  class="mb-4 flex flex-col ">
                     <label for="slider_url" class="text-gray-700 font-medium">Giá</label>
                     <input type="number" id="product_price " name="product_price" placeholder="Giá"
                         class=" mt-2 border border-gray-400 p-2 rounded-md outline-none focus:border-blue-500">
-                </div>
-                <div class=" flex flex-col flex-1 ml-10"> 
-                    <label for="product_price_sale" class="text-gray-700 font-medium">Giá sale</label>
-                    <input type="number" id="product_price_sale" name="product_price_sale" placeholder="Giá sale"
-                        class=" mt-2 border border-gray-400 p-2 rounded-md outline-none focus:border-blue-500">
-                </div>
             </div>
             <div  class="mb-4 flex flex-col ">
                         <label for="detailed_img" class="text-gray-700 font-medium">Ảnh sản phẩm</label>

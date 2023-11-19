@@ -41,7 +41,6 @@ class ProductController extends Controller
             $product = Product::create([
                 'Name' => (string)$request->input('product_name'),
                 'Price' => (string)$request->input('product_price'),
-                'Price_sale' => (string)$request->input('product_price_sale'),
                 'Delete_product' => 1,
                 'Slug' =>  Str::slug( (string)$request->input('product_name'), '-') ,
                 'CategoryID' => (integer)$request->input('categoryid')
