@@ -1,0 +1,13 @@
+.navMobileProduct{
+    transform: translateX(100%);
+    transition: all 0.3s ease-in-out;
+    &.active{
+    transform: translateX(0);
+    }
+}
+.size_btn {
+    &.active{
+        background-color: #FCAF17;
+        color: white;
+    }
+}

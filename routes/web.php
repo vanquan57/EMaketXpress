@@ -119,7 +119,7 @@ Route::get('/', [IndexController::class, 'index'])->name('index');
 // Trong này xử lý trả về giao diện của các thằng con của 3 thằng Nam , Nữ , Trẻ Em
 Route::get('/{slug}-nu', [ChildGirlsController::class, 'index'])
     ->where('slug', '.*');
-Route::get('/{slug}-nam', [ChildBoysController::class, 'index']);
-Route::get('/{slug}-tre-em', [ChildChildrensController::class, 'index']);
+Route::get('/{slug}-nam', [ChildBoysController::class, 'index'])->where('slug', '.*');
+Route::get('/{slug}-tre-em', [ChildChildrensController::class, 'index'])->where('slug', '.*');
 // các thằng sản phẩm hắn sẽ nằm ở đây
-Route::get('/{slug}', [DirectionalViewController::class, 'directionalView']);
+Route::get('/{slug}', [DirectionalViewController::class, 'directionalView'])->where('slug', '.*');
