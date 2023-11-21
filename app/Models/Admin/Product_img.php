@@ -15,4 +15,7 @@ class Product_img extends Model
         'ParentId',
         'ProductID'
     ];
+    public function Product() {
+        return $this->belongsTo(Product::class, 'ProductID');
+    }
 }

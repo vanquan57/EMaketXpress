@@ -13,6 +13,7 @@ class Product extends Model
     protected $fillable = [
         'Name',
         'Price',
+        'Sale',
         'Price_sale',
         'Delete_product',
         'Slug',
@@ -20,5 +21,8 @@ class Product extends Model
     ];
     public function Product_details() {
         return $this->hasMany(Product_details::class, 'ProductID');
+    }
+    public function Product_img() {
+        return $this->hasMany(Product_img::class, 'ProductID');
     }
 }

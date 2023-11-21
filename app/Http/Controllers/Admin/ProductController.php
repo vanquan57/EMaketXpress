@@ -107,6 +107,7 @@ class ProductController extends Controller
             Product::where('ProductID', (int)$id)->update([
                 'Name' => (string)$request->input('product_name'),
                 'Price' => (string)$request->input('product_price'),
+                'Sale' => (integer)$request->input('Sale'),
                 'Price_sale' => (string)$request->input('product_price_sale'),
                 'Slug' =>  Str::slug( (string)$request->input('product_name'), '-') ,
                 'CategoryID' => (integer)$request->input('categoryid')

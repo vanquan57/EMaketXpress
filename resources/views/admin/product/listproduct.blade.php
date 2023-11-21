@@ -29,6 +29,7 @@
                         <th>ID</th>
                         <th>Name</th>
                         <th>Price</th>
+                        <th>Sale</th>
                         <th>Price_sale</th>
                         <th>CategoryID</th>
                         <th>Img category</th>
@@ -42,6 +43,7 @@
                             <td class="w-11" >{{$product->ProductID}}</td>
                             <td>{{$product->Name}}</td>
                             <td>{{$product->Price}}</td>
+                            <td >{!! \App\Helpers\Helper::active($product->Sale) !!}</td>
                             <td>{{$product->Price_sale}}</td>
                             <td>{{$product->CategoryID}}</td>
                             <td>                 

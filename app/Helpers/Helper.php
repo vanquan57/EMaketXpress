@@ -52,8 +52,8 @@ class Helper
         return $result;
     }
     public static function Active($active = 0): string
-    {
-        return $active  == 0 ? '<span class="bg-red-500 text-[#6F7E87] font-normal p-2 rounded-full text-xs">NO</span>' : '<span class="bg-green-500 text-[#6F7E87] font-normal p-2 rounded-full text-xs">YES</span>';
+    {                                                                                                                                                                                                                      
+        return $active  == 0 ? '<span class="bg-red-500 text-[#6F7E87] font-normal p-2 rounded-full text-xs border ">NO</span>' : '<span class=" bg-green-500 text-[#6F7E87] font-normal p-2 rounded-full text-xs border">YES</span>';
     }
 
         public static function getProduct_img($listproduct_img, $parent_id = 0, $charLevel = '')

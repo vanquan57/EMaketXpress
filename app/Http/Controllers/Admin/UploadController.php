@@ -22,8 +22,7 @@ class UploadController extends Controller
         }
         if ($request->hasFile('avatar')) {
             if ($request->hasFile('avatar')) {
-                $urls = []; // Mảng để lưu trữ URL
-            
+                $urls = []; // Mảng để lưu trữ URL          
                 foreach ($request->file('avatar') as $image) {
                     try {
                         $name = $image->getClientOriginalName();

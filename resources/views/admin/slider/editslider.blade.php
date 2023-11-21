@@ -52,7 +52,7 @@
             </div>
             <div  class="mb-4 flex flex-col ">
                         <input type="file"  name="avatar" id="avatarUpload" class="upload control  mt-2 border border-gray-400 p-2 rounded-md outline-none focus:border-blue-500" onchange="updateThumbInput()">
-                        <img id="avatarUploadProfile" src="/storage/uploads/{{$slider->thumb}}" class=" w-48 h-32" > 
+                        <img id="avatarUploadProfile" src="/storage/uploads/{{$slider->thumb}}" class=" w-64 h-32" > 
                         <input type="hidden" name="thumb" value="" id="thumbInput">
                         <script>
                             var img = document.getElementById('avatarUploadProfile');

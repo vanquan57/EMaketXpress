@@ -28,8 +28,8 @@
                     <tr>
                         <th>ID</th>
                         <th>Name</th>
-                        <th>Url</th>
-                        <th>Thumb</th>
+                        <th >Url</th>
+                        <th>Img</th>
                         <th>Sort_by</th>
                         <th>Active</th>
                         <td>&nbsp;</td>
