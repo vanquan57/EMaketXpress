@@ -50,18 +50,13 @@ const app = {
             navMobileElement.classList.add('active');
             overlay.classList.remove('hidden');
         }
-    },
-    hiddenNavMobile: () => {
         const hiddenNavMobileElement = document.querySelector('.hiddenNavMobile');
         hiddenNavMobileElement.onclick = () => {
-            const navMobileElement = document.querySelector('.nav_mobile');
-            const overlay = document.querySelector('#overlay');
             navMobileElement.classList.remove('active');
             overlay.classList.add('hidden');
-
-
         }
     },
+   
 
     dropDownCategory: () => {
         const dropDownButtons = document.querySelectorAll('.dropDownBtn');
@@ -233,7 +228,7 @@ const app = {
     start: function () {
         this.slideShow();
         this.showNavMobile();
-        this.hiddenNavMobile();
+        
         this.dropDownCategory();
         this.moveCategoryList();
         this.upAndDownNumberProductInCart();

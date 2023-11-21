@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\Product_detailsController;
 use App\Http\Controllers\Admin\Product_imgController;
 use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\Users\AccountsController;
+use App\Http\Controllers\Users\CartController;
 use App\Http\Controllers\Users\ChildBoysController;
 use App\Http\Controllers\Users\ChildChildrensController;
 use App\Http\Controllers\Users\ChildGirlsController;
@@ -33,11 +34,7 @@ use Illuminate\Http\Request;
 
 
 
-Route::group(['middleware' => 'auth'], function () {
-    // Các route hoặc controller dành cho người dùng phải đăng nhập
 
-    Route::get('/logout', [AccountsController::class, 'logout']);
-});
 // Route Login Socialite
 Route::prefix('login')->group(function () {
     Route::get('/', function () {
@@ -157,11 +154,18 @@ Route::group(['middleware' => 'admin'], function () {
 
     });
 });
+Route::group(['middleware' => 'auth'], function () {
+    // Các route hoặc controller dành cho người dùng phải đăng nhập
+
+    Route::get('/logout', [AccountsController::class, 'logout']);
+    Route::get('/cart', [CartController::class, 'index']);
+});
 Route::get('/', [IndexController::class, 'index'])->name('index');
 // Trong này xử lý trả về giao diện của các thằng con của 3 thằng Nam , Nữ , Trẻ Em
 Route::get('/{slug}-nu', [ChildGirlsController::class, 'index'])
     ->where('slug', '.*');
-Route::get('/{slug}-nam', [ChildBoysController::class, 'index']);
-Route::get('/{slug}-tre-em', [ChildChildrensController::class, 'index']);
+Route::get('/{slug}-nam', [ChildBoysController::class, 'index'])->where('slug', '.*');
+Route::get('/{slug}-tre-em', [ChildChildrensController::class, 'index'])->where('slug', '.*');
+
 // các thằng sản phẩm hắn sẽ nằm ở đây
-Route::get('/{slug}', [DirectionalViewController::class, 'directionalView']);
+Route::get('/{slug}', [DirectionalViewController::class, 'directionalView'])->where('slug', '.*');

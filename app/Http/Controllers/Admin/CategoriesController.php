@@ -47,10 +47,10 @@ class CategoriesController extends Controller
             Categories::create([
                 'Name' => (string)$request->input('category_name'),
                 'Description' => (string)$request->input('category_description'),
-                'Slug' => (string)$slug,
                 'ParentId' => (int)$request->input('parentId'),
                 'Active' => (int)$request->input('active'),
                 'Image' => (string)$request->input('newAvatar'),
+                'Slug' => (string)$slug,
                 'CategoryProductAvatar' => (string)$request->input('urlCategoryProductAvatar'),
             ]);
             return redirect()->back();
@@ -93,10 +93,10 @@ class CategoriesController extends Controller
             Categories::where('CategoryID', $id)->update([
                 'Name' => (string)$request->input('category_name'),
                 'Description' => (string)$request->input('category_description'),
-                'Slug' => (string)$slug,
                 'ParentId' => (int)$request->input('parentId'),
                 'Active' => (int)$request->input('active'),
                 'Image' => (string)$request->input('newAvatar'),
+                'Slug' => (string)$slug,
                 'CategoryProductAvatar' => (string)$request->input('urlCategoryProductAvatar'),
 
             ]);

@@ -13,10 +13,10 @@ class Categories extends Model
     protected $fillable =[
         'Name',
         'Description',
-        'Slug',
         'ParentId',
         'Active',
         'Image',
+        'Slug',
         'CategoryProductAvatar'
     ];
     public function promotions(){

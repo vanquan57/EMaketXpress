@@ -1,6 +1,7 @@
 @extends('layouts.home')
 @section('content')
 
+
     <div class="xl:max-w-[1200px] mx-auto">
         {{-- Thằng slider nằm đây nhé  --}}
         <div class="slider overflow-hidden relative flex flex-col items-center ">

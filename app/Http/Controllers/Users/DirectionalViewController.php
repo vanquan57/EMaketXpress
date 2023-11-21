@@ -121,16 +121,17 @@ class DirectionalViewController extends Controller
              'arrayCategories' => isset($data['categories']) ? $data['categories'] : null]);
         }
     }
-    private function getCategoryItems($parentId, $number) {
+    private function getCategoryItems($parentId, $number)
+    {
         $categories = Categories::where('ParentId', $parentId)
-                                 ->whereNotNull('Image')
-                                 ->take($number)
-                                 ->get();
-    
+            ->whereNotNull('Image')
+            ->take($number)
+            ->get();
+
         return $categories->isNotEmpty() ? $categories : collect();
     }
-    
+
 
     // 
-        
+
 }
