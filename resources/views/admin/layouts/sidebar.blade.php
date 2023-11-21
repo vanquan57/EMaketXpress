@@ -37,6 +37,54 @@
                     </li>
                 </ul>
             </li>
+            <li>
+                <a class="dropdown">
+                    <span class="icon"><i class="mdi mdi-view-list"></i></span>
+                    <span class="menu-item-label">Sản phẩm</span>
+                    <span class="icon"><i class="mdi mdi-plus"></i></span>
+                </a>
+                <ul class="pl-3">
+                    <li >
+                        <a href="/admin/products/add" class="flex items-center">
+                            <i class="fa-solid fa-layer-group px-1"></i>
+                            <span>Thêm sản phẩm</span>
+                        </a>
+                    </li>
+                    <li >
+                        <a href="/admin/products/list" class="flex items-center">
+                            <i class="fa-solid fa-barcode px-1"></i>
+                            <span>Danh sách sản phẩm</span>
+                        </a>
+                    </li>
+                    <li >
+                        <a href="/admin/product_details/list" class="flex items-center">
+                            <i class="fa-solid fa-barcode px-1"></i>
+                            <span>Danh sách sản phẩm chi tiết</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a class="dropdown">
+                    <span class="icon"><i class="mdi mdi-view-list"></i></span>
+                    <span class="menu-item-label">Slider</span>
+                    <span class="icon"><i class="mdi mdi-plus"></i></span>
+                </a>
+                <ul class="pl-3">
+                    <li >
+                        <a href="/admin/sliders/add" class="flex items-center">
+                            <i class="fa-solid fa-layer-group px-1"></i>
+                            <span>Thêm Slider</span>
+                        </a>
+                    </li>
+                    <li >
+                        <a href="/admin/sliders/list" class="flex items-center">
+                            <i class="fa-solid fa-barcode px-1"></i>
+                            <span>Danh sách Slider</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
             <li class="--set-active-tables-html">
                 <a href="/admin/promotions">
                     <span class="icon"><i class="fa-solid fa-percent"></i></span>

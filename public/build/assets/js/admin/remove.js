@@ -7,7 +7,7 @@ function removeRow(id, url) {
     if(confirm('Bạn chắc chắn muốn xóa danh mục này và không thể khôi phục ?')){
         $.ajax({
             type: 'DELETE',
-            datatype: 'JSON',
+            dataType: 'JSON',
             data: { id },
             url: url,
             success: function (response) {
@@ -21,4 +21,24 @@ function removeRow(id, url) {
         });
     }
     
+}
+function removeRow1(id, url){
+    if(confirm('Xóa mà không thể thôi phục')){
+        $.ajax({
+            type:'DELETE',
+            dataType:'JSON',
+            data:{id},
+            url: url,
+            success: function(result){
+               if(result.error==false){
+                $('#'+id).remove();
+                    alert('Xóa thành công ... !');                    
+               }else{
+                alert('Xóa lỗi');
+               }
+            }
+        }
+
+        )
+    }
 }
