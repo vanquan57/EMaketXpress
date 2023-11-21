@@ -40,7 +40,7 @@ class DirectionalViewController extends Controller
         $listProductVay = Product::join('Product_img', 'Product.ProductID', '=', 'Product_img.ProductID')
         ->select('Product.ProductID', 'Product.*', DB::raw('MIN(Product_img.Img) as Img'))
         ->where('Product.Delete_product', 1)
-        ->where('Slug', 'LIKE', '%vay%')
+        ->where('Slug', 'LIKE', '%vay%')    
         ->groupBy('Product.ProductID')
         ->get();
         $imagesVay =Product::join('Product_img', 'Product.ProductID', '=', 'Product_img.ProductID')
