@@ -94,7 +94,9 @@
             <div>
 
                 <span class="group relative">
-                    <i class="inline-block px-[10px] hover:text-[#FCAF17] fa-solid fa-cart-shopping"></i>
+                    <a href="/cart">
+                        <i class="inline-block px-[10px] hover:text-[#FCAF17] fa-solid fa-cart-shopping"></i>
+                    </a>
                     <div
                         class="absolute rounded-md right-0 top-[35px] w-[400px]   invisible group-hover:visible bg-white before:bg-transparent before:absolute before:top-[-17px] before:w-[100%] before:py-3 before:content-['']">
                         @if (!Auth::check())
