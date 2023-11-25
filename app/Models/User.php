@@ -17,6 +17,7 @@ class User extends Authenticatable implements MustVerifyEmail
      *
      * @var array<int, string>
      */
+    protected $primaryKey = 'id';
     protected $fillable = [
         'username',
         'email',
@@ -31,7 +32,10 @@ class User extends Authenticatable implements MustVerifyEmail
         'avatar',
     ];
     
-
+    public function shoppingCart()
+    {
+        return $this->hasOne(Cart::class, 'IdUser', 'id');
+    }
     /**
      * The attributes that should be hidden for serialization.
      *

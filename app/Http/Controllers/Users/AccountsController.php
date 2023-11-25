@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Users;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Accounts\AccountsRequests;
+use App\Models\Cart;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -21,9 +22,7 @@ class AccountsController extends Controller
     {
         return Socialite::driver($provider)->redirect();
     }
-    public function abc(){
-        return  'Ngu nè chưa xác thực được ';
-    }
+
     public function handleProviderCallback($provider)
     {
         $user = Socialite::driver($provider)->user();
@@ -38,14 +37,21 @@ class AccountsController extends Controller
                     [
                         'username' => (string)$username,
                         'email' => $user->email,
-                        'role'=>0,
+                        'active' => 1,
+                        'role' => 0,
                         'provider' => $provider,
                         'provider_id' => (string)$user->id,
                         'avatar' => (string)$user->avatar
                     ]
                 );
-                Auth::login($newUser);
-                return redirect()->route('index');
+
+                $createCartForUser = Cart::create([
+                    'IdUser' => (int)$newUser->id
+                ]);
+                if ($createCartForUser) {
+                    Auth::login($newUser);
+                    return redirect()->route('index');
+                }
             } catch (\Throwable $th) {
                 return redirect()->back()->with('errorInsert', 'Đăng nhập thất bại vui lòng thử lại sau.');
                 Log::info($th->getMessage());
@@ -97,9 +103,7 @@ class AccountsController extends Controller
     {
         $email = $requests->input('email');
         if ($email) {
-            $haveEmailUser = User::where('email', $email)
-            ->where('provider', null)
-            ->first();
+            $haveEmailUser = User::where('email', $email)->first();
             if ($haveEmailUser) {
                 return redirect()->back()->with('errorInsert', 'Tài khoản đã tồn tại.');
             } else {
@@ -109,14 +113,19 @@ class AccountsController extends Controller
                         'email' => $email,
                         'password' => Hash::make($requests->input('password')),
                         'active' => 0,
-                        'role'=> 0,
+                        'role' => 0,
                     ]);
                     if ($createUser) {
                         session(['randomNumber' => rand(100000, 999999)]);
                         session(['emailCheckActive' => $email]);
                         session(['usernameCheckActive' => $requests->input('username')]);
                         $this->sendEmail(session('randomNumber'), $email, 'Chào mừng bạn đến với', 'xác minh');
-                        return redirect()->route('authentication');
+                        $createCartForUser = Cart::create([
+                            'IdUser' => (int)$createUser->id
+                        ]);
+                        if ($createCartForUser) {
+                            return redirect()->route('authentication');
+                        }
                     }
                 } catch (\Throwable $th) {
                     Log::info($th->getMessage());
@@ -212,7 +221,8 @@ class AccountsController extends Controller
             return redirect()->back()->with('errorConfirmPassword', 'Mật khẩu không trùng khớp');
         }
     }
-    public function logout(){
+    public function logout()
+    {
         Auth::logout();
         return redirect()->route('login');
     }

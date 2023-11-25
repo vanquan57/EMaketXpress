@@ -127,7 +127,7 @@
                                     @for ($j = $i; $j <= $i + 3; $j++)
                                         @if(isset($listProductSale[$j-1])) 
                                             <div class="col-span-1 group_Product">
-                                                <a href="" class="inline-block overflow-hidden relative rounded">
+                                                <a href="{{$listProductSale[$j-1]->Slug}}" class="inline-block overflow-hidden relative rounded">
                                                     {{-- <img src=" /storage/uploads/ao-khoac-nu-phn6014-xbi-6.webp" --}}
                                                     <img src=" /storage/uploads/{{$listProductSale[$j-1]->Img}}"
                                                         alt="" class="main_image object-cover transition-all  w-[100%] hover:scale-105 ">

@@ -156,10 +156,15 @@ Route::group(['middleware' => 'admin'], function () {
 });
 Route::group(['middleware' => 'auth'], function () {
     // Các route hoặc controller dành cho người dùng phải đăng nhập
-
     Route::get('/logout', [AccountsController::class, 'logout']);
     Route::get('/cart', [CartController::class, 'index']);
 });
+// Thêm sản phẩm vào giỏ hàng
+Route::post('/add-product-to-cart', [CartController::class, 'store']);
+Route::delete( '/remove-product-in-cart', [CartController::class, 'destroy']);
+Route::post( '/update-product-in-cart', [CartController::class, 'update']);
+
+
 Route::get('/', [IndexController::class, 'index'])->name('index');
 // Trong này xử lý trả về giao diện của các thằng con của 3 thằng Nam , Nữ , Trẻ Em
 Route::get('/{slug}-nu', [ChildGirlsController::class, 'index'])

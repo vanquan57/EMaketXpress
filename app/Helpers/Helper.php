@@ -2,6 +2,7 @@
 
 namespace app\Helpers;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 
 class Helper
@@ -87,5 +88,5 @@ class Helper
         
         return $result; 
     }
-
+    
 }

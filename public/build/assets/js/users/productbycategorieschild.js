@@ -26,13 +26,18 @@ const appProductByCategoriesChild = {
     clickButtonSize: () => {
         const btn_sizeElements = [...document.querySelectorAll('.size_btn')];
         if (btn_sizeElements) {
+            const valueSizeSelected = document.querySelector('.size_product');
             btn_sizeElements.forEach((btn_sizeElementClick) => {
                 
                 btn_sizeElementClick.onclick = () => {
                     btn_sizeElements.forEach((btn_sizeElement) => {
                         btn_sizeElement.classList.remove('active');
                     });
+                    let value_size = btn_sizeElementClick.textContent;
                     btn_sizeElementClick.classList.add('active');
+                    if(valueSizeSelected){
+                        valueSizeSelected.innerHTML =value_size; 
+                    }
 
                 }
             })
@@ -86,10 +91,26 @@ const appProductByCategoriesChild = {
             }
         }
     },
+    changeOptionColors: () => {
+        const groupTypeColor = document.querySelector('.group_type_color');
+        if (groupTypeColor){
+            const optionColoItems = [...groupTypeColor.querySelectorAll('img')];
+            const value_colorSelected = document.querySelector('.color_product');
+            optionColoItems.forEach((optionColoItem) =>{
+                optionColoItem.onclick = () => {
+                    let valueColor = optionColoItem.getAttribute('type-color');
+                    if(value_colorSelected){
+                        value_colorSelected.innerHTML = valueColor;
+                    }
+                }
+            })
+        }
+    },
     start: function () {
         this.showNavMobileProduct();
         this.clickButtonSize();
         this.suggestedSize();
+        this.changeOptionColors();
     },
 };
 

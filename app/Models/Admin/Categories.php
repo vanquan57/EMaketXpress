@@ -9,7 +9,7 @@ class Categories extends Model
 {
     use HasFactory;
     public $timestamps = false;
-    
+    protected $primaryKey = 'CategoryID';
     protected $fillable =[
         'Name',
         'Description',
@@ -20,6 +20,6 @@ class Categories extends Model
         'CategoryProductAvatar'
     ];
     public function promotions(){
-        return $this->hasMany(Promotions::class);
+        return $this->hasMany(Promotions::class, 'CategoryID');
     }
 }

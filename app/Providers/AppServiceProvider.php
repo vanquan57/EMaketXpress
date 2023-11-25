@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Models\Admin\Categories;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
@@ -22,8 +23,10 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         $listCategories = $this->getCategories();
+
         View::share('listCategories', $listCategories);
     }
+    
     private function getCategories($parentId = 0)
     {
         $categories = Categories::where('ParentId', $parentId)->get();

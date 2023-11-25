@@ -19,5 +19,7 @@ class ChildGirlsController extends Controller
         'categoryBigParent'=>$categoryBigParent,
       ]);
     }
-    
+    public function getProduct(Request $request){
+      $listProducts = Categories::where('Slug', 'LIKE', '%'.$request->path().'%')->get();
+    }
 }

@@ -33,7 +33,7 @@ const app = {
             }
             if (imgPosition && imgContainer) {
                 setInterval(slide, 5000);
-                console.log(imgPosition);
+
             }
         }
     },
@@ -56,7 +56,7 @@ const app = {
             overlay.classList.add('hidden');
         }
     },
-   
+
 
     dropDownCategory: () => {
         const dropDownButtons = document.querySelectorAll('.dropDownBtn');
@@ -113,17 +113,20 @@ const app = {
         if (group_UpAndDown_NumberElement) {
             const arrayGroupUpAndDown = [...group_UpAndDown_NumberElement];
             arrayGroupUpAndDown.forEach((groupUpAndDownItem) => {
+
                 const buttonReduced = groupUpAndDownItem.querySelector('.buttonReduced');
                 const numberProduct = groupUpAndDownItem.querySelector('.numberProduct');
                 const buttonIncrease = groupUpAndDownItem.querySelector('.buttonIncrease');
-                buttonReduced.onclick = () => {
 
-                    if (parseInt(numberProduct.innerHTML) > 0) {
+                buttonReduced.onclick = () => {
+                    if (parseInt(numberProduct.innerHTML) > 1) {
                         numberProduct.innerHTML = parseInt(numberProduct.innerHTML) - 1;
+                        numberProduct.click();
                     }
                 }
                 buttonIncrease.onclick = () => {
                     numberProduct.innerHTML = parseInt(numberProduct.innerHTML) + 1;
+                    numberProduct.click();
                 }
             })
         }
@@ -228,7 +231,7 @@ const app = {
     start: function () {
         this.slideShow();
         this.showNavMobile();
-        
+
         this.dropDownCategory();
         this.moveCategoryList();
         this.upAndDownNumberProductInCart();
