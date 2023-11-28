@@ -3,6 +3,7 @@
 namespace App\Models\Admin;
 
 use App\Models\Cart;
+use App\Models\PurchaseOrder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 class Product extends Model
@@ -34,6 +35,11 @@ class Product extends Model
             'ProductColor',
             'ProductSize',
             'ProductImg'
+        ]);
+    }
+    public function purchaseOrders(){
+        return $this->belongsToMany(PurchaseOrder::class, 'Order_details', 'Purchase_order_ID', 'ProductID')->withPivot([
+            'ProductNumbers'
         ]);
     }
 }

@@ -78,12 +78,12 @@ function addProductToCart() {
     });
 }
 
-function removeRowProductInCart(ProductID) {
+function removeRowProductInCart(Product_cartID) {
     if(confirm('Bạn chắc chắn muốn xóa sản phẩm này ?')){
         $.ajax({
             type: 'DELETE',
             dataType: 'JSON',
-            data: { 'ProductID': ProductID },
+            data: { 'Product_cartID': Product_cartID },
             url: '/remove-product-in-cart',
             success: function (response) {
                 if (response.success) {
@@ -152,32 +152,4 @@ const cart = {
 cart.start();
 
 
-// abstract format number
-function number_format(number, decimals, dec_point, thousands_sep) {
-    number = (number + '').replace(/[^0-9+\-Ee.]/g, '');
-    let n = !isFinite(+number) ? 0 : +number;
-    let prec = !isFinite(+decimals) ? 0 : Math.abs(decimals);
-    let sep = (typeof thousands_sep === 'undefined') ? ',' : thousands_sep;
-    let dec = (typeof dec_point === 'undefined') ? '.' : dec_point;
-    let s = '';
-  
-    let toFixedFix = function (n, prec) {
-        let k = Math.pow(10, prec);
-        return '' + Math.round(n * k) / k;
-    };
-  
-    s = (prec ? toFixedFix(n, prec) : '' + Math.round(n)).split('.');
-  
-    let re = /(-?\d+)(\d{3})/;
-  
-    while (re.test(s[0])) {
-        s[0] = s[0].replace(re, '$1' + sep + '$2');
-    }
-  
-    if ((s[1] || '').length < prec) {
-        s[1] = s[1] || '';
-        s[1] += new Array(prec - s[1].length + 1).join('0');
-    }
-  
-    return s.join(dec);
-}
+

@@ -114,7 +114,6 @@ class PromotionController extends Controller
                 'Active' => (int)$request->input('Active'),
                
             ]);
-
             return redirect()->route('showListPromotions');
         } catch (\Throwable $th) {
             return redirect()->back()->with('errorUpdatePromotion', 'Đã có lỗi xảy ra vui lòng thử lại sau.');

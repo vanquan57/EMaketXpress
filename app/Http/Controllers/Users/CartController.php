@@ -17,18 +17,17 @@ class CartController extends Controller
     public function index()
     {
         $currentUser = Auth::user();
-        $promotion  = Promotions::first();
+        $promotions  = Promotions::get();
         
         if ($currentUser) {
             $productsOfUser = $currentUser->shoppingCart->products;
             $countProducts = $currentUser->shoppingCart->products->count();
         }
-
         return view('cart', [
             'title' => 'Giỏ Hàng',
             'productsOfUser' => $productsOfUser,
             'countProducts' => $countProducts,
-            'promotion' => $promotion
+            'promotions' => $promotions
         ]);
     }
 
@@ -56,6 +55,7 @@ class CartController extends Controller
                         ['ProductNumbers' => $cartByUser->products->find($productAddToCart->ProductID)->pivot->ProductNumbers + (int)$request->input('numberProduct')]
                     );
                 } else {
+                    
                     $cartByUser->products()->attach($productAddToCart->ProductID, [
                         'ProductNumbers' => (int)$request->input('numberProduct'),
                         'ProductColor' => $colorProduct,
@@ -114,7 +114,7 @@ class CartController extends Controller
     public function destroy(Request $request)
     {
         try {
-            Auth::user()->shoppingCart->products()->detach($request->input('productID'));
+            Auth::user()->shoppingCart->products()->wherePivot('Product_cartID',$request->input('Product_cartID') )->detach();
            return response()->json(['success' => true]);
 
         } catch (\Throwable $th) {
