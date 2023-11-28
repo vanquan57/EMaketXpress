@@ -47,7 +47,7 @@
                                 </select>
                             </div>
                             <input type="text" name="addressDetails" placeholder="Ghi Rõ Địa Chỉ (Thôn, Đội, Số nhà) ..."
-                                class="w-[100%] my-2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block  p-2.5 mr-2">
+                                class="w-[100%] my-2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block  p-2.5 mr-2" required>
 
                         </div>
                         <div class="col-span-1 ">
