@@ -216,4 +216,28 @@ class AccountsController extends Controller
         Auth::logout();
         return redirect()->route('login');
     }
+    public function showViewListaccount(){
+        $users = User::get();
+        return view('admin.user.listuser', [
+            'title'=> 'List User', 
+            'users'=>$users
+        ]);
+    }
+    public function destroy(Request $request)
+    {
+        $id = (int)$request->input('id');
+        try { 
+            User::where('id', $id)->update([
+                'Delete_user' => 0,
+            ]);
+            return response()->json([
+                'error' => false
+            ]);
+
+        } catch (\Throwable $th) {
+            Log::info($th->getMessage());
+            return redirect()->back()->with('errorUpdateProductID', 'xóa tài khoản thất bại vui lòng thử lại sau');
+        }
+    }
+    
 }

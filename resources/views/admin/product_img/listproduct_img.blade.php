@@ -32,6 +32,7 @@
                         <th>Img</th>
                         <th>ParentId</th>
                         <th>ProductID</th>
+                         <th>Color</th>
                         <th>&nbsp;</th>
                     </tr>
                 </thead>

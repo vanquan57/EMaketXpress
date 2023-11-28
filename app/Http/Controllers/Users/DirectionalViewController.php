@@ -98,12 +98,50 @@ class DirectionalViewController extends Controller
         ->groupBy('Product.ProductID','Product_img.Img')
         ->orderBy('Product_img.Img', 'asc')
         ->get();
+        // nu nam tre em
+        $TongSp = Product::join('Product_img', 'Product.ProductID', '=', 'Product_img.ProductID')
+        ->select('Product.ProductID', 'Product.*', DB::raw('MIN(Product_img.Img) as Img'))
+        ->where('Product.Delete_product', 1)
+        ->where('Product_img.ParentId', 0)
+        ->where('Slug', 'LIKE', "%{$request->path()}%")
+        ->groupBy('Product.ProductID')
+        ->get();
+
+
+        $sosanpham = 2;
+        $result= ceil( $TongSp->count() / $sosanpham);      
+        if(isset($_GET['page'])){
+            $sotrang = $_GET['page'];
+        } else {
+            $sotrang = 1;
+        }
+        $star = ($sotrang -1) * $sosanpham;
+
+        // nu nam tre em
+        $listProduct = Product::join('Product_img', 'Product.ProductID', '=', 'Product_img.ProductID')
+        ->select('Product.ProductID', 'Product.*', DB::raw('MIN(Product_img.Img) as Img'))
+        ->where('Product.Delete_product', 1)
+        ->where('Product_img.ParentId', 0)
+        ->where('Slug', 'LIKE', "%{$request->path()}%")
+        ->offset($star)
+        ->limit($sosanpham)
+        ->groupBy('Product.ProductID')
+        ->get();
+        $images =Product::join('Product_img', 'Product.ProductID', '=', 'Product_img.ProductID')
+        ->select('Product.ProductID', 'Product_img.Img')
+        ->where('Product.Delete_product', 1)
+        ->where('Product_img.ParentId', 0)
+        ->where('Slug', 'LIKE', "%{$request->path()}%")
+        ->groupBy('Product.ProductID','Product_img.Img')
+        ->orderBy('Product_img.Img', 'asc')
+        ->get();
 
         if (isset($mapping[$slug])) {
             $data = $mapping[$slug];
             
             return view($data['view'],
              ['title' => $data['title'],
+             'categoryName'=>$categoryName,
              'listProductAopolo'=>$listProductAopolo,
              'listProductAosomi'=>$listProductAosomi,
              'listProductVay'=>$listProductVay,
@@ -117,6 +155,14 @@ class DirectionalViewController extends Controller
              'imagesSale'=>$imagesSale,
              'listProductGioDong'=>$listProductGioDong,
              'imagesGioDong'=>$imagesGioDong,
+             
+             'listProduct'=>$listProduct,
+             'images'=>$images,
+             'result'=>$result,
+             'sotrang'=>$sotrang,
+
+
+
 
              'arrayCategories' => isset($data['categories']) ? $data['categories'] : null]);
         }

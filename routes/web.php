@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\Product_detailsController;
 use App\Http\Controllers\Admin\Product_imgController;
 use App\Http\Controllers\Admin\SliderController;
+use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Users\AccountsController;
 use App\Http\Controllers\Users\CartController;
 use App\Http\Controllers\Users\ChildBoysController;
@@ -150,6 +151,19 @@ Route::group(['middleware' => 'admin'], function () {
             Route::delete('destroy',[Product_detailsController::class,'destroy']);   
 
         });
+        Route::prefix('blogs')->group(function(){
+            Route::get('add', [BlogController::class, 'index']);
+            Route::post('add',[BlogController::class,'store']);
+            Route::get('list',[BlogController::class,'showViewListBlog'])->name('listblog');
+            Route::get('edit/{slider}',[BlogController::class,'show']);
+            Route::post('edit/{slider}',[BlogController::class,'update']);
+            Route::delete('destroy',[BlogController::class,'destroy']);   
+        });
+        Route::prefix('accounts')->group(function(){
+            Route::get('list',[AccountsController::class,'showViewListaccount'])->name('listaccount');
+            Route::delete('destroy',[AccountsController::class,'destroy']);  
+        });
+        
         
 
     });
@@ -161,6 +175,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/cart', [CartController::class, 'index']);
 });
 Route::get('/', [IndexController::class, 'index'])->name('index');
+
 // Trong này xử lý trả về giao diện của các thằng con của 3 thằng Nam , Nữ , Trẻ Em
 Route::get('/{slug}-nu', [ChildGirlsController::class, 'index'])
     ->where('slug', '.*');

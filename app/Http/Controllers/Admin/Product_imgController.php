@@ -123,7 +123,8 @@ class Product_imgController extends Controller
                 Product_img::where('Product_imgID', $id)->update([
                     'Img' => (string)$filenameWithExtension,
                     'ParentId' => (int)$request->input('ParentId'),
-                    'ProductID' => (int)$request->input('productID')
+                    'ProductID' => (int)$request->input('productID'),
+                    'Color' => (string)$request->input('Color')
                 ]);
                 return redirect()->route('listproduct_img', ['product_img' => (int)$request->input('productID')]);
 

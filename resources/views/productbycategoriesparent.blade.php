@@ -30,172 +30,70 @@
         </div>
         <div class="specialtyevent_ specialtyevent_all"> 
             <div class="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-7 mt-[30px]">
-                <div class="col-span-1 my-5 group_Product">
-                    <a href="" class="inline-block overflow-hidden relative rounded">
-                        <img src="https://bizweb.dktcdn.net/thumb/large/100/438/408/products/ao-polo-nam-apm3519-dod-5-yodyvn.jpg?v=1690163862263"
-                            alt="" class="main_image object-cover transition-all  w-[100%] hover:scale-105 ">
-                        <span
-                            class=" absolute top-0 left-0 rounded-tl px-2 rounded-br bg-[#5E5E5E] text-white font-medium text-sm"><span
-                                class="border-r pr-1"><i class="text-[#FFC016] pr-1 fa-solid fa-star"></i>5</span> Đã bán
-                            307</span>
-                    </a>
-                    <div>
-                        <a href="" class="text-sm font-normal">Áo Polo Nữ Mắt Chim Phối Bo (Form Rộng)</a>
-                        <div class="py-1">
-                            <span class="font-medium text-[#CD151C]">164.500đ</span>
-                            <span class="font-medium text-[#8A8A8F]"><s>329.000đ</s></span>
-                        </div>
-                    </div>
-                    <ul class="flex item_image">
-                        <li class="mr-2 inline-block cursor-pointer w-[48px] h-[48px] rounded-full hover:shadow-md"><img
-                                class="h-[100%] w-[100%] object-cover rounded-full"
-                                src="https://bizweb.dktcdn.net/thumb/large/100/438/408/products/apn5390-xxm-ao-polo-nu-mat-chim-yody-3.jpg?v=1699328545820"
-                                alt=""></li>
-                        <li class="inline-block cursor-pointer w-[48px] h-[48px] rounded-full hover:shadow-md"><img
-                                class="h-[100%] w-[100%] object-cover rounded-full"
-                                src="https://bizweb.dktcdn.net/thumb/large/100/438/408/products/apn5390-hog-ao-polo-nu-yody-3.jpg?v=1684810027840"
-                                alt=""></li>
-                    </ul>
-                </div>
-                <div class="col-span-1 my-5 group_Product">
-                    <a href="" class="inline-block overflow-hidden relative rounded">
-                        <img src="https://bizweb.dktcdn.net/thumb/large/100/438/408/products/apn5390-hog-ao-polo-nu-yody-3.jpg?v=1684810027840"
-                            alt="" class="main_image object-cover transition-all  w-[100%] hover:scale-105 ">
-                        <span
-                            class=" absolute top-0 left-0 rounded-tl px-2 rounded-br bg-[#5E5E5E] text-white font-medium text-sm"><span
-                                class="border-r pr-1"><i class="text-[#FFC016] pr-1 fa-solid fa-star"></i>5</span> Đã bán
-                            307</span>
-                    </a>
-                    <div>
-                        <a href="" class="text-sm font-normal">Áo Polo Nữ Mắt Chim Phối Bo (Form Rộng)</a>
-                        <div class="py-1">
-                            <span class="font-medium text-[#CD151C]">164.500đ</span>
-                            <span class="font-medium text-[#8A8A8F]"><s>329.000đ</s></span>
-                        </div>
-                    </div>
-                    <ul class="flex item_image">
-                        <li class="mr-2 inline-block cursor-pointer w-[48px] h-[48px] rounded-full hover:shadow-md"><img
-                                class="h-[100%] w-[100%] object-cover rounded-full"
-                                src="https://bizweb.dktcdn.net/thumb/large/100/438/408/products/apn5390-xxm-ao-polo-nu-mat-chim-yody-3.jpg?v=1699328545820"
-                                alt=""></li>
-                        <li class="inline-block cursor-pointer w-[48px] h-[48px] rounded-full hover:shadow-md"><img
-                                class="h-[100%] w-[100%] object-cover rounded-full"
-                                src="https://bizweb.dktcdn.net/thumb/large/100/438/408/products/apn5390-hog-ao-polo-nu-yody-3.jpg?v=1684810027840"
-                                alt=""></li>
-                    </ul>
-                </div>
-                <div class="col-span-1 my-5 group_Product">
-                    <a href="" class="inline-block overflow-hidden relative rounded">
-                        <img src="https://bizweb.dktcdn.net/thumb/large/100/438/408/products/apm6325-tra-21.jpg?v=1699328650210"
-                            alt="" class="main_image object-cover transition-all  w-[100%] hover:scale-105 ">
-                        <span
-                            class=" absolute top-0 left-0 rounded-tl px-2 rounded-br bg-[#5E5E5E] text-white font-medium text-sm"><span
-                                class="border-r pr-1"><i class="text-[#FFC016] pr-1 fa-solid fa-star"></i>5</span> Đã bán
-                            307</span>
-                    </a>
-                    <div>
-                        <a href="" class="text-sm font-normal">Áo Polo Nữ Mắt Chim Phối Bo (Form Rộng)</a>
-                        <div class="py-1">
-                            <span class="font-medium text-[#CD151C]">164.500đ</span>
-                            <span class="font-medium text-[#8A8A8F]"><s>329.000đ</s></span>
-                        </div>
-                    </div>
-                    <ul class="flex item_image">
-                        <li class="mr-2 inline-block cursor-pointer w-[48px] h-[48px] rounded-full hover:shadow-md"><img
-                                class="h-[100%] w-[100%] object-cover rounded-full"
-                                src="https://bizweb.dktcdn.net/thumb/large/100/438/408/products/apn5390-xxm-ao-polo-nu-mat-chim-yody-3.jpg?v=1699328545820"
-                                alt=""></li>
-                        <li class="inline-block cursor-pointer w-[48px] h-[48px] rounded-full hover:shadow-md"><img
-                                class="h-[100%] w-[100%] object-cover rounded-full"
-                                src="https://bizweb.dktcdn.net/thumb/large/100/438/408/products/apn5390-hog-ao-polo-nu-yody-3.jpg?v=1684810027840"
-                                alt=""></li>
-                    </ul>
-                </div>
-                <div class="col-span-1 my-5 group_Product">
-                    <a href="" class="inline-block overflow-hidden relative rounded">
-                        <img src="https://bizweb.dktcdn.net/thumb/large/100/438/408/products/apn5390-hog-ao-polo-nu-yody-3.jpg?v=1684810027840"
-                            alt="" class="main_image object-cover transition-all  w-[100%] hover:scale-105 ">
-                        <span
-                            class=" absolute top-0 left-0 rounded-tl px-2 rounded-br bg-[#5E5E5E] text-white font-medium text-sm"><span
-                                class="border-r pr-1"><i class="text-[#FFC016] pr-1 fa-solid fa-star"></i>5</span> Đã bán
-                            307</span>
-                    </a>
-                    <div>
-                        <a href="" class="text-sm font-normal">Áo Polo Nữ Mắt Chim Phối Bo (Form Rộng)</a>
-                        <div class="py-1">
-                            <span class="font-medium text-[#CD151C]">164.500đ</span>
-                            <span class="font-medium text-[#8A8A8F]"><s>329.000đ</s></span>
-                        </div>
-                    </div>
-                    <ul class="flex item_image">
-                        <li class="mr-2 inline-block cursor-pointer w-[48px] h-[48px] rounded-full hover:shadow-md"><img
-                                class="h-[100%] w-[100%] object-cover rounded-full"
-                                src="https://bizweb.dktcdn.net/thumb/large/100/438/408/products/apn5390-xxm-ao-polo-nu-mat-chim-yody-3.jpg?v=1699328545820"
-                                alt=""></li>
-                        <li class="inline-block cursor-pointer w-[48px] h-[48px] rounded-full hover:shadow-md"><img
-                                class="h-[100%] w-[100%] object-cover rounded-full"
-                                src="https://bizweb.dktcdn.net/thumb/large/100/438/408/products/apn5390-hog-ao-polo-nu-yody-3.jpg?v=1684810027840"
-                                alt=""></li>
-                    </ul>
-                </div>
-                <div class="col-span-1 my-5 group_Product">
-                    <a href="" class="inline-block overflow-hidden relative rounded">
-                        <img src="https://bizweb.dktcdn.net/thumb/large/100/438/408/products/apm6325-tra-21.jpg?v=1699328650210"
-                            alt="" class="main_image object-cover transition-all  w-[100%] hover:scale-105 ">
-                        <span
-                            class=" absolute top-0 left-0 rounded-tl px-2 rounded-br bg-[#5E5E5E] text-white font-medium text-sm"><span
-                                class="border-r pr-1"><i class="text-[#FFC016] pr-1 fa-solid fa-star"></i>5</span> Đã bán
-                            307</span>
-                    </a>
-                    <div>
-                        <a href="" class="text-sm font-normal">Áo Polo Nữ Mắt Chim Phối Bo (Form Rộng)</a>
-                        <div class="py-1">
-                            <span class="font-medium text-[#CD151C]">164.500đ</span>
-                            <span class="font-medium text-[#8A8A8F]"><s>329.000đ</s></span>
-                        </div>
-                    </div>
-                    <ul class="flex item_image">
-                        <li class="mr-2 inline-block cursor-pointer w-[48px] h-[48px] rounded-full hover:shadow-md"><img
-                                class="h-[100%] w-[100%] object-cover rounded-full"
-                                src="https://bizweb.dktcdn.net/thumb/large/100/438/408/products/apn5390-xxm-ao-polo-nu-mat-chim-yody-3.jpg?v=1699328545820"
-                                alt=""></li>
-                        <li class="inline-block cursor-pointer w-[48px] h-[48px] rounded-full hover:shadow-md"><img
-                                class="h-[100%] w-[100%] object-cover rounded-full"
-                                src="https://bizweb.dktcdn.net/thumb/large/100/438/408/products/apn5390-hog-ao-polo-nu-yody-3.jpg?v=1684810027840"
-                                alt=""></li>
-                    </ul>
-                </div>
-                <div class="col-span-1 my-5 group_Product">
-                    <a href="" class="inline-block overflow-hidden relative rounded">
-                        <img src="https://bizweb.dktcdn.net/thumb/large/100/438/408/products/apn5390-hog-ao-polo-nu-yody-3.jpg?v=1684810027840"
-                            alt="" class="main_image object-cover transition-all  w-[100%] hover:scale-105 ">
-                        <span
-                            class=" absolute top-0 left-0 rounded-tl px-2 rounded-br bg-[#5E5E5E] text-white font-medium text-sm"><span
-                                class="border-r pr-1"><i class="text-[#FFC016] pr-1 fa-solid fa-star"></i>5</span> Đã bán
-                            307</span>
-                    </a>
-                    <div>
-                        <a href="" class="text-sm font-normal">Áo Polo Nữ Mắt Chim Phối Bo (Form Rộng)</a>
-                        <div class="py-1">
-                            <span class="font-medium text-[#CD151C]">164.500đ</span>
-                            <span class="font-medium text-[#8A8A8F]"><s>329.000đ</s></span>
-                        </div>
-                    </div>
-                    <ul class="flex item_image">
-                        <li class="mr-2 inline-block cursor-pointer w-[48px] h-[48px] rounded-full hover:shadow-md"><img
-                                class="h-[100%] w-[100%] object-cover rounded-full"
-                                src="https://bizweb.dktcdn.net/thumb/large/100/438/408/products/apn5390-xxm-ao-polo-nu-mat-chim-yody-3.jpg?v=1699328545820"
-                                alt=""></li>
-                        <li class="inline-block cursor-pointer w-[48px] h-[48px] rounded-full hover:shadow-md"><img
-                                class="h-[100%] w-[100%] object-cover rounded-full"
-                                src="https://bizweb.dktcdn.net/thumb/large/100/438/408/products/apn5390-hog-ao-polo-nu-yody-3.jpg?v=1684810027840"
-                                alt=""></li>
-                    </ul>
-                </div>
+                @for($i = 0; $i < $listProduct->count(); $i++) 
+
+                                <div class="col-span-1 my-5 group_Product ">
+                                    <a href="{{$listProduct[$i]->Slug}}" class="inline-block overflow-hidden relative rounded">
+                                        <img src="/storage/uploads/{{$listProduct[$i]->Img}}"
+                                            alt="" class="main_image object-cover transition-all  w-[100%] hover:scale-105 ">
+                                        <span
+                                            class=" absolute top-0 left-0 rounded-tl px-2 rounded-br bg-[#5E5E5E] text-white font-medium text-sm"><span
+                                                class="border-r pr-1"><i class="text-[#FFC016] pr-1 fa-solid fa-star"></i>5</span> Đã bán
+                                            307</span>
+                                    </a>
+                                    <div>
+                                        <div class="h-10">
+                                            <a href="" class="text-sm font-normal">{{$listProduct[$i]->Name}}</a>
+                                        </div>
+                                        <div class="py-1">
+                                            <span class="font-medium text-[#CD151C]">{{  number_format($listProduct[$i]->Price_sale, 0, ',', '.')."đ"}}</span>
+                                            <span class="font-medium text-[#8A8A8F]"><s>{{  number_format($listProduct[$i]->Price_sale, 0, ',', '.')."đ"}}</s></span>
+                                        </div>
+                                    </div>
+                                    <ul class="flex item_image">
+                                        @for ($j = 0; $j < $images->count(); $j++)
+                                            @if($listProduct[$i]->ProductID == $images[$j]->ProductID ) 
+                                                <li class="mr-2 inline-block cursor-pointer w-[48px] h-[48px] rounded-full hover:shadow-md"><img
+                                                    class="h-[100%] w-[100%] object-cover rounded-full"
+                                                    src=" /storage/uploads/{{$images[$j]->Img}}"
+                                                    alt="">
+                                            </li>
+                                            @endif 
+                                    @endfor
+                                    </ul>
+                               </div>
+
+                        
+                @endfor
             </div>
-            <div class="flex w-[100%]">
-                <button class="text-sm mx-auto hover:text-[#FCAF17] w-[200px] py-3 font-medium outline-[#1C2430] outline">Xem Thêm</button>
+            <div class="flex justify-center items-center">
+                @if ($sotrang>3)
+                <a href="?per_page=1&page=1" class="border  p-3 w-12 h-12 text-center mr-5 mt-10 mb-10 "><i class="fa-solid fa-angles-left"></i></a>   
+                @endif
+                @if ($sotrang>1)
+                <?php $prev = $sotrang - 1; ?>
+                <a href="?per_page={{ $prev }}&page={{ $prev }}" class="border  p-3 w-12 h-12 text-center mr-5 mt-10 mb-10 "><i class="fa-solid fa-angle-left"></i></a>      
+                @endif
+
+                @for ($i = 1; $i <= $result; $i++)                             
+                    @if($i == $sotrang)
+                     <a href="?per_page={{ $i }}&page={{ $i }}" class="border  p-3 w-12 h-12 text-center mr-5 mt-10 mb-10 bg-black text-white">{{ $i }}</a>              
+                    @else
+                            @if ($i>$sotrang-3 && $i<$sotrang+3)
+                            <a href="?per_page={{ $i }}&page={{ $i }}" class="border  p-3 w-12 h-12 text-center mr-5 mt-10 mb-10 ">{{ $i }}</a>   
+                            @endif
+
+                    @endif
+                @endfor
+                @if ($sotrang<$result-1)
+                     <?php $next = $sotrang + 1; ?>
+                <a href="?per_page={{ $next}}&page={{ $next}}" class="border  p-3 w-12 h-12 text-center mr-5 mt-10 mb-10 "><i class="fa-solid fa-angle-right"></i></a>   
+                @endif
+                @if ($sotrang<=$result-3)
+                    <a href="?per_page={{ $result }}&page={{ $result }}" class="border  p-3 w-12 h-12 text-center mr-5 mt-10 mb-10 "><i class="fa-solid fa-angles-right"></i></a>   
+                @endif
             </div>
+
         </div>
     </div>
 @endsection

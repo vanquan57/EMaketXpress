@@ -13,7 +13,8 @@ class Product_img extends Model
     protected $fillable = [
         'Img',
         'ParentId',
-        'ProductID'
+        'ProductID',
+        'Color',
     ];
     public function Product() {
         return $this->belongsTo(Product::class, 'ProductID');

@@ -33,7 +33,7 @@
                         <th>Description</th>
                         <th>Color</th>
                         <th>Size</th>           
-                        <th>&nbsp;</th>
+                        <th class="w-28">&nbsp;</th>
                     </tr>
                 </thead>
                 <tbody>
