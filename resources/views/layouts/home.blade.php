@@ -7,7 +7,7 @@
 
 <body>
     @include('layouts.header')
-    <div>
+    <div class="overflow-x-hidden">
         @yield('content')
     </div>
     @include('layouts.footer')

@@ -17,6 +17,8 @@ use App\Http\Controllers\Users\ChildChildrensController;
 use App\Http\Controllers\Users\ChildGirlsController;
 use App\Http\Controllers\Users\DirectionalViewController;
 use App\Http\Controllers\Users\IndexController;
+use App\Http\Controllers\Users\PaymentController;
+use App\Http\Controllers\Users\VerificationOrderController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
@@ -116,40 +118,38 @@ Route::group(['middleware' => 'admin'], function () {
             Route::delete('/destroy', [PromotionController::class, 'destroy']);
         });
 
-        Route::prefix('sliders')->group(function(){
+        Route::prefix('sliders')->group(function () {
             Route::get('add', [SliderController::class, 'index']);
-            Route::post('add',[SliderController::class,'store']);
-            Route::get('list',[SliderController::class,'showViewListSlider'])->name('listsliders');;
-            Route::get('edit/{slider}',[SliderController::class,'show']);
-            Route::post('edit/{slider}',[SliderController::class,'update']);
-            Route::delete('destroy',[SliderController::class,'destroy']);   
+            Route::post('add', [SliderController::class, 'store']);
+            Route::get('list', [SliderController::class, 'showViewListSlider'])->name('listsliders');;
+            Route::get('edit/{slider}', [SliderController::class, 'show']);
+            Route::post('edit/{slider}', [SliderController::class, 'update']);
+            Route::delete('destroy', [SliderController::class, 'destroy']);
         });
 
-        Route::prefix('products')->group(function(){
+        Route::prefix('products')->group(function () {
             Route::get('add', [ProductController::class, 'index']);
-            Route::post('add',[ProductController::class,'store']);
-            Route::get('list',[ProductController::class,'showViewListProduct'])->name('listproduct');;
-            Route::get('edit/{product}',[ProductController::class,'show']);
-            Route::post('edit/{product}',[ProductController::class,'update']);
-            Route::delete('destroy',[ProductController::class,'destroy']);   
-
+            Route::post('add', [ProductController::class, 'store']);
+            Route::get('list', [ProductController::class, 'showViewListProduct'])->name('listproduct');;
+            Route::get('edit/{product}', [ProductController::class, 'show']);
+            Route::post('edit/{product}', [ProductController::class, 'update']);
+            Route::delete('destroy', [ProductController::class, 'destroy']);
         });
-        Route::prefix('product_imgs')->group(function(){
-            Route::get('add/{product_img}',[Product_imgController::class,'index']);
-            Route::post('add/{product_img}',[Product_imgController::class,'store']);
-            Route::get('list/{product_img}',[Product_imgController::class,'showViewListProduct_img'])->name('listproduct_img');;
-            Route::get('edit/{product_img}',[Product_imgController::class,'show']);
-            Route::post('edit/{product_img}',[Product_imgController::class,'update']);
-            Route::delete('destroy',[Product_imgController::class,'destroy']);   
+        Route::prefix('product_imgs')->group(function () {
+            Route::get('add/{product_img}', [Product_imgController::class, 'index']);
+            Route::post('add/{product_img}', [Product_imgController::class, 'store']);
+            Route::get('list/{product_img}', [Product_imgController::class, 'showViewListProduct_img'])->name('listproduct_img');;
+            Route::get('edit/{product_img}', [Product_imgController::class, 'show']);
+            Route::post('edit/{product_img}', [Product_imgController::class, 'update']);
+            Route::delete('destroy', [Product_imgController::class, 'destroy']);
         });
-        Route::prefix('product_details')->group(function(){
-            Route::get('add/{product_details}',[Product_detailsController::class,'index']);
-            Route::post('add/{product_details}',[Product_detailsController::class,'store']);
-            Route::get('list',[Product_detailsController::class,'showViewListProduct_details'])->name('listproduct_details');;
-            Route::get('edit/{product}',[Product_detailsController::class,'show']);
-            Route::post('edit/{product}',[Product_detailsController::class,'update']);
-            Route::delete('destroy',[Product_detailsController::class,'destroy']);   
-
+        Route::prefix('product_details')->group(function () {
+            Route::get('add/{product_details}', [Product_detailsController::class, 'index']);
+            Route::post('add/{product_details}', [Product_detailsController::class, 'store']);
+            Route::get('list', [Product_detailsController::class, 'showViewListProduct_details'])->name('listproduct_details');;
+            Route::get('edit/{product}', [Product_detailsController::class, 'show']);
+            Route::post('edit/{product}', [Product_detailsController::class, 'update']);
+            Route::delete('destroy', [Product_detailsController::class, 'destroy']);
         });
         Route::prefix('blogs')->group(function(){
             Route::get('add', [BlogController::class, 'index']);
@@ -170,10 +170,24 @@ Route::group(['middleware' => 'admin'], function () {
 });
 Route::group(['middleware' => 'auth'], function () {
     // Các route hoặc controller dành cho người dùng phải đăng nhập
-
     Route::get('/logout', [AccountsController::class, 'logout']);
+    Route::get('/account-orders', [VerificationOrderController::class, 'ViewAccountOrders']);
+
     Route::get('/cart', [CartController::class, 'index']);
+    Route::get('/cart/verification-order', [VerificationOrderController::class, 'index']);
+    Route::post('/get-value-promotion', [VerificationOrderController::class, 'getValuePromotion']);
+    Route::post('/cart/verification-order', [VerificationOrderController::class, 'create']);
+    Route::get('/payment-successful', [VerificationOrderController::class, 'viewPaymentSuccess'])->where('any', '.*');;
 });
+// Lấy thông tin về thành phố và phường
+Route::get('/get-district-or-ward', [VerificationOrderController::class, 'getDistrictOrWard']);
+
+// Thêm sản phẩm vào giỏ hàng
+Route::post('/add-product-to-cart', [CartController::class, 'store']);
+Route::delete('/remove-product-in-cart', [CartController::class, 'destroy']);
+Route::post('/update-product-in-cart', [CartController::class, 'update']);
+
+
 Route::get('/', [IndexController::class, 'index'])->name('index');
 
 // Trong này xử lý trả về giao diện của các thằng con của 3 thằng Nam , Nữ , Trẻ Em

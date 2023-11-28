@@ -33,7 +33,7 @@ const app = {
             }
             if (imgPosition && imgContainer) {
                 setInterval(slide, 5000);
-                console.log(imgPosition);
+
             }
         }
     },
@@ -56,7 +56,7 @@ const app = {
             overlay.classList.add('hidden');
         }
     },
-   
+
 
     dropDownCategory: () => {
         const dropDownButtons = document.querySelectorAll('.dropDownBtn');
@@ -113,17 +113,20 @@ const app = {
         if (group_UpAndDown_NumberElement) {
             const arrayGroupUpAndDown = [...group_UpAndDown_NumberElement];
             arrayGroupUpAndDown.forEach((groupUpAndDownItem) => {
+
                 const buttonReduced = groupUpAndDownItem.querySelector('.buttonReduced');
                 const numberProduct = groupUpAndDownItem.querySelector('.numberProduct');
                 const buttonIncrease = groupUpAndDownItem.querySelector('.buttonIncrease');
-                buttonReduced.onclick = () => {
 
-                    if (parseInt(numberProduct.innerHTML) > 0) {
+                buttonReduced.onclick = () => {
+                    if (parseInt(numberProduct.innerHTML) > 1) {
                         numberProduct.innerHTML = parseInt(numberProduct.innerHTML) - 1;
+                        numberProduct.click();
                     }
                 }
                 buttonIncrease.onclick = () => {
                     numberProduct.innerHTML = parseInt(numberProduct.innerHTML) + 1;
+                    numberProduct.click();
                 }
             })
         }
@@ -228,7 +231,7 @@ const app = {
     start: function () {
         this.slideShow();
         this.showNavMobile();
-        
+
         this.dropDownCategory();
         this.moveCategoryList();
         this.upAndDownNumberProductInCart();
@@ -241,3 +244,33 @@ const app = {
     }
 }
 app.start();
+
+// abstract format number
+window.number_format = (number, decimals, dec_point, thousands_sep) =>{
+    number = (number + '').replace(/[^0-9+\-Ee.]/g, '');
+    let n = !isFinite(+number) ? 0 : +number;
+    let prec = !isFinite(+decimals) ? 0 : Math.abs(decimals);
+    let sep = (typeof thousands_sep === 'undefined') ? ',' : thousands_sep;
+    let dec = (typeof dec_point === 'undefined') ? '.' : dec_point;
+    let s = '';
+
+    let toFixedFix = function (n, prec) {
+        let k = Math.pow(10, prec);
+        return '' + Math.round(n * k) / k;
+    };
+
+    s = (prec ? toFixedFix(n, prec) : '' + Math.round(n)).split('.');
+
+    let re = /(-?\d+)(\d{3})/;
+
+    while (re.test(s[0])) {
+        s[0] = s[0].replace(re, '$1' + sep + '$2');
+    }
+
+    if ((s[1] || '').length < prec) {
+        s[1] = s[1] || '';
+        s[1] += new Array(prec - s[1].length + 1).join('0');
+    }
+
+    return s.join(dec);
+}

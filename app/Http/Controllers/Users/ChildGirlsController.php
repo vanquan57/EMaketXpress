@@ -62,5 +62,7 @@ class ChildGirlsController extends Controller
         'sotrang'=>$sotrang,
       ]);
     }
-    
+    public function getProduct(Request $request){
+      $listProducts = Categories::where('Slug', 'LIKE', '%'.$request->path().'%')->get();
+    }
 }

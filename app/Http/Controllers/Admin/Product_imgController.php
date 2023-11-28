@@ -49,6 +49,7 @@ class Product_imgController extends Controller
         $detailedImgArray = $request->detailed_img;
     
             try {
+                
                 foreach ($detailedImgArray as $imgUrl) {
                     Product_img::create([
                         'Img' => (string)$imgUrl,

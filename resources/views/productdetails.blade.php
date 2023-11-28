@@ -1,8 +1,8 @@
 @extends('layouts.home')
 @section('content')
     <div class="px-3">
-        <span class="font-normal text-sm inline-block py-[20px]">Landing 15/11 <strong>/ Áo Thun Thể Thao Nam
-                Training</strong></span>
+        <span class="font-normal text-sm inline-block py-[20px]">Landing 15/11 <strong>/
+                {{ $productDetail->Name }}</strong></span>
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-5">
             <div class="lg:col-span-8 col-span-1">
                 <div class=" lg:grid lg:grid-cols-2 gap-5 hidden">
@@ -85,7 +85,7 @@
                 </div>
             </div>
             <div class="lg:col-span-4 col-span-1">
-                <h1 class="text-xl font-medium">Áo Thun Thể Thao Nam Training</h1>
+                <h1 class="text-xl font-medium">{{ $productDetail->Name }}</h1>
                 <div class="mt-2">
                     <span class="text-sm font-normal pr-1 border-r border-black">Mã Sản Phẩm</span>
                     <span class="text-sm font-normal pr-1 border-r border-black">Đã bán 1.0K</span>
@@ -118,64 +118,55 @@
                     <span class="text-[#F56300] px-1">:</span>
                     <span class="second-sale p-1 rounded bg-[#F56300]">00</span>
                 </div>
-                <span class="text-sm font-normal mt-2 inline-block">Màu sắc: <span class="font-medium">Navy</span></span>
-                <div class="flex flex-wrap">
-
-                    <img class="w-[50px] h-[50px] inline-block object-cover rounded-lg m-1"
+                <span class="text-sm font-normal mt-2 inline-block">Màu sắc: <span
+                        class="font-medium color_product">Navy</span></span>
+                <div class="flex flex-wrap group_type_color">
+                    <img type-color ="Màu đỏ" class="w-[50px] h-[50px] inline-block object-cover rounded-lg m-1"
                         src="https://bizweb.dktcdn.net/100/438/408/products/apn5390-xxm-ao-polo-nu-mat-chim-yody-5.jpg?v=1684810222207"
                         alt="">
-                    <img class="w-[50px] h-[50px] inline-block object-cover rounded-lg m-1"
+                    <img type-color ="Màu xanh" class="w-[50px] h-[50px] inline-block object-cover rounded-lg m-1"
                         src="https://bizweb.dktcdn.net/100/438/408/products/apn5390-hog-ao-polo-nu-yody-5.jpg?v=1684810222207"
                         alt="">
-                    <img class="w-[50px] h-[50px] inline-block object-cover rounded-lg m-1"
+                    <img type-color ="Màu Navy" class="w-[50px] h-[50px] inline-block object-cover rounded-lg m-1"
                         src="https://bizweb.dktcdn.net/100/438/408/products/apn5390-xxm-ao-polo-nu-mat-chim-yody-5.jpg?v=1684810222207"
                         alt="">
-                    <img class="w-[50px] h-[50px] inline-block object-cover rounded-lg m-1"
+                    <img type-color ="Màu vàng" class="w-[50px] h-[50px] inline-block object-cover rounded-lg m-1"
                         src="https://bizweb.dktcdn.net/100/438/408/products/apn5390-xng-ao-polo-nu-mat-chim-yody-6.jpg?v=1684810222207"
                         alt="">
 
                 </div>
-                <p class="text-sm font-normal mt-2">Kích thước:<span>M</span></p>
-
+                <p class="text-sm font-normal mt-2">Kích thước:<span class="size_product">M</span></p>
                 <div>
                     <label for="size-xs"
                         class="active size_btn w-[80px] py-2 text-black rounded-md font-medium hover:border-black border hover:text-[#FCAF17] hover:bg-white transition-colors inline-block bg-[#F6F6F6] text-center m-1">
-                        <input type="checkbox" id="size-xs" class="hidden">
                         XS
                     </label>
                     <label for="size-s"
                         class="size_btn w-[80px] py-2 text-black rounded-md font-medium  border  transition-colors inline-block bg-[#F6F6F6] text-center m-1">
-                        <input type="checkbox" id="size-s" class="hidden">
                         S
                     </label>
                     <label for="size-m"
                         class="size_btn w-[80px] py-2 text-black rounded-md font-medium  border  transition-colors inline-block bg-[#F6F6F6] text-center m-1">
-                        <input type="checkbox" id="size-m" class="hidden">
                         M
                     </label>
                     <label for="size-l"
                         class="size_btn w-[80px] py-2 text-black rounded-md font-medium  border  transition-colors inline-block bg-[#F6F6F6] text-center m-1">
-                        <input type="checkbox" id="size-l" class="hidden">
                         L
                     </label>
                     <label for="size-xl"
                         class="size_btn w-[80px] py-2 text-black rounded-md font-medium  border  transition-colors inline-block bg-[#F6F6F6] text-center m-1">
-                        <input type="checkbox" id="size-xl" class="hidden">
                         XL
                     </label>
                     <label for="size-2xl"
                         class="size_btn w-[80px] py-2 text-black rounded-md font-medium  border  transition-colors inline-block bg-[#F6F6F6] text-center m-1">
-                        <input type="checkbox" id="size-2xl" class="hidden">
                         2XL
                     </label>
                     <label for="size-3xl"
                         class="size_btn w-[80px] py-2 text-black rounded-md font-medium  border  transition-colors inline-block bg-[#F6F6F6] text-center m-1">
-                        <input type="checkbox" id="size-3xl" class="hidden">
                         3XL
                     </label>
                     <label for="size-4xl"
                         class="size_btn w-[80px] py-2 text-black rounded-md font-medium  border  transition-colors inline-block bg-[#F6F6F6] text-center m-1">
-                        <input type="checkbox" id="size-4xl" class="hidden">
                         4XL
                     </label>
                 </div>
@@ -221,13 +212,13 @@
                     <button class="px-3 py-2 rounded-l-full border buttonReduced">
                         -
                     </button>
-                    <span class="border w-12 text-center py-2 numberProduct">0</span>
+                    <span class="border w-12 text-center py-2 numberProduct">1</span>
                     <button class="px-3 py-2 rounded-r-full border buttonIncrease">
                         +
                     </button>
                 </div>
 
-                <button
+                <button onclick="addProductToCart()"
                     class="block w-[100%] rounded-lg py-3 text-white font-medium bg-[#FCAF17] hover:text-gray-400 transition-colors "><i
                         class="fa-solid fa-cart-shopping inline-block px-1"></i>Thêm Vào Giỏ Hàng</button>
                 <button class="block w-[100%] border-2 rounded-lg py-3 my-5 hover:text-[#FCAF17]  transition-colors ">Mua
@@ -380,4 +371,5 @@
         </div>
     </div>
     <script src="/build/assets/js/users/productbycategorieschild.js"></script>
+    <script src="/build/assets/js/users/cart.js"></script>
 @endsection

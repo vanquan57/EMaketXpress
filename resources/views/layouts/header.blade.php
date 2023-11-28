@@ -1,9 +1,66 @@
 <div id="overlay"
-    class="hidden z-50 fixed top-0 left-0 w-full h-full bg-[#909090] opacity-50 transition-all duration-200"></div>
-<header class="xl:w-full fixed mx-auto h-[100px] bg-[#fff] z-10  border-b bg-gradient-to-b from-[#D7F2FE] shadow-2xl to-[#FEFEFC] ">
+    class="hidden z-40 fixed top-0 left-0 w-full h-full bg-[#909090] opacity-50 transition-all duration-200">
+</div>
+<div class="w-[300px] fixed z-50 right-0 top-3 alert_ alert_susses">
+    <div class="  bg-teal-50 border-t-2 border-teal-500 rounded-lg p-4 dark:bg-teal-800/30 " role="alert">
+        <div class="flex">
+            <div class="flex-shrink-0">
+                <!-- Icon -->
+                <span
+                    class="inline-flex justify-center items-center w-8 h-8 rounded-full border-4 border-teal-100 bg-teal-200 text-teal-800 dark:border-teal-900 dark:bg-teal-800 dark:text-teal-400">
+                    <svg class="flex-shrink-0 w-4 h-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z" />
+                        <path d="m9 12 2 2 4-4" />
+                    </svg>
+                </span>
+                <!-- End Icon -->
+            </div>
+            <div class="ms-3">
+                <h3 class="text-gray-800 font-semibold dark:text-white">
+                    Thành Công
+                </h3>
+                <p class="text-sm text-gray-700 dark:text-gray-400">
+                    Thêm Sản Phẩm vào giỏ hàng thành công
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="w-[300px] fixed z-50 right-0 top-3 alert_ alert_error">
+    <div class="bg-red-50 border-s-4 border-red-500 p-4 dark:bg-red-800/30" role="alert">
+        <div class="flex">
+            <div class="flex-shrink-0">
+                <!-- Icon -->
+                <span
+                    class="inline-flex justify-center items-center w-8 h-8 rounded-full border-4 border-red-100 bg-red-200 text-red-800 dark:border-red-900 dark:bg-red-800 dark:text-red-400">
+                    <svg class="flex-shrink-0 w-4 h-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M18 6 6 18" />
+                        <path d="m6 6 12 12" />
+                    </svg>
+                </span>
+                <!-- End Icon -->
+            </div>
+            <div class="ms-3">
+                <h3 class="text-gray-800 font-semibold dark:text-white">
+                    Error!
+                </h3>
+                <p class="text-sm text-gray-700 dark:text-gray-400">
+                    Your purchase has been declined.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+<header
+    class="xl:w-full fixed mx-auto h-[100px] bg-[#fff] z-10  border-b bg-gradient-to-b from-[#D7F2FE] shadow-2xl to-[#FEFEFC] ">
     <div class="xl:flex justify-end pt-1 hidden">
         <div class="flex items-center text-xs">
-            <a href="#"><span class="px-2 hover:text-[#FCAF17]"><i class="p-1 fa-solid fa-location-dot"></i>Tìm 256
+            <a href="#"><span class="px-2 hover:text-[#FCAF17]"><i class="p-1 fa-solid fa-location-dot"></i>Tìm
+                    256
                     cửa hàng</span></a>
             <span class="px-2"> <i class="p-1 fa-solid fa-phone"></i>1800 2086</span>
             <span class=" px-2 rounded-full bg-[#FCAF17] ">FREE</span>
@@ -15,14 +72,14 @@
 
     <div class="flex  justify-around  py-3">
         <div class="logo h-[50px] w-[80px]   flex items-center max-xl:hidden">
-            <a href=""><img src="/images/logo-removebg-preview.png" alt="logo" class="object-cover"></a>
+            <a href="/"><img src="/images/logo-removebg-preview.png" alt="logo" class="object-cover"></a>
         </div>
         <div class="xl:hidden flex justify-between items-center w-screen">
             <button class="showNavMobile pl-3">
                 <i class="text-xl fa-solid fa-bars"></i>
             </button>
             <div class="logo h-[50px] w-[180px] flex justify-center">
-                <a href="./index.php"><img src="/images/logo-removebg-preview.png" alt="logo"
+                <a href="/"><img src="/images/logo-removebg-preview.png" alt="logo"
                         class="object-cover w-[55px]"></a>
             </div>
             <div>
@@ -109,82 +166,59 @@
                                 </a>
                             </div>
                         @endif
-                        <div class="py-1 border-y  max-h-[360px] overflow-y-auto">
-                            <div class="flex mt-2 borde px-1 ">
-                                <div class="w-[90px] h-[120px] flex items-center rounded">
-                                    <img class="object-cover rounded"
-                                        src="https://bizweb.dktcdn.net/thumb/compact/100/438/408/products/smn6016-kdm-ao-so-mi-nu-3.jpg"
-                                        alt="">
-                                </div>
-                                <div class="flex-1 pl-2 group_UpAndDown_Number">
-                                    <a class="py-1" href="">Áo Sơ Mi Nữ Dài Tay Cơ Bản Nano</a>
-                                    <p class="font-medium text-[#FCAF17] py-1">249.500đ</p>
-                                    <span class="rounded-full py-1 px-2 bg-[#F8F8F8] w-auto mt-1">Kẻ xanh đậm / M</span>
-                                    <div class="flex justify-between mt-2">
-                                        <div class="flex">
-                                            <button class="px-2 rounded-l-full border buttonReduced">-</button>
-                                            <span class="border w-[40px] text-center  numberProduct">0</span>
-                                            <button class="px-2 rounded-r-full border buttonIncrease">+</button>
+
+                        <div class="py-1 border-y  max-h-[360px] overflow-y-auto group_Products_in_Cart">
+                            @if ($productByCarts)
+                                @php
+                                    $totalProductsInCart = 0;
+                                @endphp
+                                @foreach ($productByCarts as $productByCart)
+                                    @php
+                                        $totalProductsInCart += $productByCart->Price_sale * $productByCart->pivot->ProductNumbers;
+                                    @endphp
+                                    <div class="flex mt-2 borde px-1 products_Item_in_Cart">
+                                        <div class="w-[90px] h-[120px] flex items-center rounded">
+                                            <img class="object-cover rounded"
+                                                src="https://bizweb.dktcdn.net/thumb/compact/100/438/408/products/smn6016-kdm-ao-so-mi-nu-3.jpg"
+                                                alt="">
                                         </div>
-                                        <div class="pr-2">
-                                            Tổng cộng: <span class="font-medium text-[#FF5500]">249.500đ</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="flex mt-2 borde px-1 ">
-                                <div class="w-[90px] h-[120px] flex items-center rounded">
-                                    <img class="object-cover rounded"
-                                        src="https://bizweb.dktcdn.net/thumb/compact/100/438/408/products/smn6016-kdm-ao-so-mi-nu-3.jpg"
-                                        alt="">
-                                </div>
-                                <div class="flex-1 pl-2 group_UpAndDown_Number">
-                                    <a class="py-1" href="">Áo Sơ Mi Nữ Dài Tay Cơ Bản Nano</a>
-                                    <p class="font-medium text-[#FCAF17] py-1">249.500đ</p>
-                                    <span class="rounded-full py-1 px-2 bg-[#F8F8F8] w-auto mt-1">Kẻ xanh đậm / M</span>
-                                    <div class="flex justify-between mt-2">
-                                        <div class="flex">
-                                            <button class="px-2 rounded-l-full border buttonReduced">-</button>
-                                            <span class="border w-[40px] text-center  numberProduct">0</span>
-                                            <button class="px-2 rounded-r-full border buttonIncrease">+</button>
-                                        </div>
-                                        <div class="pr-2">
-                                            Tổng cộng: <span class="font-medium text-[#FF5500]">249.500đ</span>
+                                        <div class="flex-1 pl-2">
+                                            <a class="py-1" href="">{{ $productByCart->Name }}</a>
+                                            <p class="font-medium text-[#FCAF17] py-1">
+                                                {{ number_format($productByCart->Price_sale, 0, '.', '.') }}VNĐ
+                                                <s class="font-normal text-sm pl-1 inline-block text-[#DBDADA]">{{ number_format($productByCart->Price, 0, '.', '.') }}
+                                                    VNĐ</s>
+                                            </p>
+                                            <span
+                                                class="rounded-full py-1 px-2 bg-[#F8F8F8] w-auto mt-1">{{ $productByCart->pivot->ProductColor }}
+                                                / {{ $productByCart->pivot->ProductSize }}</span>
+                                            <div class="flex justify-between mt-2">
+
+                                                <div class="pr-2">
+                                                    Tổng cộng: <span
+                                                        class="font-medium text-[#FF5500]">{{ number_format($productByCart->Price_sale * $productByCart->pivot->ProductNumbers, 0, '.', '.') }}
+                                                        VNĐ</span>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
+                                @endforeach
+
+                                <div
+                                    class="mt-2 bg-gradient-to-b from-[#D7F2FE] to-[#FEFEFC] h-[40px] flex items-center w-[100%] justify-end pr-2">
+                                    Tổng cộng: <span
+                                        class="font-medium text-[#FF5500]">{{ number_format($totalProductsInCart, 0, '.', '.') }}
+                                        VNĐ</span>
                                 </div>
-                            </div>
-                            <div class="flex mt-2 borde px-1 ">
-                                <div class="w-[90px] h-[120px] flex items-center rounded">
-                                    <img class="object-cover rounded"
-                                        src="https://bizweb.dktcdn.net/thumb/compact/100/438/408/products/smn6016-kdm-ao-so-mi-nu-3.jpg"
-                                        alt="">
-                                </div>
-                                <div class="flex-1 pl-2 group_UpAndDown_Number">
-                                    <a class="py-1" href="">Áo Sơ Mi Nữ Dài Tay Cơ Bản Nano</a>
-                                    <p class="font-medium text-[#FCAF17] py-1">249.500đ</p>
-                                    <span class="rounded-full py-1 px-2 bg-[#F8F8F8] w-auto mt-1">Kẻ xanh đậm /
-                                        M</span>
-                                    <div class="flex justify-between mt-2">
-                                        <div class="flex">
-                                            <button class="px-2 rounded-l-full border buttonReduced">-</button>
-                                            <span class="border w-[40px] text-center  numberProduct">0</span>
-                                            <button class="px-2 rounded-r-full border buttonIncrease">+</button>
-                                        </div>
-                                        <div class="pr-2">
-                                            Tổng cộng: <span class="font-medium text-[#FF5500]">249.500đ</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                                <button
+                                    class="transition-colors h-[35px] w-[100%]  hover:text-[#816a38] hover:bg-[#52C9F7] bg-[#aadff6] ">XEM
+                                    GIỎ HÀNG</button>
+                            @endif
+
+
+
+
                         </div>
-                        <div
-                            class="mt-2 bg-gradient-to-b from-[#D7F2FE] to-[#FEFEFC] h-[40px] flex items-center w-[100%] justify-end pr-2">
-                            Tổng cộng: <span class="font-medium text-[#FF5500]">249.500đ</span>
-                        </div>
-                        <button
-                            class="transition-colors h-[35px] w-[100%]  hover:text-[#816a38] hover:bg-[#52C9F7] bg-[#aadff6] ">XEM
-                            GIỎ HÀNG</button>
 
                     </div>
                 </span>

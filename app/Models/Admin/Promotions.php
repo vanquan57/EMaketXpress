@@ -10,7 +10,6 @@ class Promotions extends Model
     use HasFactory;
     public $timestamps = false;
     protected $primaryKey = 'PromotionID';
-    protected $foreignKey = 'CategoryID';
     protected $fillable = [
         'PromotionName',
         'PromotionCode',
