@@ -248,19 +248,13 @@
                                     <a href="/login" class="pl-2 flex-1">Đăng Nhập</a>
                                 </li>
                             @endif
-                            <li
-                                class="border py-1 rounded-lg flex items-center px-1  hover:text-[#FCAF17] hover:cursor-pointer">
-                                <img class="w-[24px] h-[24px] rounded-full"
-                                    src="https://st.chotot.com/storage/chotot-icons/svg/circle-list.svg"
-                                    alt="Lịch sử giao dịch">
-                                <a href="#" class="pl-2 flex-1">Lịch sử giao dịch</a>
-                            </li>
+                            
                             <li
                                 class="border py-1 rounded-lg flex items-center px-1  hover:text-[#FCAF17] hover:cursor-pointer">
                                 <img class="w-[24px] h-[24px] rounded-full"
                                     src="https://static.chotot.com/storage/chotot-icons/svg/escrow_buy_orders.svg"
                                     alt="Đơn hàng của tôi">
-                                <a href="#" class="pl-2 flex-1 ">Đơn hàng của tôi</a>
+                                <a href="/account-orders" class="pl-2 flex-1 ">Đơn hàng của tôi</a>
                             </li>
                             <li
                                 class="border py-1 rounded-lg flex items-center px-1  hover:text-[#FCAF17] hover:cursor-pointer">

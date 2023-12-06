@@ -47,11 +47,20 @@ class VerificationOrderController extends Controller
                     Log::info($th->getMessage());
                 }
             }
+            if ($request->input('vnp_ResponseCode') == 00 && $request->input('vnp_TxnRef') && $request->input('vnp_TransactionNo') && $request->input('Purchase_order_ID')) {
+                try {
+                    PurchaseOrder::where('Purchase_order_ID', $request->input('Purchase_order_ID'))->update([
+                        'PaymentStatus' => 1,
+                        'VnPayCode' => $request->input('vnp_TransactionNo')
+                    ]);
+                    return view('paymentsuccessful', ['title' => 'Xác Thực Đơn Hàng Thành Công']);
+                } catch (\Throwable $th) {
+                    Log::info($th->getMessage());
+                }
+            }
         }
     }
-    public function ViewAccountOrders(){
-        return view('accountorders', ['title' => 'Trang Đơn Hàng']);
-    }
+   
     public function getDistrictOrWard(Request $request)
     {
         $urlApi = '';
@@ -130,19 +139,26 @@ class VerificationOrderController extends Controller
             'PromotionCode' => $request->input('promotionCode'),
             'OrderStatus' => 1,
             'PaymentStatus' => 0,
-            'TotalAmount' => $TotalAmount,
+            'TotalAmount' => (integer)$TotalAmount,
             'PaymentMethod' => $PaymentMethod,
-            'IdUser' => Auth::user()->id
+            'IdUser' => Auth::user()->id,
+            'DeliveryStatus'=> 0
         ]);
     }
     protected function updateUserShoppingCartAndPurchaseOrder($request, $purchaseOrderCreate)
     {
-        Auth::user()->shoppingCart->products()->detach();
-        $inforProducts = $request->input('inforProducts');
+        $inforProducts = Auth::user()->shoppingCart->products;
         foreach ($inforProducts as $inforProduct) {
-            $arrinforProduct = explode(',', $inforProduct);
-            $purchaseOrderCreate->products()->attach($arrinforProduct[0], ['ProductNumbers' => $arrinforProduct[1]]);
+            $purchaseOrderCreate->products()->attach($inforProduct->pivot->ProductID,
+             [
+                'ProductNumbers' => $inforProduct->pivot->ProductNumbers,
+                'ProductColor' => $inforProduct->pivot->ProductColor,
+                'ProductSize' => $inforProduct->pivot->ProductSize,
+                'ProductImg' => $inforProduct->pivot->ProductImg,
+            ]);
         }
+        Auth::user()->shoppingCart->products()->detach();
+        
     }
 
     /**
@@ -179,15 +195,87 @@ class VerificationOrderController extends Controller
     {
         //
     }
+    public function paymentOrder(Request $request){
+        $urlNavigationVNPay = $this->vnpay_PaymentAgain($request->input('Purchase_order_ID').'_again',$request->input('Purchase_order_ID'), $request->input('TotalAmount'));
+        return redirect()->to($urlNavigationVNPay);
+    }
     protected function vnpay_Payment($Purchase_order_ID, $TotalAmount)
     {
 
         $vnp_Url = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
-        $vnp_Returnurl = "/payment-successful";
+        $vnp_Returnurl = "http://localhost:8000/payment-successful";
         $vnp_TmnCode = "XM23TBBT"; //Mã website tại VNPAY 
         $vnp_HashSecret = "HETYMABOLHRWRFTEERNVJDCMPFPISEQU"; //Chuỗi bí mật
 
         $vnp_TxnRef = $Purchase_order_ID; //Mã đơn hàng. Trong thực tế Merchant cần insert đơn hàng vào DB và gửi mã này sang VNPAY
+        $vnp_OrderInfo = "Hoàn Thành Thanh Toán Với Hóa Đơn Của EMAKETXPRESS";
+        $vnp_OrderType = "EMAKETXPRESS SHOP";
+        $vnp_Amount = $TotalAmount * 100;
+        $vnp_Locale = "VN";
+        $vnp_BankCode = "";
+        $vnp_IpAddr = $_SERVER['REMOTE_ADDR'];
+
+        $inputData = array(
+            "vnp_Version" => "2.1.0",
+            "vnp_TmnCode" => $vnp_TmnCode,
+            "vnp_Amount" => $vnp_Amount,
+            "vnp_Command" => "pay",
+            "vnp_CreateDate" => date('YmdHis'),
+            "vnp_CurrCode" => "VND",
+            "vnp_IpAddr" => $vnp_IpAddr,
+            "vnp_Locale" => $vnp_Locale,
+            "vnp_OrderInfo" => $vnp_OrderInfo,
+            "vnp_OrderType" => $vnp_OrderType,
+            "vnp_ReturnUrl" => $vnp_Returnurl,
+            "vnp_TxnRef" => $vnp_TxnRef,
+        );
+
+        if (isset($vnp_BankCode) && $vnp_BankCode != "") {
+            $inputData['vnp_BankCode'] = $vnp_BankCode;
+        }
+        if (isset($vnp_Bill_State) && $vnp_Bill_State != "") {
+            $inputData['vnp_Bill_State'] = $vnp_Bill_State;
+        }
+
+        //var_dump($inputData);
+        ksort($inputData);
+        $query = "";
+        $i = 0;
+        $hashdata = "";
+        foreach ($inputData as $key => $value) {
+            if ($i == 1) {
+                $hashdata .= '&' . urlencode($key) . "=" . urlencode($value);
+            } else {
+                $hashdata .= urlencode($key) . "=" . urlencode($value);
+                $i = 1;
+            }
+            $query .= urlencode($key) . "=" . urlencode($value) . '&';
+        }
+
+        $vnp_Url = $vnp_Url . "?" . $query;
+        if (isset($vnp_HashSecret)) {
+            $vnpSecureHash =   hash_hmac('sha512', $hashdata, $vnp_HashSecret); //  
+            $vnp_Url .= 'vnp_SecureHash=' . $vnpSecureHash;
+        }
+        $returnData = array(
+            'code' => '00', 'message' => 'success', 'data' => $vnp_Url
+        );
+        if (isset($_POST['redirect'])) {
+            header('Location: ' . $vnp_Url);
+            die();
+        } else {
+            return $vnp_Url;
+        }
+    }
+    protected function vnpay_PaymentAgain($Purchase_order_ID_Again,$Purchase_order_ID, $TotalAmount)
+    {
+
+        $vnp_Url = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
+        $vnp_Returnurl = "http://localhost:8000/payment-successful?Purchase_order_ID=".$Purchase_order_ID;
+        $vnp_TmnCode = "XM23TBBT"; //Mã website tại VNPAY 
+        $vnp_HashSecret = "HETYMABOLHRWRFTEERNVJDCMPFPISEQU"; //Chuỗi bí mật
+
+        $vnp_TxnRef = $Purchase_order_ID_Again; //Mã đơn hàng. Trong thực tế Merchant cần insert đơn hàng vào DB và gửi mã này sang VNPAY
         $vnp_OrderInfo = "Hoàn Thành Thanh Toán Với Hóa Đơn Của EMAKETXPRESS";
         $vnp_OrderType = "EMAKETXPRESS SHOP";
         $vnp_Amount = $TotalAmount * 100;

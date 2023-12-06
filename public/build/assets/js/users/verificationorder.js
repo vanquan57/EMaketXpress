@@ -32,6 +32,46 @@ function getPromotion() {
 
     });
 }
+function cancelPurchase(Purchase_order_ID){
+    if(confirm('Bạn chắc chắn muốn hủy đơn hàng này không ?')){}
+    $.ajax({
+        type: 'POST',
+        url: '/update-purchase',
+        data: {
+            'Purchase_order_ID': Purchase_order_ID,
+            'method': 'Cancel'
+        },
+        dataType: "JSON",
+        success: function (response) {
+            if (response.success ) {
+                $('#row_purchase_Order-'+Purchase_order_ID).hide();
+            } else {
+                alert('Không có mã giảm giá nào trùng khớp...')
+            }
+        }
+
+    });
+}
+function updateDeliveryStatus(Purchase_order_ID){
+    $.ajax({
+        type: 'POST',
+        url: '/update-purchase',
+        data: {
+            'Purchase_order_ID': Purchase_order_ID,
+            'method': 'Update Delivery Status'
+        },
+        dataType: "JSON",
+        success: function (response) {
+            if (response.success ) {
+                $('.Delivery-Status').text('Đã Giao Hàng');
+            } else {
+                alert('Không có mã giảm giá nào trùng khớp...')
+            }
+        }
+
+    });
+}
+
 const verificationOrder = {
     getDistrict: () => {
         const groupAddressElement = document.querySelector('.group-address');

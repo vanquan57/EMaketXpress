@@ -16,6 +16,7 @@ use App\Http\Controllers\Users\ChildChildrensController;
 use App\Http\Controllers\Users\ChildGirlsController;
 use App\Http\Controllers\Users\DirectionalViewController;
 use App\Http\Controllers\Users\IndexController;
+use App\Http\Controllers\Users\OrderConfirmedController;
 use App\Http\Controllers\Users\PaymentController;
 use App\Http\Controllers\Users\VerificationOrderController;
 use Illuminate\Support\Facades\Route;
@@ -155,13 +156,16 @@ Route::group(['middleware' => 'admin'], function () {
 Route::group(['middleware' => 'auth'], function () {
     // Các route hoặc controller dành cho người dùng phải đăng nhập
     Route::get('/logout', [AccountsController::class, 'logout']);
-    Route::get('/account-orders', [VerificationOrderController::class, 'ViewAccountOrders']);
-
     Route::get('/cart', [CartController::class, 'index']);
     Route::get('/cart/verification-order', [VerificationOrderController::class, 'index']);
+    Route::post('/payment-order', [VerificationOrderController::class, 'paymentOrder']);
     Route::post('/get-value-promotion', [VerificationOrderController::class, 'getValuePromotion']);
     Route::post('/cart/verification-order', [VerificationOrderController::class, 'create']);
-    Route::get('/payment-successful', [VerificationOrderController::class, 'viewPaymentSuccess'])->where('any', '.*');;
+    Route::get('/payment-successful', [VerificationOrderController::class, 'viewPaymentSuccess'])->where('any', '.*');
+    Route::get('/account-orders', [OrderConfirmedController::class, 'index']);
+    Route::get('/account-orders-{Purchase_order_ID}', [OrderConfirmedController::class, 'show']);
+    Route::post('/update-purchase', [OrderConfirmedController::class, 'update']);
+
 });
 // Lấy thông tin về thành phố và phường
 Route::get('/get-district-or-ward', [VerificationOrderController::class, 'getDistrictOrWard']);

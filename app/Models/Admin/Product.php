@@ -39,7 +39,10 @@ class Product extends Model
     }
     public function purchaseOrders(){
         return $this->belongsToMany(PurchaseOrder::class, 'Order_details', 'Purchase_order_ID', 'ProductID')->withPivot([
-            'ProductNumbers'
+            'ProductNumbers',
+            'ProductColor',
+            'ProductSize',
+            'ProductImg'
         ]);
     }
 }
