@@ -228,10 +228,10 @@ const app = {
 
         }
     },
+   
     start: function () {
         this.slideShow();
         this.showNavMobile();
-
         this.dropDownCategory();
         this.moveCategoryList();
         this.upAndDownNumberProductInCart();
@@ -246,7 +246,7 @@ const app = {
 app.start();
 
 // abstract format number
-window.number_format = (number, decimals, dec_point, thousands_sep) =>{
+window.number_format = (number, decimals, dec_point, thousands_sep) => {
     number = (number + '').replace(/[^0-9+\-Ee.]/g, '');
     let n = !isFinite(+number) ? 0 : +number;
     let prec = !isFinite(+decimals) ? 0 : Math.abs(decimals);

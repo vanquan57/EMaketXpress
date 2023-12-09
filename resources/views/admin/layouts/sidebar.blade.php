@@ -10,7 +10,7 @@
             <li class="active">
                 <a href="/admin">
                     <span class="icon"><i class="mdi mdi-desktop-mac"></i></span>
-                    <span class="menu-item-label">Bảng điều khiển</span>
+                    <span class="menu-item-label">Tổng Quan Cửa Hàng</span>
                 </a>
             </li>
         </ul>
@@ -19,7 +19,7 @@
             <li>
                 <a class="dropdown">
                     <span class="icon"><i class="mdi mdi-view-list"></i></span>
-                    <span class="menu-item-label">Quản lý sản phẩm</span>
+                    <span class="menu-item-label">Quản lý danh mục</span>
                     <span class="icon"><i class="mdi mdi-plus"></i></span>
                 </a>
                 <ul class="pl-3">
@@ -29,12 +29,7 @@
                             <span>Danh mục sản phẩm</span>
                         </a>
                     </li>
-                    <li >
-                        <a href="#void" class="flex items-center">
-                            <i class="fa-solid fa-barcode px-1"></i>
-                            <span>Danh sách sản phẩm</span>
-                        </a>
-                    </li>
+                   
                 </ul>
             </li>
             <li>
@@ -52,7 +47,7 @@
                     </li>
                     <li >
                         <a href="/admin/products/list" class="flex items-center">
-                            <i class="fa-solid fa-barcode px-1"></i>
+                            <i class="fa-solid fa-swatchbook px-1"></i>
                             <span>Danh sách sản phẩm</span>
                         </a>
                     </li>
@@ -66,7 +61,7 @@
             </li>
             <li>
                 <a class="dropdown">
-                    <span class="icon"><i class="mdi mdi-view-list"></i></span>
+                    <span class="icon"><i class="fa-solid fa-sliders"></i></span>
                     <span class="menu-item-label">Slider</span>
                     <span class="icon"><i class="mdi mdi-plus"></i></span>
                 </a>
@@ -92,15 +87,9 @@
                 </a>
             </li>
             <li class="--set-active-tables-html">
-                <a href="/admin/tables">
-                    <span class="icon"><i class="mdi mdi-table"></i></span>
-                    <span class="menu-item-label">Tables</span>
-                </a>
-            </li>
-            <li class="--set-active-forms-html">
-                <a href="/admin/forms">
-                    <span class="icon"><i class="mdi mdi-square-edit-outline"></i></span>
-                    <span class="menu-item-label">Forms</span>
+                <a href="/admin/purchase-order">
+                    <span class="icon"><i class="fa-solid fa-shop"></i></span>
+                    <span class="menu-item-label">Quản lý đơn hàng</span>
                 </a>
             </li>
             <li class="--set-active-profile-html">
@@ -110,25 +99,6 @@
                 </a>
             </li>
            
-            <li>
-                <a class="dropdown">
-                    <span class="icon"><i class="mdi mdi-view-list"></i></span>
-                    <span class="menu-item-label">Submenus</span>
-                    <span class="icon"><i class="mdi mdi-plus"></i></span>
-                </a>
-                <ul>
-                    <li>
-                        <a href="#void">
-                            <span>Sub-item One</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#void">
-                            <span>Sub-item Two</span>
-                        </a>
-                    </li>
-                </ul>
-            </li>
         </ul>
         
     </div>

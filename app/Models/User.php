@@ -39,6 +39,9 @@ class User extends Authenticatable implements MustVerifyEmail
     public function purchaseOrders(){
         return $this->hasMany(PurchaseOrder::class, 'IdUser', 'id');
     }
+    public function InfoUsers(){
+        return $this->hasMany(InfoUser::class, 'IdUser', 'id');
+    }
     /**
      * The attributes that should be hidden for serialization.
      *

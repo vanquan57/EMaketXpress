@@ -5,11 +5,14 @@ namespace App\Http\Controllers\Users;
 use App\Http\Controllers\Controller;
 use App\Models\Admin\Promotions;
 use App\Models\PurchaseOrder;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Log;
+
+use function PHPUnit\Framework\isEmpty;
 
 class VerificationOrderController extends Controller
 {
@@ -21,6 +24,7 @@ class VerificationOrderController extends Controller
         $currentUser = Auth::user();
         $productsOfUser = $currentUser->shoppingCart->products;
         $countProducts = $currentUser->shoppingCart->products->count();
+        $addressDefaultUser = Auth::user()->InfoUsers->where('Active', 1)->first();
         $provincesJson = Http::get('https://provinces.open-api.vn/api/');
         $provinces = $provincesJson->json();
 
@@ -28,7 +32,8 @@ class VerificationOrderController extends Controller
             'title' => 'Xác Thực Đơn Hàng',
             'provinces' => $provinces,
             'productsOfUser' => $productsOfUser,
-            'countProducts' => $countProducts
+            'countProducts' => $countProducts,
+            'addressDefaultUser'=> $addressDefaultUser
         ]);
     }
     public function viewPaymentSuccess(Request $request)
@@ -86,6 +91,8 @@ class VerificationOrderController extends Controller
     /**
      * Show the form for creating a new resource.
      */
+
+    
     public function create(Request $request)
     {
         if ($request->input('payMethod') == 'paycod') {
@@ -93,6 +100,11 @@ class VerificationOrderController extends Controller
                 $promotion = Promotions::where('PromotionCode', $request->input('promotionCode'))->first();
                 $TotalAmount = $this->calculateTotalAmount($request->input('totalProductOrder'), $promotion);
                 $purchaseOrderCreate = $this->createPurchaseOrder($request, $TotalAmount, 'Thanh Toán Khi Nhận Hàng');
+                $infoUser = Auth::user()->InfoUsers;
+                if(empty( Auth::user()->InfoUsers->first())){
+                $accountsController = new AccountsController();
+                $accountsController->createInforUser($request, 1);
+                }
                 if ($purchaseOrderCreate) {
                     $this->updateUserShoppingCartAndPurchaseOrder($request, $purchaseOrderCreate);
                     return redirect()->to('/payment-successful');
@@ -107,14 +119,20 @@ class VerificationOrderController extends Controller
                 $promotion = Promotions::where('PromotionCode', $request->input('promotionCode'))->first();
                 $TotalAmount = $this->calculateTotalAmount($request->input('totalProductOrder'), $promotion);
                 $purchaseOrderCreate = $this->createPurchaseOrder($request, $TotalAmount, 'Thanh Toán Bằng VNPay');
+                $infoUser = Auth::user()->InfoUsers;
+                if(empty( Auth::user()->InfoUsers->first())){
+                $accountsController = new AccountsController();
+                $accountsController->createInforUser($request, 1);
+                }
                 if ($purchaseOrderCreate) {
                     $this->updateUserShoppingCartAndPurchaseOrder($request, $purchaseOrderCreate);
                     $urlNavigationVNPay = $this->vnpay_Payment($purchaseOrderCreate->Purchase_order_ID, $TotalAmount);
                     return redirect()->to($urlNavigationVNPay);
                 }
             } catch (\Throwable $th) {
-                return redirect()->back()->with('errorOrderProduct', 'Đang có vấn đề về kĩ thuật vui lòng thử lại sau và reload lại trang !');
                 Log::info($th->getMessage());
+                return redirect()->back()->with('errorOrderProduct', 'Đang có vấn đề về kĩ thuật vui lòng thử lại sau và reload lại trang !');
+                
             }
         }
     }
@@ -127,6 +145,7 @@ class VerificationOrderController extends Controller
             return $totalProductOrder;
         }
     }
+
     protected function createPurchaseOrder($request, $TotalAmount, $PaymentMethod)
     {
         $currentDateTime = Carbon::now();
@@ -170,6 +189,13 @@ class VerificationOrderController extends Controller
 
     public function show()
     {
+        
+
+    if (empty( Auth::user()->InfoUsers->first())) {
+        echo 'null';
+    } else {
+        echo 'not null';
+    }
     }
 
     /**
@@ -347,4 +373,5 @@ class VerificationOrderController extends Controller
             ]);
         }
     }
+    
 }

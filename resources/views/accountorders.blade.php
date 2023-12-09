@@ -15,18 +15,19 @@
                     <a href="/logout" class="my-2 w-[80%] bg-[#FCAF17] rounded-lg inline-block text-center">Đăng Xuất</a>
                 </div>
                 <div class="mt-3">
-                    <div class="flex  items-center p-2 bg-[#FEEEEA] text-[#FCAF17]">
+                    <div
+                        class="flex  items-center p-2 {{ $title == 'Trang Đơn Hàng' ? 'bg-[#FEEEEA] text-[#FCAF17]' : '' }} ">
                         <img src="https://bizweb.dktcdn.net/100/438/408/themes/931909/assets/acc_user_2_hover.svg"
                             alt="">
-                        <a href="/purchase-orders-detail" class="pl-2">Đơn Hàng Của Tôi</a>
+                        <a href="/account-orders" class="pl-2">Đơn Hàng Của Tôi</a>
                     </div>
                     <div class="flex  items-center p-2 ">
                         <img src="https://bizweb.dktcdn.net/100/438/408/themes/931909/assets/acc_user_1.svg" alt="">
                         <a href="#" class="pl-2">Tài Khoản Của Tôi</a>
                     </div>
-                    <div class="flex  items-center p-2 ">
+                    <div class="flex  items-center p-2 {{ $title == 'Sổ Địa Chỉ' ? 'bg-[#FEEEEA] text-[#FCAF17]' : '' }}">
                         <img src="https://bizweb.dktcdn.net/100/438/408/themes/931909/assets/acc_user_4.svg" alt="">
-                        <a href="" class="pl-2">Sổ Địa Chỉ</a>
+                        <a href="/account-addresses" class="pl-2">Sổ Địa Chỉ</a>
                     </div>
                     <div class="flex  items-center p-2 ">
                         <img src="	https://bizweb.dktcdn.net/100/438/408/themes/931909/assets/acc_user_6.svg"
@@ -85,7 +86,8 @@
 
                                                     </td>
                                                     <td class="p-3">
-                                                        <p>{{ number_format($purchaseOrder->TotalAmount, 0, '.', '.') }} VNĐ
+                                                        <p>{{ number_format($purchaseOrder->TotalAmount, 0, '.', '.') }}
+                                                            VNĐ
                                                         </p>
                                                     </td>
                                                     <td class="p-3">
@@ -122,8 +124,9 @@
                                                     <td class="p-3">
                                                         @if ($purchaseOrder->DeliveryStatus == 0)
                                                             <button
-                                                            onclick="cancelPurchase({{$purchaseOrder->Purchase_order_ID}})"
-                                                                class="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg  px-2 py-1.5  focus:outline-none ">Hủy Bỏ
+                                                                onclick="cancelPurchase({{ $purchaseOrder->Purchase_order_ID }})"
+                                                                class="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg  px-2 py-1.5  focus:outline-none ">Hủy
+                                                                Bỏ
                                                                 Đơn Hàng</button>
                                                         @endif
                                                     </td>
@@ -232,9 +235,9 @@
                         <div class="p-5 text-sm">
                             <span>
                                 {{ $promotion->PromotionName }} Giảm -
-                                {{ $promotion->DiscountType == 0 ? $promotion->DiscountAmount . ' %' : number_format($productOrder->Price_sale, 0, '.', '.') . ' VNĐ' }}
+                                {{ $promotion->DiscountType == 0 ? $promotion->DiscountAmount . ' %' : number_format($promotion->DiscountAmount, 0, '.', '.') . ' VNĐ' }}
                             </span>
-                            <span>Tổng Giảm:
+                            <span class="font-medium">Tổng Giảm:
                                 <strong
                                     class="text-[#FCAF17]">{{ number_format($promotion->DiscountType == 0 ? ($promotion->DiscountAmount / 100) * $purchaseOrder->TotalAmount : $promotion->DiscountAmount, 0, '.', '.') }}
                                     VNĐ</strong> </span>
@@ -251,15 +254,107 @@
                         <a href="/account-orders"
                             class="w-[170px] px-5 py-3 text-center rounded-lg bg-[#FCAF17] text-white hover:text-black font-medium"><i
                                 class="fa-solid fa-arrow-left"></i> QUAY LẠI</a>
-                        <button
-                        onclick="updateDeliveryStatus({{$purchaseOrder->Purchase_order_ID}})" 
-                            class="w-[170px] px-5 py-3 text-center rounded-lg bg-[#FCAF17] text-white hover:text-black font-medium"><i class="fa-solid fa-circle-check"></i> Đã Nhận Hàng</button>
+                        <button onclick="updateDeliveryStatus({{ $purchaseOrder->Purchase_order_ID }})"
+                            class="w-[170px] px-5 py-3 text-center rounded-lg bg-[#FCAF17] text-white hover:text-black font-medium"><i
+                                class="fa-solid fa-circle-check"></i> Đã Nhận Hàng</button>
                     </div>
             </div>
             @endif
-
+            @if ($title == 'Sổ Địa Chỉ')
+                <div class="py-5 px-3 border flex justify-between items-center text-sm">
+                    <span class="font-medium text-[#FCAF17]">Địa Chỉ Của Bạn</span>
+                    <button id="btn-showFromAddress"
+                        class=" px-5 py-3 bg-[#FCAF17] text-white hover:text-black font-medium rounded-lg">+ Thêm Địa
+                        Chỉ Mới</button>
+                </div>
+                <div>
+                    @foreach ($infoUserAddressUsers as $infoUserAddressUser)
+                        <div id="infoUserAddressUser_{{ $infoUserAddressUser->id }}" class="border-b">
+                            <div class="ml-2 flex items-center justify-between">
+                                <div>
+                                    <div class="flex items-center py-1 font-normal text-sm">
+                                        <p class="text-[#7a7a9d] px-1 w-[120px]">Họ Tên:</p>
+                                        <strong>{{ $infoUserAddressUser->Name }}</strong>
+                                        @if ($infoUserAddressUser->Active == 1)
+                                            <span class="text-xs text-[#27ae60] px-2"><i
+                                                    class="fa-solid fa-circle-check"></i> Địa chỉ mặc định</span>
+                                        @endif
+                                    </div>
+                                    <div class="flex items-center py-1 font-normal text-sm">
+                                        <p class="text-[#7a7a9d] px-1 w-[120px]">Địa Chỉ:</p>
+                                        <strong>{{ $infoUserAddressUser->Province }},
+                                            {{ $infoUserAddressUser->District }}, {{ $infoUserAddressUser->Ward }},
+                                            {{ $infoUserAddressUser->DetailedAddress }}</strong>
+                                    </div>
+                                    <div class="flex items-center py-1 font-normal text-sm">
+                                        <p class="text-[#7a7a9d] px-1 w-[120px]">Số Điện Thoại:</p>
+                                        <strong>{{ $infoUserAddressUser->PhoneNumber }}</strong>
+                                    </div>
+                                </div>
+                                <div class="mr-2">
+                                    @if ($infoUserAddressUser->Active == 0)
+                                        <button onclick="removeAddress({{ $infoUserAddressUser->id }})"
+                                            class="px-5 py-3 text-center rounded-lg bg-[#C81E1E] text-white hover:text-black font-medium text-xs"><i
+                                                class="fa-solid fa-trash"></i> Xóa</button>
+                                    @endif
+                                    @if ($infoUserAddressUser->Active == 0)
+                                        <button onclick="updateAddressDefault({{ $infoUserAddressUser->id }})"
+                                            class="px-5 py-3 text-center rounded-lg bg-[#1A56DB] text-white hover:text-black font-medium text-xs"><i
+                                                class="fa-solid fa-circle-check"></i> Đặt Làm Địa Chỉ Mặc Định</button>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            @endif
         </div>
     </div>
-    </div>
+    @if ($title == 'Sổ Địa Chỉ')
+        <div id="fromAddress"
+            class="hidden w-[600px] h-[480px]  bg-white fixed z-50 rounded-lg top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]">
+            <button id="bnt-closeFromAddress" class=" float-right p-3 flex items-center justify-center group"><i
+                    class="fa-solid fa-xmark text-[32px] group-hover:text-[#FCAF17]"></i></button>
+            <form action="/create-new-address" method="POST" class="mx-5 mt-3">
+                @csrf
+                <input type="text" name="nameCustomer" placeholder="Họ Và Tên ..."
+                    class="w-[100%] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block  p-2.5 mr-2"
+                    required>
+                <input type="number" name="phoneCustomer" placeholder="Số Điện Thoại ..."
+                    class="w-[100%]  my-2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block  p-2.5 mr-2"
+                    required>
+                <div class="group-address">
+                    <select name="city"
+                        class="w-[100%] my-2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block  p-2.5 mr-2"
+                        id="city" required>
+                        <option value="">Chọn tỉnh thành</option>
+                        @foreach ($provinces as $province)
+                            <option value="{{ $province['name'] }}" cityCode="{{ $province['code'] }}">
+                                {{ $province['name'] }}</option>
+                        @endforeach
+                    </select>
+
+                    <select name="district"
+                        class="w-[100%] my-2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block  p-2.5 mr-2"
+                        id="district" required>
+                        <option value="" selected>Chọn quận huyện</option>
+                    </select>
+
+                    <select name="ward"
+                        class="w-[100%] my-2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block  p-2.5 mr-2"
+                        id="ward" required>
+                        <option value="" selected>Chọn phường xã</option>
+                    </select>
+                    <div class="w-[100%] flex justify-center mt-[50px]">
+                        <button type="submit"
+                            class="w-[150px] py-3 bg-[#FCAF17] text-white hover:text-black font-medium rounded-lg">LƯU</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    @endif
+
+    <script src="/build/assets/js/users/handleinfoAccount.js"></script>
     <script src="/build/assets/js/users/verificationorder.js"></script>
+
 @endsection

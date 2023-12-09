@@ -1,11 +1,11 @@
 @extends('layouts.home')
 @section('content')
     <div class="lg:mx-5 ">
-    @if (session('errorOrderProduct'))
-    <div class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
-        <span class="font-medium">Danger alert!</span>{{ session('errorOrderProduct')}}
-      </div>
-    @endif
+        @if (session('errorOrderProduct'))
+            <div class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+                <span class="font-medium">Danger alert!</span>{{ session('errorOrderProduct') }}
+            </div>
+        @endif
         <form action="" method="POST">
             @csrf
             <div class="grid grid-cols-1 lg:grid-cols-3 ">
@@ -18,16 +18,23 @@
                         <div class="col-span-1">
                             <h1 class="font-medium text-lg">Thông tin giao hàng</h1>
                             <input type="text" name="nameCustomer" placeholder="Họ Và Tên ..."
+                                @if ($addressDefaultUser) value="{{ $addressDefaultUser->Name }}" @endif
                                 class="w-[100%] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block  p-2.5 mr-2"
                                 required>
                             <input type="number" name="phoneCustomer" placeholder="Số Điện Thoại ..."
+                                @if ($addressDefaultUser) value="{{ $addressDefaultUser->PhoneNumber }}" @endif
                                 class="w-[100%]  my-2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block  p-2.5 mr-2"
                                 required>
                             <div class="group-address">
                                 <select name="city"
                                     class="w-[100%] my-2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block  p-2.5 mr-2"
                                     id="city" required>
-                                    <option value="">Chọn tỉnh thành</option>
+                                    @if ($addressDefaultUser)
+                                        <option value="{{ $addressDefaultUser->Province }}" selected>
+                                            {{ $addressDefaultUser->Province }}</option>
+                                    @else
+                                        <option value="" selected>Chọn tỉnh thành</option>
+                                    @endif
                                     @foreach ($provinces as $province)
                                         <option value="{{ $province['name'] }}" cityCode="{{ $province['code'] }}">
                                             {{ $province['name'] }}</option>
@@ -37,17 +44,28 @@
                                 <select name="district"
                                     class="w-[100%] my-2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block  p-2.5 mr-2"
                                     id="district" required>
-                                    <option value="" selected>Chọn quận huyện</option>
+                                    @if ($addressDefaultUser)
+                                        <option value="{{ $addressDefaultUser->District }}" selected>
+                                            {{ $addressDefaultUser->District }}</option>
+                                    @else
+                                        <option value="" selected>Chọn quận huyện</option>
+                                    @endif
                                 </select>
 
                                 <select name="ward"
                                     class="w-[100%] my-2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block  p-2.5 mr-2"
                                     id="ward" required>
-                                    <option value="" selected>Chọn phường xã</option>
+                                    @if ($addressDefaultUser)
+                                        <option value="{{ $addressDefaultUser->Ward }}" selected>
+                                            {{ $addressDefaultUser->Ward }}</option>
+                                    @else
+                                        <option value="" selected>Chọn phường xã</option>
+                                    @endif
                                 </select>
                             </div>
                             <input type="text" name="addressDetails" placeholder="Ghi Rõ Địa Chỉ (Thôn, Đội, Số nhà) ..."
-                                class="w-[100%] my-2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block  p-2.5 mr-2" required>
+                                class="w-[100%] my-2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block  p-2.5 mr-2"
+                                required>
 
                         </div>
                         <div class="col-span-1 ">
@@ -106,7 +124,7 @@
                                     <span class="rounded-full py-1 bg-[#F8F8F8] px-2 mt-1">Kẻ xanh đậm / M</span>
                                     <p class="py-2">Số Lượng {{ $productOfUser->pivot->ProductNumbers }}</p>
                                     <input type="text" name="inforProducts[]" hidden
-                                        value="{{ $productOfUser->pivot->ProductID }},{{ $productOfUser->pivot->ProductNumbers}}">
+                                        value="{{ $productOfUser->pivot->ProductID }},{{ $productOfUser->pivot->ProductNumbers }}">
                                 </div>
                             </div>
                         @endforeach

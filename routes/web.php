@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\UploadController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\Product_detailsController;
 use App\Http\Controllers\Admin\Product_imgController;
+use App\Http\Controllers\Admin\PurchaseOrderController;
 use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\Users\AccountsController;
 use App\Http\Controllers\Users\CartController;
@@ -89,9 +90,7 @@ Route::prefix('admin')->group(function () {
 Route::group(['middleware' => 'admin'], function () {
     // Các route hoặc controller dành cho admin
     Route::prefix('admin')->group(function () {
-        Route::get('/', function () {
-            return view('admin.index', ['title' => 'Admin']);
-        })->name('admin');
+        Route::get('/', [AdminAccountController::class, 'viewAdmin']);
         Route::post('/upload', [UploadController::class, 'upload']);
         Route::get('/profile', [ProfileController::class, 'index']);
         Route::post('/profile', [ProfileController::class, 'update']);
@@ -117,7 +116,6 @@ Route::group(['middleware' => 'admin'], function () {
             Route::post('/edit-{id}', [PromotionController::class, 'update']);
             Route::delete('/destroy', [PromotionController::class, 'destroy']);
         });
-
         Route::prefix('sliders')->group(function () {
             Route::get('add', [SliderController::class, 'index']);
             Route::post('add', [SliderController::class, 'store']);
@@ -151,6 +149,12 @@ Route::group(['middleware' => 'admin'], function () {
             Route::post('edit/{product}', [Product_detailsController::class, 'update']);
             Route::delete('destroy', [Product_detailsController::class, 'destroy']);
         });
+        Route::prefix('purchase-order')->group(function () {
+            Route::get('/', [PurchaseOrderController::class, 'index']);
+            Route::get('/details-{purchaseOrderId}', [PurchaseOrderController::class, 'show'])
+                ->where('purchaseOrderId', '[0-9]+.*');
+        });
+        
     });
 });
 Route::group(['middleware' => 'auth'], function () {
@@ -165,7 +169,11 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/account-orders', [OrderConfirmedController::class, 'index']);
     Route::get('/account-orders-{Purchase_order_ID}', [OrderConfirmedController::class, 'show']);
     Route::post('/update-purchase', [OrderConfirmedController::class, 'update']);
-
+    Route::get('/account-addresses', [OrderConfirmedController::class, 'showAddresses']);
+    Route::post('/create-new-address', [OrderConfirmedController::class, 'createNewAddress']);
+    Route::post('/update-address-default', [OrderConfirmedController::class, 'updateAddressDefault']);
+    Route::post('/delete-address', [OrderConfirmedController::class, 'removeAddress']);
+    Route::get('/123', [VerificationOrderController::class, 'show']);
 });
 // Lấy thông tin về thành phố và phường
 Route::get('/get-district-or-ward', [VerificationOrderController::class, 'getDistrictOrWard']);
@@ -184,4 +192,5 @@ Route::get('/{slug}-nam', [ChildBoysController::class, 'index'])->where('slug', 
 Route::get('/{slug}-tre-em', [ChildChildrensController::class, 'index'])->where('slug', '.*');
 
 // các thằng sản phẩm hắn sẽ nằm ở đây
+Route::get('/search', [DirectionalViewController::class, 'searchProducts'])->where('slug', '.*');
 Route::get('/{slug}', [DirectionalViewController::class, 'directionalView'])->where('slug', '.*');

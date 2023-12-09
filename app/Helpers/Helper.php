@@ -21,12 +21,12 @@ class Helper
                     <td>' . self::Active($category->Active) . ' </td>
                     <td class="image-cell">
                         <div class="image">
-                        <img src="'.($category->Image ? $category->Image : 'https://avatars.dicebear.com/v2/initials/felicita-yundt.svg').'" class="rounded-full">
+                        <img src="'.($category->Image ? $category->Image : 'https://api-private.atlassian.com/users/0cce1b66ea5b0f118a553ac58068ac76/avatar').'" class="rounded-full">
                         </div>
                     </td>
                     <td class="image-cell">
                         <div class=" w-[100px] h-[50px]">
-                        <img src="'.($category->CategoryProductAvatar ? $category->CategoryProductAvatar : 'https://avatars.dicebear.com/v2/initials/felicita-yundt.svg').'" class="object-contain h-[100%] w-[100%]">
+                        <img src="'.($category->CategoryProductAvatar ? $category->CategoryProductAvatar : 'https://png.pngtree.com/png-vector/20201009/ourmid/pngtree-svg-red-three-dimensional-rectangular-vine-photo-frame-png-image_2350874.jpg').'" class="object-contain h-[100%] w-[100%]">
                         </div>
                     </td>
                     <td>' . $category->ParentId . '</td>

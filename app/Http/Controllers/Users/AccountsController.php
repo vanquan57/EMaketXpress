@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Users;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Accounts\AccountsRequests;
 use App\Models\Cart;
+use App\Models\InfoUser;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -132,6 +133,41 @@ class AccountsController extends Controller
                     return redirect()->back()->with('errorInsert', 'Tạo tài khoản thất bại vui lòng thử lại sau.');
                 }
             }
+        }
+    }
+    public function createInforUser($request, $active)
+    {
+        try {
+            InfoUser::create([
+                'Name' => (string)$request->input('nameCustomer'),
+                'PhoneNumber' => (string)$request->input('phoneCustomer'),
+                'Province' => (string)$request->input('city'),
+                'District' => (string)$request->input('district'),
+                'Ward' => (string)$request->input('ward'),
+                'DetailedAddress' => (string)$request->input('addressDetails'),
+                'Active' => $active,
+                'IdUser' => Auth::user()->id,
+            ]);
+        } catch (\Throwable $th) {
+            Log::info($th->getMessage());
+        }
+    }
+    public function updateAddressDefault($request)
+    {
+        try {
+            if (Auth::user()->InfoUsers->where('Active', 1)->first()) {
+                Auth::user()->InfoUsers->where('Active', 1)->first()->update([
+                    'Active' => 0,
+                ]);
+            }
+            InfoUser::where('id', $request->input('infoUserAddressId'))->update([
+                'Active' => 1,
+                'IdUser' => (Auth::user()->id),
+            ]);
+            return true;
+        } catch (\Throwable $th) {
+            Log::info($th->getMessage());
+            return false;
         }
     }
     public function login(Request $requests)
