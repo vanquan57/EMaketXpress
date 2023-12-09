@@ -92,6 +92,12 @@
                     <span class="menu-item-label">Quản lý đơn hàng</span>
                 </a>
             </li>
+            <li class="--set-active-tables-html">
+                <a href="/admin/statistical">
+                    <span class="icon"><i class="fa-solid fa-chart-simple"></i></span>
+                    <span class="menu-item-label">Thống Kê</span>
+                </a>
+            </li>
             <li class="--set-active-profile-html">
                 <a href="/admin/profile">
                     <span class="icon"><i class="mdi mdi-account-circle"></i></span>

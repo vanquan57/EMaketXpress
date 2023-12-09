@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\Product_detailsController;
 use App\Http\Controllers\Admin\Product_imgController;
 use App\Http\Controllers\Admin\PurchaseOrderController;
 use App\Http\Controllers\Admin\SliderController;
+use App\Http\Controllers\Admin\StatisticalController;
 use App\Http\Controllers\Users\AccountsController;
 use App\Http\Controllers\Users\CartController;
 use App\Http\Controllers\Users\ChildBoysController;
@@ -153,6 +154,10 @@ Route::group(['middleware' => 'admin'], function () {
             Route::get('/', [PurchaseOrderController::class, 'index']);
             Route::get('/details-{purchaseOrderId}', [PurchaseOrderController::class, 'show'])
                 ->where('purchaseOrderId', '[0-9]+.*');
+        });
+        Route::prefix('statistical')->group(function () {
+            Route::get('/', [StatisticalController::class, 'index']);
+            Route::post('/', [StatisticalController::class, 'getDataStatistical']);
         });
         
     });
