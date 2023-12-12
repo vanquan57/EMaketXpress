@@ -2,15 +2,15 @@
 @extends('layouts.home')
 @section('content')
 <style>
-    .anh2{
+    .Img2{
         display: none;
     }
-    .anh3{
+    .Img3{
         display: none;
     }
 </style>
     <div class="px-3">
-        <span class="font-normal text-sm inline-block py-[20px]">Landing 15/11 <strong>/
+        <span class="font-normal text-sm inline-block py-[20px]">Landing 15/11 <strong>
                 {{ $productDetail->Name }}</strong></span>
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-5">
             <div class="lg:col-span-8 col-span-1">
@@ -21,7 +21,7 @@
                 <div class=" lg:grid lg:grid-cols-2 gap-5 hidden ">
                     @for($i =0;$i<$product_img->count();$i++)
                         @if($ParentId_img[0]->Product_imgID==$product_img[$i]->ParentId)
-                            <img class="col-span-1 w-[100%] rounded-md object-cover anh1"
+                            <img class="col-span-1 w-[100%] rounded-md object-cover Img1"
                             src="/storage/uploads/{{$product_img[$i]->Img}}"
                             alt="">
                         @endif
@@ -32,7 +32,7 @@
                 <div class=" lg:grid lg:grid-cols-2 gap-5 hidden ">
                             @for($i =0;$i<$product_img->count();$i++)
                                 @if($ParentId_img[1]->Product_imgID==$product_img[$i]->ParentId)
-                                    <img class="col-span-1 w-[100%] rounded-md object-cover anh2"
+                                    <img class="col-span-1 w-[100%] rounded-md object-cover Img2"
                                     src="/storage/uploads/{{$product_img[$i]->Img}}"
                                     alt="">
                                 @endif
@@ -41,7 +41,7 @@
                 <div class=" lg:grid lg:grid-cols-2 gap-5 hidden ">
                         @for($i =0;$i<$product_img->count();$i++)
                             @if($ParentId_img[2]->Product_imgID==$product_img[$i]->ParentId)
-                                <img class="col-span-1 w-[100%] rounded-md object-cover anh3"
+                                <img class="col-span-1 w-[100%] rounded-md object-cover Img3"
                                 src="/storage/uploads/{{$product_img[$i]->Img}}"
                                 alt="">
                             @endif
@@ -53,39 +53,43 @@
                 <div class="lg:hidden">
                     <div id="controls-carousel" class="relative w-full" data-carousel="static">
                         <!-- Carousel wrapper -->
-                        <div class="relative h-56 overflow-hidden rounded-lg md:h-96">
-                            <!-- Item 1 -->
-                            <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                                <img src="https://bizweb.dktcdn.net/100/438/408/products/apn5390-vag-ao-polo-nu-mat-chim-yody-6.jpg?v=1684810224677"
-                                    class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
-                                    alt="...">
-                            </div>
-                            <!-- Item 2 -->
-                            <div class="hidden duration-700 ease-in-out" data-carousel-item="active">
-                                <img src="https://bizweb.dktcdn.net/100/438/408/products/apn5390-vag-ao-polo-nu-mat-chim-yody-1.jpg?v=1684810224677"
-                                    class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
-                                    alt="...">
-                            </div>
-                            <!-- Item 3 -->
-                            <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                                <img src="https://bizweb.dktcdn.net/100/438/408/products/apn5390-vag-ao-polo-nu-mat-chim-yody-2.jpg?v=1684810224677"
-                                    class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
-                                    alt="...">
-                            </div>
-                            <!-- Item 4 -->
-                            <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                                <img src="https://bizweb.dktcdn.net/100/438/408/products/apn5390-vag-ao-polo-nu-mat-chim-yody-7.jpg?v=1684810211833"
-                                    class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
-                                    alt="...">
-                            </div>
+                        <div class="relative  h-[500px]  overflow-hidden rounded-lg md:h-96">
+                                @for($i =0;$i<$product_img->count();$i++)
+                                    @if($ParentId_img[0]->Product_imgID==$product_img[$i]->ParentId)
+                                        <div class="   duration-700 ease-in-out " data-carousel-item>
+                                                <img class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 "
+                                                src="/storage/uploads/{{$product_img[$i]->Img}}"
+                                                alt="">
+                                        </div>     
+                                    @endif
+                                @endfor
+                                @for($i =0;$i<$product_img->count();$i++)
+                                    @if($ParentId_img[1]->Product_imgID==$product_img[$i]->ParentId)
+                                        <div class="   duration-700 ease-in-out " data-carousel-item>
+                                                <img class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 "
+                                                src="/storage/uploads/{{$product_img[$i]->Img}}"
+                                                alt="">
+                                        </div>     
+                                    @endif
+                                @endfor
+                                @for($i =0;$i<$product_img->count();$i++)
+                                    @if($ParentId_img[2]->Product_imgID==$product_img[$i]->ParentId)
+                                        <div class="   duration-700 ease-in-out " data-carousel-item>
+                                                <img class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 "
+                                                src="/storage/uploads/{{$product_img[$i]->Img}}"
+                                                alt="">
+                                        </div>     
+                                    @endif
+                                @endfor
                         </div>
+                        
                         <!-- Slider controls -->
                         <button type="button"
                             class="absolute top-0 start-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
                             data-carousel-prev>
                             <span
                                 class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
-                                <svg class="w-4 h-4 text-white dark:text-gray-800 rtl:rotate-180" aria-hidden="true"
+                                <svg class="w-4 h-4 text-white dark:text-gray-800 rtl:rotate-180 text-blue-900" aria-hidden="true"
                                     xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
                                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
                                         stroke-width="2" d="M5 1 1 5l4 4" />
@@ -98,7 +102,7 @@
                             data-carousel-next>
                             <span
                                 class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
-                                <svg class="w-4 h-4 text-white dark:text-gray-800 rtl:rotate-180" aria-hidden="true"
+                                <svg class="w-4 h-4 text-white dark:text-gray-800 rtl:rotate-180 text-blue-900" aria-hidden="true"
                                     xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
                                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
                                         stroke-width="2" d="m1 9 4-4-4-4" />
