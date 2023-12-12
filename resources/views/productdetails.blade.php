@@ -123,13 +123,7 @@
                 <div class="mt-2">
                     <span class="text-sm font-normal pr-1 border-r border-black">Mã Sản Phẩm</span>
                     <span class="text-sm font-normal pr-1 border-r border-black">Đã bán 1.0K</span>
-                    <span class="text-[#D1D3D3]">
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                    </span>
+                   
                 </div>
                 <div class="mt-2">
                     {{-- productDetail --}}
