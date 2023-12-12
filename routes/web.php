@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\PromotionController;
 use App\Http\Controllers\Admin\UploadController;
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Users\ProductDetailsController;
 use App\Http\Controllers\Admin\Product_detailsController;
 use App\Http\Controllers\Admin\Product_imgController;
 use App\Http\Controllers\Admin\SliderController;
@@ -178,7 +179,16 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/get-value-promotion', [VerificationOrderController::class, 'getValuePromotion']);
     Route::post('/cart/verification-order', [VerificationOrderController::class, 'create']);
     Route::get('/payment-successful', [VerificationOrderController::class, 'viewPaymentSuccess'])->where('any', '.*');;
+
+   
 });
+
+Route::prefix('comments')->group(function () {
+    Route::post('add', [ProductDetailsController::class, 'store']);
+});
+
+
+
 // Lấy thông tin về thành phố và phường
 Route::get('/get-district-or-ward', [VerificationOrderController::class, 'getDistrictOrWard']);
 
@@ -198,3 +208,7 @@ Route::get('/{slug}-tre-em', [ChildChildrensController::class, 'index'])->where(
 
 // các thằng sản phẩm hắn sẽ nằm ở đây
 Route::get('/{slug}', [DirectionalViewController::class, 'directionalView'])->where('slug', '.*');
+
+
+
+

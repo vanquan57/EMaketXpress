@@ -69,7 +69,7 @@
                                 <div class="flex  flex-wrap border border-gray-300 p-4">
                                    
                                     <label for="product_img_0" class="w-32 h-40 img_parent flex ml-10 mb-5 border border-cyan-50" >
-                                        <input type="radio" name="ParentId" value ="0" id="product_img_0"       style="display: none">
+                                        <input {{ $product_img->ParentId == 0 ? 'checked' : '' }} type="radio" name="ParentId" value ="0" id="product_img_0"     style="display: none"   >
                                         <div>
                                             <i class="fa-regular fa-folder "></i>
                                             <label for="product_img_0">Danh mục cha</label>
@@ -77,11 +77,14 @@
                                     </label>
                                     @foreach ($product_imgs as $product_img1)
                                         <div class="flex ml-10 mb-5"> 
+                                            @if($product_img1->Product_imgID!=$product_img->Product_imgID)
                                             <label for="product_img_{{$product_img1->Product_imgID}}">
-                                                <input type="radio" name="ParentId" id="product_img_{{$product_img1->Product_imgID}}" value="{{$product_img1->Product_imgID}}"   style="display: none">
+                                                {{-- style="display: none" --}}
+                                                <input {{ $product_img->ParentId == $product_img1->Product_imgID ? 'checked' : '' }} type="radio" name="ParentId" id="product_img_{{$product_img1->Product_imgID}}" value="{{$product_img1->Product_imgID}}"    style="display: none">
                                               {{-- <p> {{$product_img1->Product_imgID}}</p> --}}
-                                                <img src="/storage/uploads/{{$product_img1->Img}}" alt="" class="w-32 h-40 img_parent" >
+                                                <img src="/storage/uploads/{{$product_img1->Img}}" alt="" class="w-32 h-40 img_parent bord" >
                                             </label>
+                                            @endif
                                         </div>
                                     @endforeach
                                 </div>

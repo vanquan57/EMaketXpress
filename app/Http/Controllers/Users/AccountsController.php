@@ -227,7 +227,7 @@ class AccountsController extends Controller
         return redirect()->route('login');
     }
     public function showViewListaccount(){
-        $users = User::get();
+        $users = User::where("Delete_user",1)->get();
         return view('admin.user.listuser', [
             'title'=> 'List User', 
             'users'=>$users

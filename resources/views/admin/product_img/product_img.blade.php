@@ -32,7 +32,12 @@
                                 class=" mt-2 border border-gray-400 p-2 rounded-md outline-none focus:border-blue-500"readonly>
                                 
                         </div>
-
+                        <div class="mb-4 flex flex-col">
+                            <label for="Color " class="text-gray-700 font-medium">Màu sắc</label>
+                            <input type="text" id="Color " name="Color"  value=""
+                                class=" mt-2 border border-gray-400 p-2 rounded-md outline-none focus:border-blue-500">
+                                
+                        </div>
                         <div  class="mb-4 flex flex-col ">
                             <label for="detailed_img" class="text-gray-700 font-medium">Ảnh chi tiết</label>
                             <input type="file" name="detailed_img[]" id="avatarUpload1" class="upload control  mt-2 border border-gray-400 p-2 rounded-md outline-none focus:border-blue-500" multiple="multiple">       
@@ -46,12 +51,20 @@
                 </div>
                         </div>
                         <div class="flex flex-col flex-1 ml-10">
+                            </label>
                             <div class="overflow-auto   h-96"> 
                                 <div class="flex  flex-wrap border border-gray-300 p-4">
+                                    <label for="product_img_0" class="w-32 h-40 img_parent flex ml-10 mb-5 border border-cyan-50" >
+                                        <input type="radio" name="ParentId" value ="0" id="product_img_0"     style="display: none"   >
+                                        <div>
+                                            <i class="fa-regular fa-folder "></i>
+                                            <label for="product_img_0">Danh mục cha</label>
+                                        </div>
+                                    </label>
                                     @foreach ($product_imgs as $product_img)
                                         <div class="flex ml-10 mb-5"> 
                                             <label for="product_img_{{$product_img->Product_imgID}}">
-                                                <input type="radio" name="ParentId" id="product_img_{{$product_img->Product_imgID}}" value="{{$product_img->Product_imgID}}" hidden>
+                                                <input type="radio" name="ParentId" id="product_img_{{$product_img->Product_imgID}}" value="{{$product_img->Product_imgID}}" style="display: none">
                                                 <img src="/storage/uploads/{{$product_img->Img}}" alt="" class="w-32 h-40 img_parent" >
                                             </label>
                                         </div>
@@ -82,7 +95,7 @@
                 <div class="mt-2">
                     <button type="submit"
                         class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Thêm
-                        Danh Mục</button>
+                        Ảnh sản phẩm</button>
                 </div>
             </div>
           

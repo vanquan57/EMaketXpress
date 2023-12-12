@@ -27,7 +27,7 @@
             <div class="mb-4 flex">
                 <div class="flex flex-col flex-1">
                     <label for="productID " class="text-gray-700 font-medium">ID sản phẩm</label>
-                    <input type="text" id="productID " name="productID"  value="{{$ProductID}}"
+                    <input type="text" id="productID " name="productID"  value="{{(int)$ProductID}}"
                             class=" mt-2 border border-gray-400 p-2 rounded-md outline-none focus:border-blue-500"readonly>
                    </div>
                    <div class=" flex flex-col flex-1 ml-10"> 
@@ -74,17 +74,12 @@
                     });
                 }
             </script>
-            <div class="mb-4 flex">
-                <div class=" flex flex-col flex-1 "> 
-                <label for="product_color" class="text-gray-700 font-medium">Màu sắc</label>
-                        <input type="text" id="product_color" name="product_color" placeholder="Màu sắc"
-                        class=" mt-2 border border-gray-400 p-2 rounded-md outline-none focus:border-blue-500">
-                </div>
-                <div class=" flex flex-col flex-1 ml-10"> 
+
+       
+                <div class="mb-4 flex flex-col "> 
                     <label for="product_available_quantity" class="text-gray-700 font-medium">Số lượng sẳn có</label>
                     <input type="number" id="product_available_quantity" name="product_available_quantity" placeholder="Số lượng sẳn có"
                         class=" mt-2 border border-gray-400 p-2 rounded-md outline-none focus:border-blue-500">
-                </div>
             </div>
             <div class="form-group">
                         <label for="product_Description">Mô Tả Chi Tiết</label>

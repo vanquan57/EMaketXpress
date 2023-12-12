@@ -93,17 +93,52 @@ const appProductByCategoriesChild = {
     },
     changeOptionColors: () => {
         const groupTypeColor = document.querySelector('.group_type_color');
+        const anh1Images = document.querySelectorAll('.anh1');
+        const anh2Images = document.querySelectorAll('.anh2');
+         const anh3Images = document.querySelectorAll('.anh3');
         if (groupTypeColor){
             const optionColoItems = [...groupTypeColor.querySelectorAll('img')];
             const value_colorSelected = document.querySelector('.color_product');
-            optionColoItems.forEach((optionColoItem) =>{
+            optionColoItems.forEach((optionColoItem, index) => {
                 optionColoItem.onclick = () => {
                     let valueColor = optionColoItem.getAttribute('type-color');
-                    if(value_colorSelected){
+
+                    if (value_colorSelected) {
                         value_colorSelected.innerHTML = valueColor;
                     }
-                }
-            })
+                    if (index === 0) {
+                        anh1Images.forEach(anh1 => {
+                            anh1.style.display = 'block';
+                        });
+                        anh2Images.forEach(anh2 => {
+                            anh2.style.display = 'none';
+                        });
+                        anh3Images.forEach(anh3 => {
+                            anh3.style.display = 'none';
+                        });
+                    } else if (index === 1) {
+                        anh1Images.forEach(anh1 => {
+                            anh1.style.display = 'none';
+                        });
+                        anh2Images.forEach(anh2 => {
+                            anh2.style.display = 'block'; 
+                        });
+                        anh3Images.forEach(anh3 => {
+                            anh3.style.display = 'none';
+                        });
+                    } else if (index === 2) {
+                        anh1Images.forEach(anh1 => {
+                            anh1.style.display = 'none';
+                        });
+                        anh2Images.forEach(anh2 => {
+                            anh2.style.display = 'none';
+                        });
+                        anh3Images.forEach(anh3 => {
+                            anh3.style.display = 'block';
+                        });
+                    }
+                };
+            });
         }
     },
     start: function () {
