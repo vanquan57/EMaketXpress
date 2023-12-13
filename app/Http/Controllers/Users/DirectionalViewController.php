@@ -252,6 +252,8 @@ class DirectionalViewController extends Controller
             ->groupBy('ID_account')
             ->get();
 
+
+            
             $totalSum = $star1CountsByAccount->count() + $star2CountsByAccount->count() +
             $star3CountsByAccount->count() + $star4CountsByAccount->count() +
             $star5CountsByAccount->count();
