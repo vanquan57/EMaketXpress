@@ -54,7 +54,7 @@
                     <input type="checkbox" id="warrantyPolicy">
                     <label for="warrantyPolicy" class="ml-1 text-[13px]">Bằng việc Đăng ký, bạn đã đọc và đồng ý với <a
                             href="#" class="text-[#306BD9]">Điều khoản sử dụng</a> và <a href="#"
-                            class="text-[#306BD9]">Chính sách bảo mật</a> của Chợ Tốt</label>
+                            class="text-[#306BD9]">Chính sách bảo mật</a> của EmaketXpress</label>
                 </div>
                 <button type="submit"
                     class="w-[100%] transition-all buttonSubmit text-white text-[16px] font-bold rounded bg-[#f80] border-[#f80] mt-5 py-2 px-5">ĐĂNG
