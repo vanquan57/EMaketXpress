@@ -24,6 +24,7 @@ class PurchaseOrder extends Model
         'PaymentMethod',
         'VnPayCode',
         'IdUser',
+        'DeliveryStatus'
     ];
     public function user()
     {
@@ -31,7 +32,10 @@ class PurchaseOrder extends Model
     }
     public function products(){
         return $this->belongsToMany(Product::class, 'Order_details', 'Purchase_order_ID', 'ProductID')->withPivot([
-            'ProductNumbers'
+            'ProductNumbers',
+            'ProductColor',
+            'ProductSize',
+            'ProductImg'
         ]);
     }
 

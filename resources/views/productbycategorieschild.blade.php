@@ -5,18 +5,21 @@
 
     <div class="px-2 mx-auto">
         <div>
-            @if ($categoryCurrent->CategoryProductAvatar)
+            @isset($categoryCurrent->CategoryProductAvatar)
                 <img src="{{ $categoryCurrent->CategoryProductAvatar }}" alt="" class="w-[100%] object-cover">
-            @endif
-        </div>
-        <div class="mt-4 text-center">
-            <span class="font-medium text-sm px-1">{{ $categoryBigParent->Name }}</span>
-            <span class="font-medium text-sm ">/</span>
-            <span class="font-medium text-sm px-1">{{ $categoryParent->Name }}</span>
-            <span
-                class="inline-block w-[100%] text-center font-medium text-[#FDAF17] mt-2  uppercase">{{ $categoryCurrent->Description }}</span>
+            @endisset
 
         </div>
+        @isset($categoryBigParent)
+            <div class="mt-4 text-center">
+                <span class="font-medium text-sm px-1">{{ $categoryBigParent->Name }}</span>
+                <span class="font-medium text-sm ">/</span>
+                <span class="font-medium text-sm px-1">{{ $categoryParent->Name }}</span>
+                <span
+                    class="inline-block w-[100%] text-center font-medium text-[#FDAF17] mt-2  uppercase">{{ $categoryCurrent->Description }}</span>
+            </div>
+        @endisset
+
         <div class="flex justify-center py-[25px] bg-[#F8F8F8]">
             <button
                 class="border mx-2 w-[90px]  py-2 rounded-md hover:bg-[#FDAF17] hover:text-white transition-colors bg-[#FCAF17] text-white">NỮ</button>

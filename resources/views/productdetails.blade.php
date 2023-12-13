@@ -227,9 +227,6 @@
                 <button onclick="addProductToCart()"
                     class="block w-[100%] rounded-lg py-3 text-white font-medium bg-[#FCAF17] hover:text-gray-400 transition-colors "><i
                         class="fa-solid fa-cart-shopping inline-block px-1"></i>Thêm Vào Giỏ Hàng</button>
-                <button class="block w-[100%] border-2 rounded-lg py-3 my-5 hover:text-[#FCAF17]  transition-colors ">Mua
-                    Ngay</button>
-
             </div>
             
             {{-- Thằng này mô tả chi tiết của mobile --}}

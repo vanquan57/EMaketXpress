@@ -20,6 +20,19 @@ CREATE TABLE users (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
+CREATE TABLE InfoUser (
+	id INT AUTO_INCREMENT PRIMARY KEY,
+    Name NVARCHAR(255),
+    PhoneNumber NVARCHAR(12),
+    Province NVARCHAR(255),
+    District NVARCHAR(255),
+    Ward NVARCHAR(255),
+    DetailedAddress NVARCHAR(255),
+    Active INT,
+    IdUser BIGINT,
+    FOREIGN KEY (IdUser) REFERENCES users(id)
+);
+
 CREATE TABLE sliders (
   id bigint unsigned NOT NULL AUTO_INCREMENT,
   name varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -98,45 +111,48 @@ CREATE TABLE Shopping_cart (
 );
 
 
-
 -- nhiều nhiều tạo ra 1 cái mới
 CREATE TABLE Product_and_cart (
   Product_cartID INT AUTO_INCREMENT PRIMARY KEY,
   Shopping_cartID INT,
   ProductID INT ,
+  ProductNumbers INT,
+  ProductColor VARCHAR(155),
+  ProductSize VARCHAR(5),
+  ProductImg text,
   FOREIGN KEY (Shopping_cartID) REFERENCES Shopping_cart(Shopping_cartID) ON UPDATE CASCADE,
   FOREIGN KEY (ProductID) REFERENCES Product(ProductID) ON UPDATE CASCADE ON DELETE CASCADE
 );
+
 CREATE TABLE Purchase_order(
   Purchase_order_ID INT AUTO_INCREMENT PRIMARY KEY,
   Name VARCHAR(255),
   Address VARCHAR(255),
   Time DATETIME,
   Phone_number VARCHAR(10),
-  DeliveryMethod INT,
-  ID_account BIGINT,
-  FOREIGN KEY (ID_account) REFERENCES users(id) ON UPDATE CASCADE ON DELETE CASCADE
-);
-
-CREATE TABLE Payments (
-  PaymentID INT AUTO_INCREMENT PRIMARY KEY,
-  PaymentDate DATETIME,
-  PaymentMethod INT,
-  Status INT,
-  CardNumber VARCHAR(16), -- Số thẻ tín dụng
-  Purchase_order_ID INT,
-  FOREIGN KEY (Purchase_order_ID) REFERENCES Purchase_order(Purchase_order_ID) ON UPDATE CASCADE ON DELETE CASCADE
+  PromotionCode NVARCHAR(15),
+  OrderStatus INT,
+  PaymentStatus  INT,
+  TotalAmount DOUBLE,
+  PaymentMethod NVARCHAR(155),
+  VnPayCode NVARCHAR(25),
+  DeliveryStatus INT,
+  IdUser BIGINT,
+  FOREIGN KEY (IdUser) REFERENCES users(id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 CREATE TABLE Order_details (
   Order_detailsID INT AUTO_INCREMENT PRIMARY KEY,
-  Quantity  tinyint,
-  Price  double,
   Purchase_order_ID INT,
   ProductID INT,
+  ProductNumbers INT,
+  ProductColor NVARCHAR(25),
+  ProductSize NVARCHAR(25),
+  ProductImg TEXT,
   FOREIGN KEY (ProductID) REFERENCES Product(ProductID) ON UPDATE CASCADE,
   FOREIGN KEY (Purchase_order_ID) REFERENCES Purchase_order(Purchase_order_ID) ON UPDATE CASCADE ON DELETE CASCADE
 );
+
 CREATE TABLE Comments (
   ID_bl INT AUTO_INCREMENT PRIMARY KEY,
   Content TEXT,

@@ -18,7 +18,7 @@ class CartController extends Controller
     {
         $currentUser = Auth::user();
         $promotions  = Promotions::get();
-        
+
         if ($currentUser) {
             $productsOfUser = $currentUser->shoppingCart->products;
             $countProducts = $currentUser->shoppingCart->products->count();
@@ -45,9 +45,9 @@ class CartController extends Controller
     {
         $user = Auth::user();
         if ($user) {
-            $colorProduct = (string)$request->input('colorProduct');
             try {
                 $productAddToCart = Product::where('Slug', $request->input('slugProductCurrent'))->first();
+                // $productImg = $productAddToCart->Product_img()->where('Color', $request->input('colorProduct'))->first();
                 $cartByUser = $user->shoppingCart;
                 if ($cartByUser->products->contains($productAddToCart->ProductID)) {
                     $cartByUser->products()->updateExistingPivot(
@@ -55,12 +55,12 @@ class CartController extends Controller
                         ['ProductNumbers' => $cartByUser->products->find($productAddToCart->ProductID)->pivot->ProductNumbers + (int)$request->input('numberProduct')]
                     );
                 } else {
-                    
                     $cartByUser->products()->attach($productAddToCart->ProductID, [
                         'ProductNumbers' => (int)$request->input('numberProduct'),
-                        'ProductColor' => $colorProduct,
+                        'ProductColor' => (string)$request->input('colorProduct'),
                         'ProductSize' => (string)$request->input('sizeProduct'),
-                        'ProductImg' => $colorProduct
+                        // 'ProductImg' => $productImg
+                        'ProductImg' => (string)$request->input('colorProduct')
                     ]);
                 }
                 return response()->json([
@@ -101,11 +101,10 @@ class CartController extends Controller
         try {
             Auth::user()->shoppingCart->products()->updateExistingPivot($request->input('ProductID'), ['ProductNumbers' => $request->input('numberProductUpdate')]);
             return response()->json(['success' => true]);
- 
-         } catch (\Throwable $th) {
-             Log::info($th->getMessage());
-             return response()->json(['success' => false]);
-         }
+        } catch (\Throwable $th) {
+            Log::info($th->getMessage());
+            return response()->json(['success' => false]);
+        }
     }
 
     /**
@@ -114,9 +113,8 @@ class CartController extends Controller
     public function destroy(Request $request)
     {
         try {
-            Auth::user()->shoppingCart->products()->wherePivot('Product_cartID',$request->input('Product_cartID') )->detach();
-           return response()->json(['success' => true]);
-
+            Auth::user()->shoppingCart->products()->wherePivot('Product_cartID', $request->input('Product_cartID'))->detach();
+            return response()->json(['success' => true]);
         } catch (\Throwable $th) {
             Log::info($th->getMessage());
             return response()->json(['success' => false]);

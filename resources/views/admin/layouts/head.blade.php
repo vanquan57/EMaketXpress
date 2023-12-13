@@ -12,13 +12,5 @@
 @vite(['resources/scss/app.scss' ,'resources/js/app.js'])
 
 <link rel="icon" type="image/png" sizes="16x16" href="/images/logo.png" />
-<script>
-    window.dataLayer = window.dataLayer || [];
 
-    function gtag() {
-        dataLayer.push(arguments);
-    }
-    gtag('js', new Date());
-    gtag('config', 'UA-130795909-1');
-</script>
 <meta name="csrf-token" content="{{ csrf_token() }}">

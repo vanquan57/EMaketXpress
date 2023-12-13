@@ -13,22 +13,24 @@ use App\Models\PurchaseOrder;
 use App\Models\Admin\Product_img;
 use App\Models\Admin\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class DirectionalViewController extends Controller
 {
-    
-    public function directionalView(Request $request, $slug) {
+
+    public function directionalView(Request $request, $slug)
+    {
 
         $categoryName = Categories::where('Slug',$request->path())->first();
         
         if($categoryName){
             $mapping = [
-                'coupon-xin' => ['view' => 'discountevent', 'title' =>$categoryName->Name],
-                'dong-phuc' => ['view' => 'uniform', 'title' =>$categoryName->Name],
+                'coupon-xin' => ['view' => 'discountevent', 'title' => $categoryName->Name],
+                'dong-phuc' => ['view' => 'uniform', 'title' => $categoryName->Name],
                 'emaketxpress-yeu' => ['view' => 'specialtyevent', 'title' => $categoryName->Name],
                 'nu' => ['view' => 'productbycategoriesparent', 'title' => $categoryName->Name, 'categories' => $this->getCategoryItems(10, 6)->concat($this->getCategoryItems(26, 2))],
                 'nam' => ['view' => 'productbycategoriesparent', 'title' => $categoryName->Name, 'categories' => $this->getCategoryItems(18, 3)->concat($this->getCategoryItems(59, 4))->concat($this->getCategoryItems(4, 1))],
-                'tre-em' => ['view' => 'productbycategoriesparent', 'title' => $categoryName->Name, 'categories' => $this->getCategoryItems(90, 6)->concat($this->getCategoryItems(97, 2))], 
+                'tre-em' => ['view' => 'productbycategoriesparent', 'title' => $categoryName->Name, 'categories' => $this->getCategoryItems(90, 6)->concat($this->getCategoryItems(97, 2))],
             ];
             // emaketxpress-yeu
             $listProductAopolo = Product::join('Product_img', 'Product.ProductID', '=', 'Product_img.ProductID')
@@ -78,7 +80,7 @@ class DirectionalViewController extends Controller
             ->get();
             $listsliders_emaketxpress = Slider::where('url','http://127.0.0.1:8000/emaketxpress-yeu')->get();
             // coupon-xin
-            $listsliders_coupon = Slider::where('url','http://127.0.0.1:8000/coupon-xin')->get();
+            $listsliders_coupon = Slider::where('url', 'http://127.0.0.1:8000/coupon-xin')->get();
             $listProductSale = Product::join('Product_img', 'Product.ProductID', '=', 'Product_img.ProductID')
             ->select('Product.ProductID', 'Product.*', DB::raw('MIN(Product_img.Img) as Img'))
             ->where('Product.Delete_product', 1)
@@ -277,23 +279,7 @@ class DirectionalViewController extends Controller
             return view('productdetails', [
                 'title' => 'Tên Sản Phẩm',
                 'productDetail' => $productDetail,
-                'listProductSale' => $listProductSale,
-                'imagesSale' => $imagesSale,
-                'ParentId_img' => $ParentId_img,
-                'product_img' => $product_img,
-                'checkPurchaseOrder' => $checkPurchaseOrder,
-                'checkAvatar' => $checkAvatar,
-                'UserAvatarNow' => $UserAvatarNow,
-                'checkAdmin' => $checkAdmin,
-                'comment' => $comment,
-                'sizeArray' => $sizeArray,
-                'totalSum' => $totalSum,
-                'star1CountsByAccount' => $star1CountsByAccount,
-                'star2CountsByAccount' => $star2CountsByAccount,
-                'star3CountsByAccount' => $star3CountsByAccount,
-                'star4CountsByAccount' => $star4CountsByAccount,
-                'star5CountsByAccount' => $star5CountsByAccount,
-                ]);
+            ]);
         }
         
     }
@@ -308,7 +294,24 @@ class DirectionalViewController extends Controller
     }
 
 
-    // 
-    
+    public function searchProducts(Request $request)
+    {
+        $slugProduct =  Str::of($request->input('query'))->slug('-');
 
+        // $products = Product::with('Product_img')->where('Slug', 'like', '%'.$slugProduct.'%')->get();
+        $keywords = explode('-', $slugProduct);
+        $queryProductByKeyWord = Product::with('Product_img');
+
+        foreach ($keywords as $keyword) {
+            $queryProductByKeyWord->where('Slug', 'like', "%{$keyword}%");
+        }
+        $productsResults = $queryProductByKeyWord->get();
+        return view(
+            'productbycategorieschild',
+            [
+                'title'=> 'Tìm Kiếm',
+                'productsResults'=>$productsResults
+            ]
+        );
+    }
 }

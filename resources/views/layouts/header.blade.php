@@ -141,8 +141,8 @@
 
 
         <div class="right-header xl:flex  items-center hidden">
-            <form action="" method="POST" class="flex mr-7">
-                <input type="text" placeholder="Tìm Kiếm Sản Phẩm ..."
+            <form id="searchForm" action="/search" method="GET" class="flex mr-7">
+                <input name="query" type="text" placeholder="Tìm Kiếm Sản Phẩm ..."
                     class="text-sm border outline-none w-[160px] px-2 py-2 rounded-l-lg focus:border-sky-700">
                 <button type="submit"
                     class="border w-[50px] rounded-r-lg transition-colors bg-[#52C9F7] hover:bg-[#38BDF8] hover:text-[#AAAAAA]"><i
@@ -159,7 +159,8 @@
                         @if (!Auth::check())
                             <div class="bg-gradient-to-b from-[#D7F2FE] to-[#FEFEFC]">
                                 <a href="/login" class="flex items-center">
-                                    <span class="py-4 px-1 min-w-[90px] inline-block border-r  text-sm font-medium">ĐĂNG
+                                    <span
+                                        class="py-4 px-1 min-w-[90px] inline-block border-r  text-sm font-medium">ĐĂNG
                                         NHÂP</span>
                                     <span class="py-4 px-2 text-xs"> Đăng nhập và đồng bộ sản phẩm đến giỏ hàng của
                                         bạn</span>
@@ -210,9 +211,9 @@
                                         class="font-medium text-[#FF5500]">{{ number_format($totalProductsInCart, 0, '.', '.') }}
                                         VNĐ</span>
                                 </div>
-                                <button
-                                    class="transition-colors h-[35px] w-[100%]  hover:text-[#816a38] hover:bg-[#52C9F7] bg-[#aadff6] ">XEM
-                                    GIỎ HÀNG</button>
+                                <a href="/cart"
+                                    class="block text-center  transition-colors py-3 font-medium w-[100%]  hover:text-[#816a38] hover:bg-[#52C9F7] bg-[#aadff6] ">XEM
+                                    GIỎ HÀNG</a>
                             @endif
 
 
@@ -230,7 +231,7 @@
                             @if (Auth::check())
                                 <li class="border py-1 rounded-lg flex items-center px-1">
 
-                                    <img src="@if (Auth::check()) {{ Auth::user()->avatar ? Auth::user()->avatar : 'https://avatars.dicebear.com/v2/initials/felicita-yundt.svg' }} @endif"
+                                    <img src="@if (Auth::check()) {{ Auth::user()->avatar ? Auth::user()->avatar : 'https://api-private.atlassian.com/users/0cce1b66ea5b0f118a553ac58068ac76/avatar' }} @endif"
                                         alt="@if (Auth::check()) {{ Auth::user()->username }} @endif "
                                         class="rounded-full w-[48px] h-[48px]">
                                     <span class="pl-2">
@@ -248,19 +249,13 @@
                                     <a href="/login" class="pl-2 flex-1">Đăng Nhập</a>
                                 </li>
                             @endif
-                            <li
-                                class="border py-1 rounded-lg flex items-center px-1  hover:text-[#FCAF17] hover:cursor-pointer">
-                                <img class="w-[24px] h-[24px] rounded-full"
-                                    src="https://st.chotot.com/storage/chotot-icons/svg/circle-list.svg"
-                                    alt="Lịch sử giao dịch">
-                                <a href="#" class="pl-2 flex-1">Lịch sử giao dịch</a>
-                            </li>
+
                             <li
                                 class="border py-1 rounded-lg flex items-center px-1  hover:text-[#FCAF17] hover:cursor-pointer">
                                 <img class="w-[24px] h-[24px] rounded-full"
                                     src="https://static.chotot.com/storage/chotot-icons/svg/escrow_buy_orders.svg"
                                     alt="Đơn hàng của tôi">
-                                <a href="#" class="pl-2 flex-1 ">Đơn hàng của tôi</a>
+                                <a href="/account-orders" class="pl-2 flex-1 ">Đơn hàng của tôi</a>
                             </li>
                             <li
                                 class="border py-1 rounded-lg flex items-center px-1  hover:text-[#FCAF17] hover:cursor-pointer">

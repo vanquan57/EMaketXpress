@@ -9,8 +9,10 @@ use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Users\ProductDetailsController;
 use App\Http\Controllers\Admin\Product_detailsController;
 use App\Http\Controllers\Admin\Product_imgController;
+use App\Http\Controllers\Admin\PurchaseOrderController;
 use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\Admin\BlogController;
+use App\Http\Controllers\Admin\StatisticalController;
 use App\Http\Controllers\Users\AccountsController;
 use App\Http\Controllers\Users\CartController;
 use App\Http\Controllers\Users\ChildBoysController;
@@ -18,6 +20,7 @@ use App\Http\Controllers\Users\ChildChildrensController;
 use App\Http\Controllers\Users\ChildGirlsController;
 use App\Http\Controllers\Users\DirectionalViewController;
 use App\Http\Controllers\Users\IndexController;
+use App\Http\Controllers\Users\OrderConfirmedController;
 use App\Http\Controllers\Users\PaymentController;
 use App\Http\Controllers\Users\VerificationOrderController;
 use Illuminate\Support\Facades\Route;
@@ -90,9 +93,7 @@ Route::prefix('admin')->group(function () {
 Route::group(['middleware' => 'admin'], function () {
     // Các route hoặc controller dành cho admin
     Route::prefix('admin')->group(function () {
-        Route::get('/', function () {
-            return view('admin.index', ['title' => 'Admin']);
-        })->name('admin');
+        Route::get('/', [AdminAccountController::class, 'viewAdmin']);
         Route::post('/upload', [UploadController::class, 'upload']);
         Route::get('/profile', [ProfileController::class, 'index']);
         Route::post('/profile', [ProfileController::class, 'update']);
@@ -118,7 +119,6 @@ Route::group(['middleware' => 'admin'], function () {
             Route::post('/edit-{id}', [PromotionController::class, 'update']);
             Route::delete('/destroy', [PromotionController::class, 'destroy']);
         });
-
         Route::prefix('sliders')->group(function () {
             Route::get('add', [SliderController::class, 'index']);
             Route::post('add', [SliderController::class, 'store']);
@@ -167,28 +167,36 @@ Route::group(['middleware' => 'admin'], function () {
         
         
 
+        Route::prefix('purchase-order')->group(function () {
+            Route::get('/', [PurchaseOrderController::class, 'index']);
+            Route::get('/details-{purchaseOrderId}', [PurchaseOrderController::class, 'show'])
+                ->where('purchaseOrderId', '[0-9]+.*');
+        });
+        Route::prefix('statistical')->group(function () {
+            Route::get('/', [StatisticalController::class, 'index']);
+            Route::post('/', [StatisticalController::class, 'getDataStatistical']);
+        });
+        
     });
 });
 Route::group(['middleware' => 'auth'], function () {
     // Các route hoặc controller dành cho người dùng phải đăng nhập
     Route::get('/logout', [AccountsController::class, 'logout']);
-    Route::get('/account-orders', [VerificationOrderController::class, 'ViewAccountOrders']);
-
     Route::get('/cart', [CartController::class, 'index']);
     Route::get('/cart/verification-order', [VerificationOrderController::class, 'index']);
+    Route::post('/payment-order', [VerificationOrderController::class, 'paymentOrder']);
     Route::post('/get-value-promotion', [VerificationOrderController::class, 'getValuePromotion']);
     Route::post('/cart/verification-order', [VerificationOrderController::class, 'create']);
-    Route::get('/payment-successful', [VerificationOrderController::class, 'viewPaymentSuccess'])->where('any', '.*');;
-
-   
+    Route::get('/payment-successful', [VerificationOrderController::class, 'viewPaymentSuccess'])->where('any', '.*');
+    Route::get('/account-orders', [OrderConfirmedController::class, 'index']);
+    Route::get('/account-orders-{Purchase_order_ID}', [OrderConfirmedController::class, 'show']);
+    Route::post('/update-purchase', [OrderConfirmedController::class, 'update']);
+    Route::get('/account-addresses', [OrderConfirmedController::class, 'showAddresses']);
+    Route::post('/create-new-address', [OrderConfirmedController::class, 'createNewAddress']);
+    Route::post('/update-address-default', [OrderConfirmedController::class, 'updateAddressDefault']);
+    Route::post('/delete-address', [OrderConfirmedController::class, 'removeAddress']);
+    Route::get('/123', [VerificationOrderController::class, 'show']);
 });
-
-Route::prefix('comments')->group(function () {
-    Route::post('add', [ProductDetailsController::class, 'store']);
-});
-
-
-
 // Lấy thông tin về thành phố và phường
 Route::get('/get-district-or-ward', [VerificationOrderController::class, 'getDistrictOrWard']);
 
@@ -207,6 +215,7 @@ Route::get('/{slug}-nam', [ChildBoysController::class, 'index'])->where('slug', 
 Route::get('/{slug}-tre-em', [ChildChildrensController::class, 'index'])->where('slug', '.*');
 
 // các thằng sản phẩm hắn sẽ nằm ở đây
+Route::get('/search', [DirectionalViewController::class, 'searchProducts'])->where('slug', '.*');
 Route::get('/{slug}', [DirectionalViewController::class, 'directionalView'])->where('slug', '.*');
 
 

@@ -32,6 +32,9 @@ function getPromotion() {
 
     });
 }
+
+
+
 const verificationOrder = {
     getDistrict: () => {
         const groupAddressElement = document.querySelector('.group-address');
