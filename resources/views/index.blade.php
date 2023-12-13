@@ -239,7 +239,7 @@
                                 @for ($j = $i; $j <= $i + 3; $j++)
                                     @if(isset($listProductGioDong[$j-1])) 
                                         <div class="col-span-1 group_Product">
-                                            <a href="" class="inline-block overflow-hidden relative rounded">
+                                            <a href="{{$listProductGioDong[$j-1]->Slug}}" class="inline-block overflow-hidden relative rounded">
                                                 {{-- <img src=" /storage/uploads/ao-khoac-nu-phn6014-xbi-6.webp" --}}
                                                 <img src=" /storage/uploads/{{$listProductGioDong[$j-1]->Img}}"
                                                     alt="" class="main_image object-cover transition-all  w-[100%] hover:scale-105 ">
@@ -341,7 +341,7 @@
                                     @for ($j = $i; $j <= $i + 3; $j++)
                                         @if(isset($listProductHangmoive[$j-1])) 
                                             <div class="col-span-1 group_Product">
-                                                <a href="" class="inline-block overflow-hidden relative rounded">
+                                                <a href="{{$listProductHangmoive[$j-1]->Slug}}" class="inline-block overflow-hidden relative rounded">
                                                     {{-- <img src=" /storage/uploads/ao-khoac-nu-phn6014-xbi-6.webp" --}}
                                                     <img src=" /storage/uploads/{{$listProductHangmoive[$j-1]->Img}}"
                                                         alt="" class="main_image object-cover transition-all  w-[100%] hover:scale-105 ">
@@ -1048,7 +1048,7 @@
                                     @for ($j = $i; $j <= $i + 3; $j++)
                                         @if(isset($listProductAopolo[$j-1])) 
                                             <div class="col-span-1 group_Product">
-                                                <a href="" class="inline-block overflow-hidden relative rounded">
+                                                <a href="{{$listProductAopolo[$j-1]->Slug}}" class="inline-block overflow-hidden relative rounded">
                                                     {{-- <img src=" /storage/uploads/ao-khoac-nu-phn6014-xbi-6.webp" --}}
                                                     <img src=" /storage/uploads/{{$listProductAopolo[$j-1]->Img}}"
                                                         alt="" class="main_image object-cover transition-all  w-[100%] hover:scale-105 ">
@@ -1143,7 +1143,7 @@
                                 @for ($j = $i; $j <= $i + 3; $j++)
                                     @if(isset($listProductDocongso[$j-1])) 
                                         <div class="col-span-1 group_Product">
-                                            <a href="" class="inline-block overflow-hidden relative rounded">
+                                            <a href="{{$listProductDocongso[$j-1]->Slug}}" class="inline-block overflow-hidden relative rounded">
                                                 {{-- <img src=" /storage/uploads/ao-khoac-nu-phn6014-xbi-6.webp" --}}
                                                 <img src=" /storage/uploads/{{$listProductDocongso[$j-1]->Img}}"
                                                     alt="" class="main_image object-cover transition-all  w-[100%] hover:scale-105 ">
@@ -1169,6 +1169,7 @@
                                                                     class="h-[100%] w-[100%] object-cover rounded-full"
                                                                     src=" /storage/uploads/{{$imagesDocongso[$k]->Img}}"
                                                                     alt="">
+                                                               
                                                             </li>
                                                             @endif 
                                                     @endfor
@@ -1237,7 +1238,7 @@
                                 @for ($j = $i; $j <= $i + 3; $j++)
                                     @if(isset($listProductJeans[$j-1])) 
                                         <div class="col-span-1 group_Product">
-                                            <a href="" class="inline-block overflow-hidden relative rounded">
+                                            <a href="{{$listProductJeans[$j-1]->Slug}}" class="inline-block overflow-hidden relative rounded">
                                                 {{-- <img src=" /storage/uploads/ao-khoac-nu-phn6014-xbi-6.webp" --}}
                                                 <img src=" /storage/uploads/{{$listProductJeans[$j-1]->Img}}"
                                                     alt="" class="main_image object-cover transition-all  w-[100%] hover:scale-105 ">

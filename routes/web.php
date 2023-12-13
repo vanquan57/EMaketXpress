@@ -6,10 +6,12 @@ use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\PromotionController;
 use App\Http\Controllers\Admin\UploadController;
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Users\ProductDetailsController;
 use App\Http\Controllers\Admin\Product_detailsController;
 use App\Http\Controllers\Admin\Product_imgController;
 use App\Http\Controllers\Admin\PurchaseOrderController;
 use App\Http\Controllers\Admin\SliderController;
+use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Admin\StatisticalController;
 use App\Http\Controllers\Users\AccountsController;
 use App\Http\Controllers\Users\CartController;
@@ -150,6 +152,21 @@ Route::group(['middleware' => 'admin'], function () {
             Route::post('edit/{product}', [Product_detailsController::class, 'update']);
             Route::delete('destroy', [Product_detailsController::class, 'destroy']);
         });
+        Route::prefix('blogs')->group(function(){
+            Route::get('add', [BlogController::class, 'index']);
+            Route::post('add',[BlogController::class,'store']);
+            Route::get('list',[BlogController::class,'showViewListBlog'])->name('listblog');
+            Route::get('edit/{slider}',[BlogController::class,'show']);
+            Route::post('edit/{slider}',[BlogController::class,'update']);
+            Route::delete('destroy',[BlogController::class,'destroy']);   
+        });
+        Route::prefix('accounts')->group(function(){
+            Route::get('list',[AccountsController::class,'showViewListaccount'])->name('listaccount');
+            Route::delete('destroy',[AccountsController::class,'destroy']);  
+        });
+        
+        
+
         Route::prefix('purchase-order')->group(function () {
             Route::get('/', [PurchaseOrderController::class, 'index']);
             Route::get('/details-{purchaseOrderId}', [PurchaseOrderController::class, 'show'])
@@ -190,6 +207,7 @@ Route::post('/update-product-in-cart', [CartController::class, 'update']);
 
 
 Route::get('/', [IndexController::class, 'index'])->name('index');
+
 // Trong này xử lý trả về giao diện của các thằng con của 3 thằng Nam , Nữ , Trẻ Em
 Route::get('/{slug}-nu', [ChildGirlsController::class, 'index'])
     ->where('slug', '.*');
@@ -199,3 +217,7 @@ Route::get('/{slug}-tre-em', [ChildChildrensController::class, 'index'])->where(
 // các thằng sản phẩm hắn sẽ nằm ở đây
 Route::get('/search', [DirectionalViewController::class, 'searchProducts'])->where('slug', '.*');
 Route::get('/{slug}', [DirectionalViewController::class, 'directionalView'])->where('slug', '.*');
+
+
+
+

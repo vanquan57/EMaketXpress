@@ -32,7 +32,7 @@
                         <th>Img</th>
                         <th>Sort_by</th>
                         <th>Active</th>
-                        <td>&nbsp;</td>
+                        <td class="w-28">&nbsp;</td>
                     </tr>
                 </thead>
                 <tbody>

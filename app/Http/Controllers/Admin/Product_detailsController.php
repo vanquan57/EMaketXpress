@@ -40,8 +40,7 @@ class Product_detailsController extends Controller
         try { 
             Product_details::create([
                 'Available_quantity' => (int)$request->input('product_available_quantity'),
-                'Description' => (string)$request->input('product_Description'),
-                'Color' => (string)$request->input('product_color'),
+                'Description' => (string)$request->input('product_Description'),    
                 'Size' => (string)$selectedSizesString,
                 'ProductID' => (int)$request->input('productID'),
             ]);
@@ -68,7 +67,7 @@ class Product_detailsController extends Controller
     public function showViewListProduct_details()
     {
         $listproduct_details =  Product::join('Product_details', 'Product.ProductID', '=', 'Product_details.ProductID')
-        ->select('Product.*','Product_details.Product_detailsID','Product_details.Quantity_sold', 'Product_details.Available_quantity', 'Product_details.Description', 'Product_details.Color', 'Product_details.Size')
+        ->select('Product.*','Product_details.Product_detailsID','Product_details.Quantity_sold', 'Product_details.Available_quantity', 'Product_details.Description',  'Product_details.Size')
         ->get();
     
         // $listproduct_details = Product::with('Product_details')->get();

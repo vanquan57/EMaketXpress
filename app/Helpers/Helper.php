@@ -68,6 +68,7 @@ class Helper
                     <td><img class="w-24 h-32" src="/storage/uploads/' . $product_img->Img . '" alt=""></td>
                     <td>' . $product_img->ParentId . '</td>
                     <td>' . $product_img->ProductID . '</td>
+                    <td>' . $product_img->Color . '</td>
                     <td>
                         <a href="/admin/product_imgs/edit/' . $product_img->Product_imgID . '">
                             <button class="button small blue --jb-modal" data-target="sample-modal-2" type="button">

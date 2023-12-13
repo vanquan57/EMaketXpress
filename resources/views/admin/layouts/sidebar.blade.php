@@ -80,6 +80,42 @@
                     </li>
                 </ul>
             </li>
+            <li>
+                <a class="dropdown">
+                    <span class="icon"><i class="mdi mdi-view-list"></i></span>
+                    <span class="menu-item-label">Tài khoản</span>
+                    <span class="icon"><i class="mdi mdi-plus"></i></span>
+                </a>
+                <ul class="pl-3">                  
+                    <li >
+                        <a href="/admin/accounts/list" class="flex items-center">
+                            <i class="fa-solid fa-barcode px-1"></i>
+                            <span>Danh sách tài khoản</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a class="dropdown">
+                    <span class="icon"><i class="mdi mdi-view-list"></i></span>
+                    <span class="menu-item-label">Blog</span>
+                    <span class="icon"><i class="mdi mdi-plus"></i></span>
+                </a>
+                <ul class="pl-3">
+                    <li >
+                        <a href="/admin/blogs/add" class="flex items-center">
+                            <i class="fa-solid fa-layer-group px-1"></i>
+                            <span>Thêm Blog</span>
+                        </a>
+                    </li>
+                    <li >
+                        <a href="/admin/blogs/list" class="flex items-center">
+                            <i class="fa-solid fa-barcode px-1"></i>
+                            <span>Danh sách Blog</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
             <li class="--set-active-tables-html">
                 <a href="/admin/promotions">
                     <span class="icon"><i class="fa-solid fa-percent"></i></span>

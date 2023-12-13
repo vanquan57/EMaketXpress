@@ -51,12 +51,14 @@ class IndexController extends Controller
         $listProductSale = Product::join('Product_img', 'Product.ProductID', '=', 'Product_img.ProductID')
         ->select('Product.ProductID', 'Product.*', DB::raw('MIN(Product_img.Img) as Img'))
         ->where('Product.Delete_product', 1)
+        ->where('Product_img.ParentId', 0)
         ->where('Product.Sale', 1)
         ->groupBy('Product.ProductID')
         ->get();
         $imagesSale =Product::join('Product_img', 'Product.ProductID', '=', 'Product_img.ProductID')
         ->select('Product.ProductID', 'Product_img.Img')
         ->where('Product.Delete_product', 1)
+        ->where('Product_img.ParentId', 0)
         ->where('Product.Sale', 1)
         ->groupBy('Product.ProductID','Product_img.Img')
         ->orderBy('Product_img.Img', 'asc')
@@ -65,6 +67,7 @@ class IndexController extends Controller
         $listProductGioDong = Product::join('Product_img', 'Product.ProductID', '=', 'Product_img.ProductID')
         ->select('Product.ProductID', 'Product.*', DB::raw('MIN(Product_img.Img) as Img'))
         ->where('Product.Delete_product', 1)
+        ->where('Product_img.ParentId', 0)
         ->where('Product.Sale', 1)
         ->where(function ($query) {
             $query->where('Slug', 'LIKE', '%ao-khoac%');
@@ -75,6 +78,7 @@ class IndexController extends Controller
         $imagesGioDong =Product::join('Product_img', 'Product.ProductID', '=', 'Product_img.ProductID')
         ->select('Product.ProductID', 'Product_img.Img')
         ->where('Product.Delete_product', 1)
+        ->where('Product_img.ParentId', 0)
         ->where('Product.Sale', 1)
         ->where(function ($query) {
             $query->where('Slug', 'LIKE', '%ao-khoac%');
@@ -86,6 +90,7 @@ class IndexController extends Controller
         $listProductHangmoive= Product::join('Product_img', 'Product.ProductID', '=', 'Product_img.ProductID')
         ->select('Product.ProductID', 'Product.*', DB::raw('MIN(Product_img.Img) as Img'))
         ->where('Product.Delete_product', 1)
+        ->where('Product_img.ParentId', 0)
         ->where('Product.Sale', 1)
         ->groupBy('Product.ProductID')
         ->orderBy('Product.ProductID', 'desc')
@@ -93,6 +98,7 @@ class IndexController extends Controller
         $imagesHangmoive =Product::join('Product_img', 'Product.ProductID', '=', 'Product_img.ProductID')
         ->select('Product.ProductID', 'Product_img.Img')
         ->where('Product.Delete_product', 1)
+        ->where('Product_img.ParentId', 0)
         ->where('Product.Sale', 1)
         ->groupBy('Product.ProductID','Product_img.Img')
         ->orderBy('Product_img.Img', 'asc')
@@ -100,12 +106,14 @@ class IndexController extends Controller
         $listProductAopolo = Product::join('Product_img', 'Product.ProductID', '=', 'Product_img.ProductID')
         ->select('Product.ProductID', 'Product.*', DB::raw('MIN(Product_img.Img) as Img'))
         ->where('Product.Delete_product', 1)
+        ->where('Product_img.ParentId', 0)
         ->where('Slug', 'LIKE', '%ao-polo%')
         ->groupBy('Product.ProductID')
         ->get();
         $imagesAopolo =Product::join('Product_img', 'Product.ProductID', '=', 'Product_img.ProductID')
         ->select('Product.ProductID', 'Product_img.Img')
         ->where('Product.Delete_product', 1)
+        ->where('Product_img.ParentId', 0)
         ->where('Slug', 'LIKE', '%ao-polo%')
         ->groupBy('Product.ProductID','Product_img.Img')
         ->orderBy('Product_img.Img', 'asc')
@@ -113,6 +121,7 @@ class IndexController extends Controller
         $listProductDocongso = Product::join('Product_img', 'Product.ProductID', '=', 'Product_img.ProductID')
         ->select('Product.ProductID', 'Product.*', DB::raw('MIN(Product_img.Img) as Img'))
         ->where('Product.Delete_product', 1)
+        ->where('Product_img.ParentId', 0)
         ->where(function ($query) {
             $query->where('Slug', 'LIKE', '%quan-au%');
             $query->orWhere('Slug', 'LIKE', '%vay%');
@@ -123,6 +132,7 @@ class IndexController extends Controller
         $imagesDocongso =Product::join('Product_img', 'Product.ProductID', '=', 'Product_img.ProductID')
         ->select('Product.ProductID', 'Product_img.Img')
         ->where('Product.Delete_product', 1)
+        ->where('Product_img.ParentId', 0)
         ->where(function ($query) {
             $query->where('Slug', 'LIKE', '%quan-au%');
             $query->orWhere('Slug', 'LIKE', '%vay%');
@@ -134,12 +144,14 @@ class IndexController extends Controller
         $listProductJeans = Product::join('Product_img', 'Product.ProductID', '=', 'Product_img.ProductID')
         ->select('Product.ProductID', 'Product.*', DB::raw('MIN(Product_img.Img) as Img'))
         ->where('Product.Delete_product', 1)
+        ->where('Product_img.ParentId', 0)
         ->where('Slug', 'LIKE', '%jeans%')
         ->groupBy('Product.ProductID')
         ->get();
         $imagesJeans =Product::join('Product_img', 'Product.ProductID', '=', 'Product_img.ProductID')
         ->select('Product.ProductID', 'Product_img.Img')
         ->where('Product.Delete_product', 1)
+        ->where('Product_img.ParentId', 0)
         ->where('Slug', 'LIKE', '%jeans%')
         ->groupBy('Product.ProductID','Product_img.Img')
         ->orderBy('Product_img.Img', 'asc')

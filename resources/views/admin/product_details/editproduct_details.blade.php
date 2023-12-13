@@ -36,18 +36,14 @@
                         class=" mt-2 border border-gray-400 p-2 rounded-md outline-none focus:border-blue-500">
                 </div>
             </div>
-            <div class="mb-4 flex">
-                <div class=" flex flex-col flex-1 "> 
-                <label for="product_color" class="text-gray-700 font-medium">Màu sắc</label>
-                        <input type="text" id="product_color" name="product_color" placeholder="Màu sắc" value="{{$product_details->Color}}"  
-                        class=" mt-2 border border-gray-400 p-2 rounded-md outline-none focus:border-blue-500">
-                </div>
-                <div class=" flex flex-col flex-1 ml-10"> 
+
+                
+                <div class="mb-4 flex flex-col "> 
                     <label for="product_available_quantity" class="text-gray-700 font-medium">Số lượng sẳn có</label>
                     <input type="number" id="product_available_quantity" name="product_available_quantity" placeholder="Số lượng sẳn có" value="{{$product_details->Available_quantity}}"  
                         class=" mt-2 border border-gray-400 p-2 rounded-md outline-none focus:border-blue-500">
                 </div>
-            </div>
+    
             <div class="form-group">
                         <label for="product_Description">Mô Tả Chi Tiết</label>
                         <textarea name="product_Description" id="product_Description" class="form-control"> {{$product_details->Description}} </textarea>
@@ -61,7 +57,7 @@
             <div class="mt-2 mb-20">
                 <button type="submit"
                     class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 ">
-                    Thêm chi tiết sản phẩm</button>
+                    upadate chi tiết sản phẩm</button>
             </div>
             @csrf
         </form>

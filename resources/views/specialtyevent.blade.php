@@ -30,7 +30,7 @@
                     <div class="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-7 mt-[50px]">
                         @for($i = 0; $i < $listProductAopolo->count(); $i++) 
                             <div class="col-span-1 my-5 group_Product ">
-                                <a href="" class="inline-block overflow-hidden relative rounded">
+                                <a href="{{$listProductAopolo[$i]->Slug}}" class="inline-block overflow-hidden relative rounded">
                                     <img src="/storage/uploads/{{$listProductAopolo[$i]->Img}}"
                                         alt="" class="main_image object-cover transition-all  w-[100%] hover:scale-105 ">
                                     <span
@@ -71,7 +71,7 @@
                         @for($i = 0; $i < $listProductAopolo->count(); $i++) 
                             @if($listProductAopolo[$i]->CategoryID == 4) 
                             <div class="col-span-1 my-5 group_Product ">
-                                <a href="" class="inline-block overflow-hidden relative rounded">
+                                <a href="{{$listProductAopolo[$i]->Slug}}" class="inline-block overflow-hidden relative rounded">
                                     <img src="/storage/uploads/{{$listProductAopolo[$i]->Img}}"
                                         alt="" class="main_image object-cover transition-all  w-[100%] hover:scale-105 ">
                                     <span
@@ -113,7 +113,7 @@
                         @for($i = 0; $i < $listProductAopolo->count(); $i++) 
                             @if($listProductAopolo[$i]->CategoryID == 3) 
                             <div class="col-span-1 my-5 group_Product ">
-                                <a href="" class="inline-block overflow-hidden relative rounded">
+                                <a href="{{$listProductAopolo[$i]->Slug}}" class="inline-block overflow-hidden relative rounded">
                                     <img src="/storage/uploads/{{$listProductAopolo[$i]->Img}}"
                                         alt="" class="main_image object-cover transition-all  w-[100%] hover:scale-105 ">
                                     <span
@@ -172,7 +172,7 @@
                     <div class="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-7 mt-[50px]">
                         @for($i = 0; $i < $listProductAosomi->count(); $i++) 
                         <div class="col-span-1 my-5 group_Product ">
-                            <a href="" class="inline-block overflow-hidden relative rounded">
+                            <a href="{{$listProductAosomi[$i]->Slug}}" class="inline-block overflow-hidden relative rounded">
                                 <img src="/storage/uploads/{{$listProductAosomi[$i]->Img}}"
                                     alt="" class="main_image object-cover transition-all  w-[100%] hover:scale-105 ">
                                 <span
@@ -213,7 +213,7 @@
                         @for($i = 0; $i < $listProductAosomi->count(); $i++) 
                             @if($listProductAosomi[$i]->CategoryID == 4) 
                             <div class="col-span-1 my-5 group_Product ">
-                                <a href="" class="inline-block overflow-hidden relative rounded">
+                                <a href="{{$listProductAosomi[$i]->Slug}}" class="inline-block overflow-hidden relative rounded">
                                     <img src="/storage/uploads/{{$listProductAosomi[$i]->Img}}"
                                         alt="" class="main_image object-cover transition-all  w-[100%] hover:scale-105 ">
                                     <span
@@ -256,7 +256,7 @@
                         @for($i = 0; $i < $listProductAosomi->count(); $i++) 
                             @if($listProductAosomi[$i]->CategoryID == 3) 
                             <div class="col-span-1 my-5 group_Product ">
-                                <a href="" class="inline-block overflow-hidden relative rounded">
+                                <a href="{{$listProductAosomi[$i]->Slug}}" class="inline-block overflow-hidden relative rounded">
                                     <img src="/storage/uploads/{{$listProductAosomi[$i]->Img}}"
                                         alt="" class="main_image object-cover transition-all  w-[100%] hover:scale-105 ">
                                     <span
@@ -316,7 +316,7 @@
                     <div class="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-7 mt-[50px]">
                         @for($i = 0; $i < $listProductVay->count(); $i++) 
                             <div class="col-span-1 my-5 group_Product ">
-                                <a href="" class="inline-block overflow-hidden relative rounded">
+                                <a href="{{$listProductVay[$i]->Slug}}" class="inline-block overflow-hidden relative rounded">
                                     <img src="/storage/uploads/{{$listProductVay[$i]->Img}}"
                                         alt="" class="main_image object-cover transition-all  w-[100%] hover:scale-105 ">
                                     <span
@@ -367,7 +367,7 @@
                         @for($i = 0; $i < $listProductVay->count(); $i++) 
                             @if($listProductVay[$i]->CategoryID == 3) 
                             <div class="col-span-1 my-5 group_Product ">
-                                <a href="" class="inline-block overflow-hidden relative rounded">
+                                <a href="{{$listProductVay[$i]->Slug}}" class="inline-block overflow-hidden relative rounded">
                                     <img src="/storage/uploads/{{$listProductVay[$i]->Img}}"
                                         alt="" class="main_image object-cover transition-all  w-[100%] hover:scale-105 ">
                                     <span

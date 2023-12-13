@@ -31,9 +31,8 @@
                         <th>Quantity_sold</th>
                         <th>Available_quantity</th>
                         <th>Description</th>
-                        <th>Color</th>
                         <th>Size</th>           
-                        <th>&nbsp;</th>
+                        <th class="w-28">&nbsp;</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -45,7 +44,6 @@
                             <td>{{$product_details->Quantity_sold}}</td>
                             <td>{{$product_details->Available_quantity}}</td>
                             <td>{{$product_details->Description}}</td>
-                            <td>{{$product_details->Color}}</td>
                             <td>{{$product_details->Size}}</td>                        
                             <td>                 
                                     <a href="/admin/product_details/edit/{{$product_details->Product_detailsID}}'" >

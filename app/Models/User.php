@@ -31,6 +31,9 @@ class User extends Authenticatable implements MustVerifyEmail
         'access_token_expires_at',
         'avatar',
     ];
+    public function Comment() {
+        return $this->belongsTo(Comment::class, 'ID_account');
+    }
     
     public function shoppingCart()
     {
