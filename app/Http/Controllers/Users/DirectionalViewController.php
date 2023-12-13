@@ -13,7 +13,6 @@ use App\Models\PurchaseOrder;
 use App\Models\Admin\Product_img;
 use App\Models\Admin\Product;
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
 
 class DirectionalViewController extends Controller
 {
@@ -276,10 +275,26 @@ class DirectionalViewController extends Controller
                 ->where('ParentId', 0)
                 ->orderBy('Img', 'asc')
                 ->get();
-            return view('productdetails', [
-                'title' => 'Tên Sản Phẩm',
-                'productDetail' => $productDetail,
-            ]);
+                return view('productdetails', [
+                    'title' => 'Tên Sản Phẩm',
+                    'productDetail' => $productDetail,
+                    'listProductSale' => $listProductSale,
+                    'imagesSale' => $imagesSale,
+                    'ParentId_img' => $ParentId_img,
+                    'product_img' => $product_img,
+                    'checkPurchaseOrder' => $checkPurchaseOrder,
+                    'checkAvatar' => $checkAvatar,
+                    'UserAvatarNow' => $UserAvatarNow,
+                    'checkAdmin' => $checkAdmin,
+                    'comment' => $comment,
+                    'sizeArray' => $sizeArray,
+                    'totalSum' => $totalSum,
+                    'star1CountsByAccount' => $star1CountsByAccount,
+                    'star2CountsByAccount' => $star2CountsByAccount,
+                    'star3CountsByAccount' => $star3CountsByAccount,
+                    'star4CountsByAccount' => $star4CountsByAccount,
+                    'star5CountsByAccount' => $star5CountsByAccount,
+                    ]);
         }
         
     }
