@@ -263,7 +263,7 @@
 
             <div class="mt-3 col-span-1 lg:hidden">
                 @if(isset($productDetail->Description))
-                    {{$productDetail->Description }}
+                {!! html_entity_decode($productDetail->Description) !!}
                 @else
                 <p class="text-left">
                     Kính gửi Quý khách hàng thân mến,<br>
