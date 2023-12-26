@@ -197,6 +197,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/delete-address', [OrderConfirmedController::class, 'removeAddress']);
     Route::get('/123', [VerificationOrderController::class, 'show']);
 });
+
+Route::prefix('comments')->group(function () {
+    Route::post('add', [ProductDetailsController::class, 'store']);
+});
 // Lấy thông tin về thành phố và phường
 Route::get('/get-district-or-ward', [VerificationOrderController::class, 'getDistrictOrWard']);
 

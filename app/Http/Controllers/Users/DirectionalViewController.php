@@ -117,35 +117,15 @@ class DirectionalViewController extends Controller
                 ->groupBy('Product.ProductID', 'Product_img.Img')
                 ->orderBy('Product_img.Img', 'asc')
                 ->get();
+
             // nu nam tre em
-            $TongSp = Product::join('Product_img', 'Product.ProductID', '=', 'Product_img.ProductID')
-                ->select('Product.ProductID', 'Product.*', DB::raw('MIN(Product_img.Img) as Img'))
+            $listProduct= Product::join('Product_img', 'Product.ProductID', '=', 'Product_img.ProductID')
+                ->select('Product.*', DB::raw('MIN(Product_img.Img) as Img'))
                 ->where('Product.Delete_product', 1)
                 ->where('Product_img.ParentId', 0)
                 ->where('Slug', 'LIKE', "%{$request->path()}%")
                 ->groupBy('Product.ProductID')
-                ->get();
-
-
-            $sosanpham = 2;
-            $result = ceil($TongSp->count() / $sosanpham);
-            if (isset($_GET['page'])) {
-                $sotrang = $_GET['page'];
-            } else {
-                $sotrang = 1;
-            }
-            $star = ($sotrang - 1) * $sosanpham;
-
-            // nu nam tre em
-            $listProduct = Product::join('Product_img', 'Product.ProductID', '=', 'Product_img.ProductID')
-                ->select('Product.ProductID', 'Product.*', DB::raw('MIN(Product_img.Img) as Img'))
-                ->where('Product.Delete_product', 1)
-                ->where('Product_img.ParentId', 0)
-                ->where('Slug', 'LIKE', "%{$request->path()}%")
-                ->offset($star)
-                ->limit($sosanpham)
-                ->groupBy('Product.ProductID')
-                ->get();
+                ->paginate(10);
             $images = Product::join('Product_img', 'Product.ProductID', '=', 'Product_img.ProductID')
                 ->select('Product.ProductID', 'Product_img.Img')
                 ->where('Product.Delete_product', 1)
@@ -154,7 +134,23 @@ class DirectionalViewController extends Controller
                 ->groupBy('Product.ProductID', 'Product_img.Img')
                 ->orderBy('Product_img.Img', 'asc')
                 ->get();
+                $listProductSale5 = Product::join('Product_img', 'Product.ProductID', '=', 'Product_img.ProductID')
+                ->select('Product.ProductID', 'Product.*', DB::raw('MIN(Product_img.Img) as Img'))
+                ->where('Product.Delete_product', 1)
+                ->where('Product_img.ParentId', 0)
+                ->where('Product.Sale', 1)
+                ->groupBy('Product.ProductID')
+                ->inRandomOrder() // Lấy ngẫu nhiên
+                ->take(5)
+                ->get();
 
+
+            $productIDs = $listProductSale5->pluck('ProductID')->toArray();
+
+            $imagesSale5 = Product_img::whereIn('ProductID', $productIDs)
+                ->where('ParentId', 0)
+                ->orderBy('Img', 'asc')
+                ->get();
 
 
             if (isset($mapping[$slug])) {
@@ -175,13 +171,13 @@ class DirectionalViewController extends Controller
                         'listsliders_coupon' => $listsliders_coupon,
                         'listProductSale' => $listProductSale,
                         'imagesSale' => $imagesSale,
+                        'listProductSale5' => $listProductSale5,
+                        'imagesSale5' => $imagesSale5,
                         'listProductGioDong' => $listProductGioDong,
                         'imagesGioDong' => $imagesGioDong,
                         'listProduct' => $listProduct,
                         
                         'images' => $images,
-                        'result' => $result,
-                        'sotrang' => $sotrang,
 
 
 
@@ -196,110 +192,131 @@ class DirectionalViewController extends Controller
                 ->where('Product.Slug', $request->path())
                 ->first();
 
-            $ParentId_img = Product_img::where('ProductID', $productDetail->ProductID)
-                ->where('ParentId', 0)
-                ->get();
-            $product_img = Product_img::where('ProductID', $productDetail->ProductID)
-                ->where('ParentId', '!=', 0)
-                ->get();
-
-
-
-
-
-            $currentUser = Auth::user();
-            if ($currentUser) {
-                $checkPurchaseOrder = PurchaseOrder::where('IdUser', $currentUser->id)->exists() ? 1 : 0;
-                $checkAdmin = User::where('id',  $currentUser->id)
-                    ->select('role')->first();
-                $checkAvatar = User::where('id',  $currentUser->id)
-                    ->whereNotNull('avatar')
+            $productSlug = Product::where('Slug', $request->path())->first();
+            if ($productSlug != null) {
+                if ($productDetail === null) {
+                    $jsonString = json_encode([
+                                "ProductID" =>$productSlug->ProductID,
+                                "Size" => '',                 
+                                "Name" => $productSlug->Name,
+                                "Price" => $productSlug->Price,
+                                "Price_sale" => $productSlug->Price_sale,
+                                "Slug" => $productSlug->Slug,
+                                "CategoryID" => $productSlug->CategoryID
+                            ]);
+                    $productDetail = json_decode($jsonString);
+                    // dd($productDetail);
+                }
+                $ParentId_img = Product_img::where('ProductID', $productDetail->ProductID)
+                    ->where('ParentId', 0)
+                    ->get();
+    
+                $product_img = Product_img::where('ProductID', $productDetail->ProductID)
+                    ->where('ParentId', '!=', 0)
+                    ->get();
+    
+                $currentUser = Auth::user();
+                if ($currentUser) {
+                    $checkPurchaseOrder = PurchaseOrder::join('order_details', 'Purchase_order.Purchase_order_ID', '=', 'order_details.Purchase_order_ID')
+                    ->where('Purchase_order.IdUser', $currentUser->id)
+                    ->where('order_details.ProductID', $productDetail->ProductID)
                     ->exists() ? 1 : 0;
-                $UserAvatarNow = User::where('id', $currentUser->id)->select('avatar')->first();
-            } else {
-                $checkPurchaseOrder = 0;
-                $checkAdmin = User::where('id',  0)->select('role')->first();
-                $checkAvatar = 0;
-                $UserAvatarNow = null;
+                    $checkAdmin = User::where('id',  $currentUser->id)
+                        ->select('role')->first();
+                    $checkAvatar = User::where('id',  $currentUser->id)
+                        ->whereNotNull('avatar')
+                        ->exists() ? 1 : 0;
+                    $UserAvatarNow = User::where('id', $currentUser->id)->select('avatar')->first();
+                } else {
+                    $checkPurchaseOrder = 0;
+                    $checkAdmin = User::where('id',  0)->select('role')->first();
+                    $checkAvatar = 0;
+                    $UserAvatarNow = null;
+                }
+                $comment = Comment::join('users', 'comments.ID_account', '=', 'users.id')
+                    ->select('users.username', 'users.avatar', 'comments.*')
+                    ->where('ProductID', $productDetail->ProductID)
+                    ->orderBy('comments.Time', 'desc')
+                    ->get();
+    
+                $star5CountsByAccount = Comment::select('ID_account', DB::raw('COUNT(Star) as star_count'))
+                    ->where('Star', 5)
+                    ->groupBy('ID_account')
+                    ->get();
+                $star4CountsByAccount = Comment::select('ID_account', DB::raw('COUNT(Star) as star_count'))
+                    ->where('Star', 4)
+                    ->groupBy('ID_account')
+                    ->get();
+    
+                $star3CountsByAccount = Comment::select('ID_account', DB::raw('COUNT(Star) as star_count'))
+                    ->where('Star', 3)
+                    ->groupBy('ID_account')
+                    ->get();
+    
+                $star2CountsByAccount = Comment::select('ID_account', DB::raw('COUNT(Star) as star_count'))
+                    ->where('Star', 2)
+                    ->groupBy('ID_account')
+                    ->get();
+    
+                $star1CountsByAccount = Comment::select('ID_account', DB::raw('COUNT(Star) as star_count'))
+                    ->where('Star', 1)
+                    ->groupBy('ID_account')
+                    ->get();
+    
+    
+                
+                $totalSum = $star1CountsByAccount->count() + $star2CountsByAccount->count() +
+                    $star3CountsByAccount->count() + $star4CountsByAccount->count() +
+                    $star5CountsByAccount->count();
+    
+                $sizeArray = Str::of($productDetail->Size)->explode(', ');
+    
+                $listProductSale = Product::join('Product_img', 'Product.ProductID', '=', 'Product_img.ProductID')
+                    ->select('Product.ProductID', 'Product.*', DB::raw('MIN(Product_img.Img) as Img'))
+                    ->where('Product.Delete_product', 1)
+                    ->where('Product_img.ParentId', 0)
+                    ->where('Product.Sale', 1)
+                    ->groupBy('Product.ProductID')
+                    ->inRandomOrder() // Lấy ngẫu nhiên
+                    ->take(5)
+                    ->get();
+    
+    
+                $productIDs = $listProductSale->pluck('ProductID')->toArray();
+    
+                $imagesSale = Product_img::whereIn('ProductID', $productIDs)
+                    ->where('ParentId', 0)
+                    ->orderBy('Img', 'asc')
+                    ->get();
+                return view('productdetails', [
+                    'title' => 'Tên Sản Phẩm',
+                    'productDetail' => $productDetail,
+                    'listProductSale' => $listProductSale,
+                    'productSlug' => $productSlug,
+                    'imagesSale' => $imagesSale,
+                    'ParentId_img' => $ParentId_img,
+                    'product_img' => $product_img,
+                    'checkPurchaseOrder' => $checkPurchaseOrder,
+                    'checkAvatar' => $checkAvatar,
+                    'UserAvatarNow' => $UserAvatarNow,
+                    'checkAdmin' => $checkAdmin,
+                    'comment' => $comment,
+                    'sizeArray' => $sizeArray,
+                    'totalSum' => $totalSum,
+                    'star1CountsByAccount' => $star1CountsByAccount,
+                    'star2CountsByAccount' => $star2CountsByAccount,
+                    'star3CountsByAccount' => $star3CountsByAccount,
+                    'star4CountsByAccount' => $star4CountsByAccount,
+                    'star5CountsByAccount' => $star5CountsByAccount,
+                ]);
+            }else{
+                return view('productdetails', [
+                    'title' => 'Tên Sản Phẩm',
+                    'productSlug' => $productSlug,
+                ]);
             }
 
-
-
-            $comment = Comment::join('users', 'comments.ID_account', '=', 'users.id')
-                ->select('users.username', 'users.avatar', 'comments.*')
-                ->where('ProductID', $productDetail->ProductID)
-                ->orderBy('comments.Time', 'desc')
-                ->get();
-
-            $star5CountsByAccount = Comment::select('ID_account', DB::raw('COUNT(Star) as star_count'))
-                ->where('Star', 5)
-                ->groupBy('ID_account')
-                ->get();
-            $star4CountsByAccount = Comment::select('ID_account', DB::raw('COUNT(Star) as star_count'))
-                ->where('Star', 4)
-                ->groupBy('ID_account')
-                ->get();
-
-            $star3CountsByAccount = Comment::select('ID_account', DB::raw('COUNT(Star) as star_count'))
-                ->where('Star', 3)
-                ->groupBy('ID_account')
-                ->get();
-
-            $star2CountsByAccount = Comment::select('ID_account', DB::raw('COUNT(Star) as star_count'))
-                ->where('Star', 2)
-                ->groupBy('ID_account')
-                ->get();
-
-            $star1CountsByAccount = Comment::select('ID_account', DB::raw('COUNT(Star) as star_count'))
-                ->where('Star', 1)
-                ->groupBy('ID_account')
-                ->get();
-
-
-            
-            $totalSum = $star1CountsByAccount->count() + $star2CountsByAccount->count() +
-                $star3CountsByAccount->count() + $star4CountsByAccount->count() +
-                $star5CountsByAccount->count();
-
-            $sizeArray = Str::of($productDetail->Size)->explode(', ');
-
-            $listProductSale = Product::join('Product_img', 'Product.ProductID', '=', 'Product_img.ProductID')
-                ->select('Product.ProductID', 'Product.*', DB::raw('MIN(Product_img.Img) as Img'))
-                ->where('Product.Delete_product', 1)
-                ->where('Product_img.ParentId', 0)
-                ->where('Product.Sale', 1)
-                ->groupBy('Product.ProductID')
-                ->inRandomOrder() // Lấy ngẫu nhiên
-                ->take(5)
-                ->get();
-
-
-            $productIDs = $listProductSale->pluck('ProductID')->toArray();
-
-            $imagesSale = Product_img::whereIn('ProductID', $productIDs)
-                ->where('ParentId', 0)
-                ->orderBy('Img', 'asc')
-                ->get();
-            return view('productdetails', [
-                'title' => 'Tên Sản Phẩm',
-                'productDetail' => $productDetail,
-                'listProductSale' => $listProductSale,
-                'imagesSale' => $imagesSale,
-                'ParentId_img' => $ParentId_img,
-                'product_img' => $product_img,
-                'checkPurchaseOrder' => $checkPurchaseOrder,
-                'checkAvatar' => $checkAvatar,
-                'UserAvatarNow' => $UserAvatarNow,
-                'checkAdmin' => $checkAdmin,
-                'comment' => $comment,
-                'sizeArray' => $sizeArray,
-                'totalSum' => $totalSum,
-                'star1CountsByAccount' => $star1CountsByAccount,
-                'star2CountsByAccount' => $star2CountsByAccount,
-                'star3CountsByAccount' => $star3CountsByAccount,
-                'star4CountsByAccount' => $star4CountsByAccount,
-                'star5CountsByAccount' => $star5CountsByAccount,
-            ]);
+            // $productSlug = null;
         }
     }
     private function getCategoryItems($parentId, $number)

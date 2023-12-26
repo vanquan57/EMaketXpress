@@ -1,5 +1,7 @@
 @extends('layouts.home')
 @section('content')
+
+@if (isset($productSlug)) 
     <style>
         .Img2 {
             display: none;
@@ -11,15 +13,17 @@
     </style>
     <div class="px-3">
         <span class="font-normal text-sm inline-block py-[20px]">Landing 15/11 <strong>
-                {{ $productDetail->Name }}</strong></span>
+            @isset($productDetail->Name)
+            {{ $productDetail->Name }}
+            @endisset</strong></span>
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-5">
             <div class="lg:col-span-8 col-span-1">
 
                 {{-- src=" /storage/uploads/{{$ParentId_img[$i]->Img}}" --}}
 
-
+               
                 <div class=" lg:grid lg:grid-cols-2 gap-5 hidden ">
-                    @isset($product_img)
+                    @isset($product_img , $ParentId_img[0]->Product_imgID )
                         @for ($i = 0; $i < $product_img->count(); $i++)
                             @if ($ParentId_img[0]->Product_imgID == $product_img[$i]->ParentId)
                                 <img class="col-span-1 w-[100%] rounded-md object-cover Img1"
@@ -30,20 +34,24 @@
 
                 </div>
                 <div class=" lg:grid lg:grid-cols-2 gap-5 hidden ">
-                    @for ($i = 0; $i < $product_img->count(); $i++)
-                        @if ($ParentId_img[1]->Product_imgID == $product_img[$i]->ParentId)
-                            <img class="col-span-1 w-[100%] rounded-md object-cover Img2"
-                                src="/storage/uploads/{{ $product_img[$i]->Img }}" alt="">
-                        @endif
-                    @endfor
+                    @isset($product_img , $ParentId_img[0]->Product_imgID )
+                        @for ($i = 0; $i < $product_img->count(); $i++)
+                            @if ($ParentId_img[1]->Product_imgID == $product_img[$i]->ParentId)
+                                <img class="col-span-1 w-[100%] rounded-md object-cover Img2"
+                                    src="/storage/uploads/{{ $product_img[$i]->Img }}" alt="">
+                            @endif
+                        @endfor
+                    @endisset
                 </div>
                 <div class=" lg:grid lg:grid-cols-2 gap-5 hidden ">
-                    @for ($i = 0; $i < $product_img->count(); $i++)
-                        @if ($ParentId_img[2]->Product_imgID == $product_img[$i]->ParentId)
-                            <img class="col-span-1 w-[100%] rounded-md object-cover Img3"
-                                src="/storage/uploads/{{ $product_img[$i]->Img }}" alt="">
-                        @endif
-                    @endfor
+                    @isset($product_img , $ParentId_img[0]->Product_imgID )
+                        @for ($i = 0; $i < $product_img->count(); $i++)
+                            @if ($ParentId_img[2]->Product_imgID == $product_img[$i]->ParentId)
+                                <img class="col-span-1 w-[100%] rounded-md object-cover Img3"
+                                    src="/storage/uploads/{{ $product_img[$i]->Img }}" alt="">
+                            @endif
+                        @endfor
+                    @endisset
                 </div>
 
 
@@ -51,6 +59,7 @@
                 <div class="lg:hidden">
                     <div id="controls-carousel" class="relative w-full" data-carousel="static">
                         <!-- Carousel wrapper -->
+                        @isset($product_img , $ParentId_img[0]->Product_imgID )
                         <div class="relative  h-[500px]  overflow-hidden rounded-lg md:h-96">
                             @for ($i = 0; $i < $product_img->count(); $i++)
                                 @if ($ParentId_img[0]->Product_imgID == $product_img[$i]->ParentId)
@@ -77,7 +86,7 @@
                                 @endif
                             @endfor
                         </div>
-
+                        @endisset
                         <!-- Slider controls -->
                         <button type="button"
                             class="absolute top-0 start-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
@@ -110,7 +119,28 @@
                 </div>
                 {{-- Thằng này mô tả chi tiết của pc --}}
                 <div class="mt-3 max-lg:hidden">
-                    Dưới này mô tả chi tiết sản phẩm load trực tiếp lên luôn
+                    @if(isset($productDetail->Description))
+                    {!! html_entity_decode($productDetail->Description) !!}
+                @else
+                <p class="text-left">
+                    Kính gửi Quý khách hàng thân mến,<br>
+    
+                        Chúng tôi muốn bày tỏ lòng thành thật và một lời xin lỗi chân thành đến Quý khách hàng về việc thiếu thông tin chi tiết trên trang web của chúng tôi. Chúng tôi hoàn toàn hiểu rằng sự thiếu sót này có thể gây bất tiện và làm mất đi sự thuận tiện khi tham khảo thông tin về sản phẩm mà Quý khách đang quan tâm.
+                        
+                        Được biết đến với sứ mệnh mang lại trải nghiệm tốt nhất cho khách hàng, chúng tôi rất tiếc về việc không cung cấp đầy đủ thông tin cần thiết. Điều này có thể do quá trình cập nhật thông tin hoặc một vấn đề kỹ thuật mà chúng tôi đã gặp phải, và chúng tôi đang nỗ lực để khắc phục vấn đề này ngay lập tức.
+                        
+                        Chúng tôi cam kết cung cấp thông tin chi tiết và chất lượng hơn, đáp ứng mọi yêu cầu của Quý khách hàng. Đồng thời, chúng tôi xin gửi thông tin liên hệ dưới đây để Quý khách có thể dễ dàng liên hệ với chúng tôi để nhận được sự tư vấn hoặc hỗ trợ chi tiết hơn: <br>
+                        
+                        Số điện thoại: 0905 344 234<br>
+                        Email: emaketxpress@gmail.com<br>
+                        Rất mong được sự thông cảm và hy vọng được phục vụ Quý khách hàng một cách tốt nhất. Hãy cho chúng tôi cơ hội để chứng minh cam kết của mình và giúp Quý khách tìm ra giải pháp phù hợp nhất.
+                        <br>
+                        Xin chân thành cảm ơn và kính chúc Quý khách một ngày tốt lành.
+                        <br>
+                        Trân trọng,<br>
+                        emaketxpress
+                </p>
+                @endif
                 </div>
             </div>
             <div class="lg:col-span-4 col-span-1">
@@ -150,7 +180,9 @@
 
 
                 <span class="text-sm font-normal mt-2 inline-block">Màu sắc: <span
-                        class="font-medium color_product">{{ $ParentId_img[0]->Color }}</span></span>
+                        class="font-medium color_product">@if(isset($ParentId_img[0]->Color))
+                                                                                                 {{ $ParentId_img[0]->Color }}
+                                                                                    @endif</span></span>
                 <div class="flex flex-wrap group_type_color">
                     @for ($i = 0; $i < $ParentId_img->count(); $i++)
                         <img type-color ="{{ $ParentId_img[$i]->Color }}"
@@ -228,14 +260,32 @@
             </div>
 
             {{-- Thằng này mô tả chi tiết của mobile --}}
-            {{-- ========================================================================================================?- --}}
 
             <div class="mt-3 col-span-1 lg:hidden">
-                Dưới này mô tả chi tiết sản phẩm load trực tiếp lên luôn
+                @if(isset($productDetail->Description))
+                    {{$productDetail->Description }}
+                @else
+                <p class="text-left">
+                    Kính gửi Quý khách hàng thân mến,<br>
+    
+                        Chúng tôi muốn bày tỏ lòng thành thật và một lời xin lỗi chân thành đến Quý khách hàng về việc thiếu thông tin chi tiết trên trang web của chúng tôi. Chúng tôi hoàn toàn hiểu rằng sự thiếu sót này có thể gây bất tiện và làm mất đi sự thuận tiện khi tham khảo thông tin về sản phẩm mà Quý khách đang quan tâm.
+                        
+                        Được biết đến với sứ mệnh mang lại trải nghiệm tốt nhất cho khách hàng, chúng tôi rất tiếc về việc không cung cấp đầy đủ thông tin cần thiết. Điều này có thể do quá trình cập nhật thông tin hoặc một vấn đề kỹ thuật mà chúng tôi đã gặp phải, và chúng tôi đang nỗ lực để khắc phục vấn đề này ngay lập tức.
+                        
+                        Chúng tôi cam kết cung cấp thông tin chi tiết và chất lượng hơn, đáp ứng mọi yêu cầu của Quý khách hàng. Đồng thời, chúng tôi xin gửi thông tin liên hệ dưới đây để Quý khách có thể dễ dàng liên hệ với chúng tôi để nhận được sự tư vấn hoặc hỗ trợ chi tiết hơn: <br>
+                        
+                        Số điện thoại: 0905 344 234<br>
+                        Email: emaketxpress@gmail.com<br>
+                        Rất mong được sự thông cảm và hy vọng được phục vụ Quý khách hàng một cách tốt nhất. Hãy cho chúng tôi cơ hội để chứng minh cam kết của mình và giúp Quý khách tìm ra giải pháp phù hợp nhất.
+                        <br>
+                        Xin chân thành cảm ơn và kính chúc Quý khách một ngày tốt lành.
+                        <br>
+                        Trân trọng,<br>
+                        emaketxpress
+                </p>
+                @endif
             </div>
         </div>
-        @isset($record)
-        @endisset
         <div>
             <hr>
             <p class="m-5 font-bold text-center text-xl">Đánh giá về sản phẩm {{ $productDetail->Name }}</p>
@@ -463,6 +513,7 @@
                 var text = document.getElementById('text');
                 var max = 0;
                 var IDproduct = {{ $productDetail->ProductID }};
+                console.log(IDproduct);
 
                 for (var i = 1; i <= 5; i++) {
                     var idsao = document.getElementById(i);
@@ -470,8 +521,11 @@
                         max = i;
                     }
                 }
+
                 var csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-                fetch('comments/add', {
+                
+                fetch('/comments/add', {
+                    
                         method: 'POST',
                         body: JSON.stringify({
                             _token: csrfToken,
@@ -485,7 +539,7 @@
                     })
                     .then(response => response.json())
                     .then(data => {
-                        // console.log(data);
+                        console.log(data);
                         // data.Comment[0].ID_comment
                         var div1 = document.getElementById('div1');
                         const commentDiv = document.createElement('div');
@@ -521,7 +575,7 @@
                                         </div>
                                     `;
                         div1.appendChild(commentDiv);
-                        console.log(data.Comment);
+                        // console.log(data.Comment);
                         changeStarColor(data.Comment)
 
                     })
@@ -533,42 +587,6 @@
             }
         </script>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        {{-- ========================================================================================================?- --}}
         <span class="inline-block w-[100%] text-center font-medium text-[#FDAF17] py-[30px] bg-[#F2F2F2]">ĐỀ XUẤT CHO
             BẠN</span>
         <div class="grid gap-5 grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
@@ -614,4 +632,30 @@
         </div>
         <script src="/build/assets/js/users/productbycategorieschild.js"></script>
         <script src="/build/assets/js/users/cart.js"></script>
+        @else 
+        <div class="lg:max-w-[1000px] mx-auto">
+            <p class="text-left text-xl mt-10 leading-8 mb-10">
+                <strong>Khẩn cấp: Trang chi tiết của sản phẩm này tạm thời không hoạt động</strong><br>
+
+                Kính gửi Quý khách hàng thân mến,<br>
+            
+                Chúng tôi xin thông báo rằng trang chi tiết sản phẩm đang trong quá trình sửa chữa do một số vấn đề kỹ thuật không mong muốn. Hiện tại, trang chi tiết của sản phẩm này không hoạt động chính xác và không thể truy cập được.<br>
+                
+                Chúng tôi rất xin lỗi về sự bất tiện này và cam kết đang nỗ lực để khắc phục tình trạng này càng sớm càng tốt. Đội ngũ kỹ thuật của chúng tôi đang tiến hành kiểm tra và sửa chữa vấn đề.<br>
+                
+                Để biết thông tin chi tiết về sản phẩm hoặc nếu Quý khách có bất kỳ câu hỏi nào, vui lòng liên hệ trực tiếp với chúng tôi qua thông tin sau:<br>
+                
+                Số điện thoại: 0905 344 234<br>
+                Email: emaketxpress@gmail.com<br>
+                
+                Chúng tôi rất xin lỗi về sự cố này và xin cảm ơn sự thông cảm của Quý khách. Mong rằng chúng tôi sớm khắc phục và phục vụ Quý khách hàng một cách tốt nhất.<br>
+                
+                Xin chân thành cảm ơn và kính chúc Quý khách một ngày tốt lành.<br>
+                
+                Trân trọng,<br>
+                emaketxpress      
+            
+            </p>
+        </div>
+        @endif
     @endsection

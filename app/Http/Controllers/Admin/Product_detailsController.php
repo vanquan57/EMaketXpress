@@ -45,7 +45,7 @@ class Product_detailsController extends Controller
                 'ProductID' => (int)$request->input('productID'),
             ]);
  
-            return redirect()->route('listproduct_details');
+            return redirect()->route('listproduct');
 
         } catch (\Throwable $th) {
             Log::info($th->getMessage());
@@ -93,7 +93,6 @@ class Product_detailsController extends Controller
             Product_details::where('Product_detailsID', (int)$id)->update([
                 'Available_quantity' => (int)$request->input('product_available_quantity'),
                 'Description' => (string)$request->input('product_Description'),
-                'Color' =>(string)$request->input('product_color'),
                 'Size' => (string)$request->input('product_size'),
                 'ProductID' => (int)$request->input('productID')
             ]);

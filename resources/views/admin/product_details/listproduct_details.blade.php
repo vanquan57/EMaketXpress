@@ -28,10 +28,11 @@
                     <tr>
                         <th>ID</th>
                         <th>Name</th>
-                        <th>Quantity_sold</th>
-                        <th>Available_quantity</th>
+                        <th>Quantity sold</th>
+                        <th>Available quantity</th>
                         <th>Description</th>
-                        <th>Size</th>           
+                        <th>Size</th>    
+                        <th>ID Sản Phẩm</th>          
                         <th class="w-28">&nbsp;</th>
                     </tr>
                 </thead>
@@ -45,6 +46,7 @@
                             <td>{{$product_details->Available_quantity}}</td>
                             <td>{{$product_details->Description}}</td>
                             <td>{{$product_details->Size}}</td>                        
+                            <td>{{$product_details->ProductID}}</td>
                             <td>                 
                                     <a href="/admin/product_details/edit/{{$product_details->Product_detailsID}}'" >
                                         <button class="button small blue --jb-modal" data-target="sample-modal-2" type="button">
