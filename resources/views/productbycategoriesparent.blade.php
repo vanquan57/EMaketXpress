@@ -67,32 +67,18 @@
                 @endfor
             </div>
             <div class="flex justify-center items-center">
-                @if ($sotrang>3)
-                <a href="?per_page=1&page=1" class="border  p-3 w-12 h-12 text-center mr-5 mt-10 mb-10 "><i class="fa-solid fa-angles-left"></i></a>   
+               {{-- phân trang --}}
+               @if(isset($listProduct))
+                    <div class="flex items-center justify-between">
+                        @isset($listProduct)
+                            {{ $listProduct->links() }}
+                        @endisset
+                        <small>Page {{ request()->query('page') }} of @isset($listProduct)
+                                {{ $listProduct->lastPage() }}
+                            @endisset
+                        </small>
+                    </div>
                 @endif
-                @if ($sotrang>1)
-                <?php $prev = $sotrang - 1; ?>
-                <a href="?per_page={{ $prev }}&page={{ $prev }}" class="border  p-3 w-12 h-12 text-center mr-5 mt-10 mb-10 "><i class="fa-solid fa-angle-left"></i></a>      
-                @endif
-
-                @for ($i = 1; $i <= $result; $i++)                             
-                    @if($i == $sotrang)
-                     <a href="?per_page={{ $i }}&page={{ $i }}" class="border  p-3 w-12 h-12 text-center mr-5 mt-10 mb-10 bg-black text-white">{{ $i }}</a>              
-                    @else
-                            @if ($i>$sotrang-3 && $i<$sotrang+3)
-                            <a href="?per_page={{ $i }}&page={{ $i }}" class="border  p-3 w-12 h-12 text-center mr-5 mt-10 mb-10 ">{{ $i }}</a>   
-                            @endif
-
-                    @endif
-                @endfor
-                @if ($sotrang<$result-1)
-                     <?php $next = $sotrang + 1; ?>
-                <a href="?per_page={{ $next}}&page={{ $next}}" class="border  p-3 w-12 h-12 text-center mr-5 mt-10 mb-10 "><i class="fa-solid fa-angle-right"></i></a>   
-                @endif
-                @if ($sotrang<=$result-3)
-                    <a href="?per_page={{ $result }}&page={{ $result }}" class="border  p-3 w-12 h-12 text-center mr-5 mt-10 mb-10 "><i class="fa-solid fa-angles-right"></i></a>   
-                @endif
-            </div>
 
         </div>
     </div>
