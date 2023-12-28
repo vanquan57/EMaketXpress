@@ -129,13 +129,14 @@
                                         </div>
                                     </td>
                                     @if ($infoUserDefault->InfoUsers && $infoUserDefault->InfoUsers->isNotEmpty())
-                                    @foreach ($infoUserDefault->InfoUsers as $infoUser)
-                                    <td>{{ $infoUser->Name}}</td>
-                                    <td>{{ $infoUser->Province }}, {{ $infoUser->District }}, {{ $infoUser->Ward }}, {{ $infoUser->DetailedAddress }}</td>
-                                    <td>{{ $infoUser->PhoneNumber }}</td>
-                                @endforeach
+                                        @foreach ($infoUserDefault->InfoUsers as $infoUser)
+                                            <td>{{ $infoUser->Name }}</td>
+                                            <td>{{ $infoUser->Province }}, {{ $infoUser->District }}, {{ $infoUser->Ward }},
+                                                {{ $infoUser->DetailedAddress }}</td>
+                                            <td>{{ $infoUser->PhoneNumber }}</td>
+                                        @endforeach
                                     @else
-                                        <td>{{$infoUserDefault->username}}</td>
+                                        <td>{{ $infoUserDefault->username }}</td>
                                         <td></td>
                                         <td></td>
                                     @endif
@@ -145,7 +146,7 @@
                                         @php
                                             $createDate = explode(' ', $infoUserDefault->created_at);
                                         @endphp
-                                        <small class="text-gray-500" >{{ $createDate[0] }}</small>
+                                        <small class="text-gray-500">{{ $createDate[0] }}</small>
                                     </td>
                                     <td class="actions-cell">
                                         <div class="buttons right nowrap">
@@ -170,12 +171,13 @@
                 <div class="table-pagination">
                     <div class="flex items-center justify-between">
                         @isset($infoUserDefaults)
-                            {{$infoUserDefaults->links()}}
+                            {{ $infoUserDefaults->links() }}
                         @endisset
                         
-                        <small>Page {{ request()->query('page') }} of  @isset($infoUserDefaults)
-                            {{$infoUserDefaults->lastPage() }}
-                        @endisset</small>
+                        <small>Page {{ request()->query('page') }} of @isset($infoUserDefaults)
+                                {{ $infoUserDefaults->lastPage() }}
+                            @endisset
+                        </small>
                     </div>
                 </div>
             </div>
