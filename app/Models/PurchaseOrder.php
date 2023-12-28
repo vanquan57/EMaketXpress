@@ -30,6 +30,11 @@ class PurchaseOrder extends Model
     {
         return $this->belongsTo(User::class, 'IdUser', 'id');
     }
+    
+    public function orderDetails() {
+        return $this->hasMany(OrderDetail::class, 'Purchase_order_ID', 'Purchase_order_ID');
+    }
+    
     public function products(){
         return $this->belongsToMany(Product::class, 'Order_details', 'Purchase_order_ID', 'ProductID')->withPivot([
             'ProductNumbers',
