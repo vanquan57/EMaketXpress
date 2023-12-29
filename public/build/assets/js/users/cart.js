@@ -113,7 +113,7 @@ function updateNumberProductInCart(numberProductElement , ProductID) {
                     alert('Cập nhật thành công ... !');
                     location.reload();
                 } else {
-                    alert('Đã có lỗi xảy ra vui lòng thử lại sau  ... !');
+                    alert('Đã có lỗi xảy ra hoặc số lượng sản phẩm đạt tối đa vui lòng thử lại sau  ... !');
                 }
             }
         });

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Users;
 
 use App\Http\Controllers\Controller;
 use App\Models\Admin\Product;
+use App\Models\Admin\Product_details;
 use App\Models\Admin\Promotions;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -99,8 +100,13 @@ class CartController extends Controller
     public function update(Request $request)
     {
         try {
-            Auth::user()->shoppingCart->products()->updateExistingPivot($request->input('ProductID'), ['ProductNumbers' => $request->input('numberProductUpdate')]);
-            return response()->json(['success' => true]);
+            $productDetail = Product_details::where('ProductID', $request->input('ProductID'))->first();
+            if ($productDetail->Available_quantity < $request->input('numberProductUpdate')) {
+                return response()->json(['success' => false]);
+            } else {
+                Auth::user()->shoppingCart->products()->updateExistingPivot($request->input('ProductID'), ['ProductNumbers' => $request->input('numberProductUpdate')]);
+                return response()->json(['success' => true]);
+            }
         } catch (\Throwable $th) {
             Log::info($th->getMessage());
             return response()->json(['success' => false]);

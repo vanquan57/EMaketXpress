@@ -12,6 +12,7 @@ class Product_details extends Model
     public $timestamps = false;
     protected $table = 'Product_details';
     protected $fillable = [
+        'Quantity_sold',
         'Available_quantity',
         'Description',
         'Size',

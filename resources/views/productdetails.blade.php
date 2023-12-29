@@ -243,6 +243,11 @@
                         </div>
                     </div>
                 </div>
+
+                <div>
+                    <p class="text-sm font-normal">Số lượng sẵn có: <span class="font-medium available_quantity"> {{ $productDetail->Available_quantity }}</span>
+                    </p>
+                </div>
                 <div class="flex items-center my-2 group_UpAndDown_Number">
                     <p class="text-sm font-normal mr-2">Số Lượng</p>
                     <button class="px-3 py-2 rounded-l-full border buttonReduced">
@@ -309,8 +314,7 @@
                             <i class="fa-solid fa-star"></i>
                             <i class="fa-solid fa-star mr-3"></i>
                             <div class="w-64 h-4 bg-gray-200 rounded overflow-hidden">
-                                <div class="bg-green-500 h-full"
-                                    style="width: {{ ($star5CountsByAccount->count() / $totalSum) * 100 }}%;"></div>
+                                <div class="bg-green-500 h-full" style="width: {{ $totalSum ? ($star5CountsByAccount->count() / $totalSum) * 100 . '%' : '0%' }}"></div>
                             </div>
                             <p class="-mt-1 ml-5 text-zinc-300">{{ $star5CountsByAccount->count() }}</p>
                         </div>
@@ -321,8 +325,7 @@
                             <i class="fa-solid fa-star"></i>
                             <i class="fa-solid fa-star mr-3"style="color:rgb(202, 202, 191"></i>
                             <div class="w-64 h-4 bg-gray-200 rounded overflow-hidden">
-                                <div class="bg-green-500 h-full"
-                                    style="width: {{ ($star4CountsByAccount->count() / $totalSum) * 100 }}%;"> ;</div>
+                                    <div class="bg-green-500 h-full" style="width: {{ $totalSum ? ($star4CountsByAccount->count() / $totalSum) * 100 . '%' : '0%' }}"></div>
                             </div>
                             <p class="-mt-1 ml-5 text-zinc-300">{{ $star4CountsByAccount->count() }}</p>
                         </div>
@@ -333,8 +336,8 @@
                             <i class="fa-solid fa-star"style="color:rgb(202, 202, 191"></i>
                             <i class="fa-solid fa-star mr-3"style="color:rgb(202, 202, 191"></i>
                             <div class="w-64 h-4 bg-gray-200 rounded overflow-hidden">
-                                <div class="bg-green-500 h-full"
-                                    style="width: {{ ($star3CountsByAccount->count() / $totalSum) * 100 }}%;"></div>
+                                <div class="bg-green-500 h-full" style="width: {{ $totalSum ? ($star3CountsByAccount->count() / $totalSum) * 100 . '%' : '0%' }}"></div>
+
                             </div>
                             <p class="-mt-1 ml-5 text-zinc-300">{{ $star3CountsByAccount->count() }}</p>
                         </div>
@@ -345,8 +348,8 @@
                             <i class="fa-solid fa-star"></i>
                             <i class="fa-solid fa-star mr-3"></i>
                             <div class="w-64 h-4 bg-gray-200 rounded overflow-hidden">
-                                <div class="bg-green-500 h-full"
-                                    style="width: {{ ($star2CountsByAccount->count() / $totalSum) * 100 }}%"></div>
+                                <div class="bg-green-500 h-full" style="width: {{ $totalSum ? ($star2CountsByAccount->count() / $totalSum) * 100 . '%' : '0%' }}"></div>
+
                             </div>
                             <p class="-mt-1 ml-5 text-zinc-300">{{ $star2CountsByAccount->count() }}</p>
                         </div>
@@ -357,8 +360,8 @@
                             <i class="fa-solid fa-star"></i>
                             <i class="fa-solid fa-star mr-3"></i>
                             <div class="w-64 h-4 bg-gray-200 rounded overflow-hidden ">
-                                <div class="bg-green-500 h-full"
-                                    style="width: {{ ($star1CountsByAccount->count() / $totalSum) * 100 }}%"></div>
+                                <div class="bg-green-500 h-full" style="width: {{ $totalSum ? ($star1CountsByAccount->count() / $totalSum) * 100 . '%' : '0%' }}"></div>
+
                             </div>
                             <p class="-mt-1 ml-5 text-zinc-300">{{ $star1CountsByAccount->count() }}</p>
                         </div>
@@ -630,8 +633,7 @@
 
 
         </div>
-        <script src="/build/assets/js/users/productbycategorieschild.js"></script>
-        <script src="/build/assets/js/users/cart.js"></script>
+        
         @else 
         <div class="lg:max-w-[1000px] mx-auto">
             <p class="text-left text-xl mt-10 leading-8 mb-10">
@@ -658,4 +660,6 @@
             </p>
         </div>
         @endif
+        <script src="/build/assets/js/users/productbycategorieschild.js"></script>
+        <script src="/build/assets/js/users/cart.js"></script>
     @endsection

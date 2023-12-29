@@ -22,7 +22,7 @@ class PurchaseOrderController extends Controller
             $revenueToday += $purchaseOrdersToday->TotalAmount;
         }
         $numberOrdersActive = PurchaseOrder::where('OrderStatus', 1)->count();
-        $purchaseOrders = PurchaseOrder::paginate(5);
+        $purchaseOrders = PurchaseOrder::orderByDesc('Purchase_order_ID')->paginate(5);
 
         return view('admin.purchaseOrders.purchaseOrders', [
             'title' => 'Quản Lý Đơn Hàng',

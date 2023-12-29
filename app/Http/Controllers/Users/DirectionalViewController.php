@@ -155,7 +155,6 @@ class DirectionalViewController extends Controller
 
             if (isset($mapping[$slug])) {
                 $data = $mapping[$slug];
-
                 return view(
                     $data['view'],
                     [
@@ -176,12 +175,7 @@ class DirectionalViewController extends Controller
                         'listProductGioDong' => $listProductGioDong,
                         'imagesGioDong' => $imagesGioDong,
                         'listProduct' => $listProduct,
-                        
                         'images' => $images,
-
-
-
-
                         'arrayCategories' => isset($data['categories']) ? $data['categories'] : null
                     ]
                 );
@@ -289,7 +283,7 @@ class DirectionalViewController extends Controller
                     ->orderBy('Img', 'asc')
                     ->get();
                 return view('productdetails', [
-                    'title' => 'Tên Sản Phẩm',
+                    'title' => $productSlug->Name,
                     'productDetail' => $productDetail,
                     'listProductSale' => $listProductSale,
                     'productSlug' => $productSlug,

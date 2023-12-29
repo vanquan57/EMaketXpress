@@ -16,7 +16,7 @@ class Product_detailsController extends Controller
     public function index(string $id)
     {   $ProductID = $id;   
         return view( 'admin.product_details.product_details',[
-            'title' => 'product',
+            'title' => 'Add Product Details',
             'ProductID'=>$ProductID
     ]);
     }
@@ -33,10 +33,9 @@ class Product_detailsController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    {
-        $selectedSizes = $_POST['product_size'] ?? [];
+    {        
+        $selectedSizes = $request->input('product_size') ?? [];
         $selectedSizesString = implode(', ', $selectedSizes);
-        echo $selectedSizesString;  
         try { 
             Product_details::create([
                 'Available_quantity' => (int)$request->input('product_available_quantity'),
@@ -44,9 +43,7 @@ class Product_detailsController extends Controller
                 'Size' => (string)$selectedSizesString,
                 'ProductID' => (int)$request->input('productID'),
             ]);
- 
             return redirect()->route('listproduct');
-
         } catch (\Throwable $th) {
             Log::info($th->getMessage());
             return redirect()->back()->with('errorInsertSlider', 'Thêm slider thất bại vui lòng thử lại sau');

@@ -110,7 +110,13 @@ const app = {
     },
     upAndDownNumberProductInCart: function () {
         const group_UpAndDown_NumberElement = document.querySelectorAll('.group_UpAndDown_Number');
+
         if (group_UpAndDown_NumberElement) {
+            const availableQuantity = document.querySelector('.available_quantity');
+            if (availableQuantity) {
+                var numberAvailableQuantity = parseInt(availableQuantity.innerHTML);
+                console.dir(numberAvailableQuantity);
+            }
             const arrayGroupUpAndDown = [...group_UpAndDown_NumberElement];
             arrayGroupUpAndDown.forEach((groupUpAndDownItem) => {
 
@@ -124,9 +130,17 @@ const app = {
                         numberProduct.click();
                     }
                 }
+
                 buttonIncrease.onclick = () => {
-                    numberProduct.innerHTML = parseInt(numberProduct.innerHTML) + 1;
-                    numberProduct.click();
+                    if (numberAvailableQuantity) {
+                        if (parseInt(numberProduct.innerHTML) < numberAvailableQuantity) {
+                            numberProduct.innerHTML = parseInt(numberProduct.innerHTML) + 1;
+                        }
+                    } else {
+                        numberProduct.innerHTML = parseInt(numberProduct.innerHTML) + 1;
+                        numberProduct.click();
+                    }
+
                 }
             })
         }
@@ -228,7 +242,7 @@ const app = {
 
         }
     },
-   
+
     start: function () {
         this.slideShow();
         this.showNavMobile();

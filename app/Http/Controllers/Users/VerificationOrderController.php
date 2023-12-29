@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Users;
 
 use App\Http\Controllers\Controller;
+use App\Models\Admin\Product_details;
 use App\Models\Admin\Promotions;
 use App\Models\PurchaseOrder;
 use App\Models\User;
@@ -33,7 +34,7 @@ class VerificationOrderController extends Controller
             'provinces' => $provinces,
             'productsOfUser' => $productsOfUser,
             'countProducts' => $countProducts,
-            'addressDefaultUser'=> $addressDefaultUser
+            'addressDefaultUser' => $addressDefaultUser
         ]);
     }
     public function viewPaymentSuccess(Request $request)
@@ -65,7 +66,7 @@ class VerificationOrderController extends Controller
             }
         }
     }
-   
+
     public function getDistrictOrWard(Request $request)
     {
         $urlApi = '';
@@ -92,7 +93,7 @@ class VerificationOrderController extends Controller
      * Show the form for creating a new resource.
      */
 
-    
+
     public function create(Request $request)
     {
         if ($request->input('payMethod') == 'paycod') {
@@ -101,9 +102,9 @@ class VerificationOrderController extends Controller
                 $TotalAmount = $this->calculateTotalAmount($request->input('totalProductOrder'), $promotion);
                 $purchaseOrderCreate = $this->createPurchaseOrder($request, $TotalAmount, 'Thanh Toán Khi Nhận Hàng');
                 $infoUser = Auth::user()->InfoUsers;
-                if(empty( Auth::user()->InfoUsers->first())){
-                $accountsController = new AccountsController();
-                $accountsController->createInforUser($request, 1);
+                if (empty(Auth::user()->InfoUsers->first())) {
+                    $accountsController = new AccountsController();
+                    $accountsController->createInforUser($request, 1);
                 }
                 if ($purchaseOrderCreate) {
                     $this->updateUserShoppingCartAndPurchaseOrder($request, $purchaseOrderCreate);
@@ -120,9 +121,9 @@ class VerificationOrderController extends Controller
                 $TotalAmount = $this->calculateTotalAmount($request->input('totalProductOrder'), $promotion);
                 $purchaseOrderCreate = $this->createPurchaseOrder($request, $TotalAmount, 'Thanh Toán Bằng VNPay');
                 $infoUser = Auth::user()->InfoUsers;
-                if(empty( Auth::user()->InfoUsers->first())){
-                $accountsController = new AccountsController();
-                $accountsController->createInforUser($request, 1);
+                if (empty(Auth::user()->InfoUsers->first())) {
+                    $accountsController = new AccountsController();
+                    $accountsController->createInforUser($request, 1);
                 }
                 if ($purchaseOrderCreate) {
                     $this->updateUserShoppingCartAndPurchaseOrder($request, $purchaseOrderCreate);
@@ -132,7 +133,6 @@ class VerificationOrderController extends Controller
             } catch (\Throwable $th) {
                 Log::info($th->getMessage());
                 return redirect()->back()->with('errorOrderProduct', 'Đang có vấn đề về kĩ thuật vui lòng thử lại sau và reload lại trang !');
-                
             }
         }
     }
@@ -158,26 +158,45 @@ class VerificationOrderController extends Controller
             'PromotionCode' => $request->input('promotionCode'),
             'OrderStatus' => 1,
             'PaymentStatus' => 0,
-            'TotalAmount' => (integer)$TotalAmount,
+            'TotalAmount' => (int)$TotalAmount,
             'PaymentMethod' => $PaymentMethod,
             'IdUser' => Auth::user()->id,
-            'DeliveryStatus'=> 0
+            'DeliveryStatus' => 0
         ]);
     }
     protected function updateUserShoppingCartAndPurchaseOrder($request, $purchaseOrderCreate)
     {
-        $inforProducts = Auth::user()->shoppingCart->products;
-        foreach ($inforProducts as $inforProduct) {
-            $purchaseOrderCreate->products()->attach($inforProduct->pivot->ProductID,
-             [
-                'ProductNumbers' => $inforProduct->pivot->ProductNumbers,
-                'ProductColor' => $inforProduct->pivot->ProductColor,
-                'ProductSize' => $inforProduct->pivot->ProductSize,
-                'ProductImg' => $inforProduct->pivot->ProductImg,
-            ]);
+
+        try {
+            $inforProducts = Auth::user()->shoppingCart->products;
+            foreach ($inforProducts as $inforProduct) {
+                $productDetail = Product_details::where('ProductID', $inforProduct->pivot->ProductID)->first();
+                if ($productDetail->Quantity_sold == null) {
+                    Product_details::where('ProductID', $inforProduct->pivot->ProductID)->update([
+                        'Available_quantity' => $productDetail->Available_quantity - $inforProduct->pivot->ProductNumbers,
+                        'Quantity_sold' => $inforProduct->pivot->ProductNumbers
+                    ]);
+                    
+                } else {
+                    Product_details::where('ProductID', $inforProduct->pivot->ProductID)->update([
+                        'Available_quantity' => $productDetail->Available_quantity - $inforProduct->pivot->ProductNumbers,
+                        'Quantity_sold' => $productDetail->Quantity_sold + $inforProduct->pivot->ProductNumbers
+                    ]);
+                }
+                $purchaseOrderCreate->products()->attach(
+                    $inforProduct->pivot->ProductID,
+                    [
+                        'ProductNumbers' => $inforProduct->pivot->ProductNumbers,
+                        'ProductColor' => $inforProduct->pivot->ProductColor,
+                        'ProductSize' => $inforProduct->pivot->ProductSize,
+                        'ProductImg' => $inforProduct->pivot->ProductImg,
+                    ]
+                );
+            }
+            Auth::user()->shoppingCart->products()->detach();
+        } catch (\Throwable $th) {
+            Log::info($th->getMessage());
         }
-        Auth::user()->shoppingCart->products()->detach();
-        
     }
 
     /**
@@ -189,13 +208,13 @@ class VerificationOrderController extends Controller
 
     public function show()
     {
-        
 
-    if (empty( Auth::user()->InfoUsers->first())) {
-        echo 'null';
-    } else {
-        echo 'not null';
-    }
+
+        if (empty(Auth::user()->InfoUsers->first())) {
+            echo 'null';
+        } else {
+            echo 'not null';
+        }
     }
 
     /**
@@ -221,8 +240,9 @@ class VerificationOrderController extends Controller
     {
         //
     }
-    public function paymentOrder(Request $request){
-        $urlNavigationVNPay = $this->vnpay_PaymentAgain($request->input('Purchase_order_ID').'_again',$request->input('Purchase_order_ID'), $request->input('TotalAmount'));
+    public function paymentOrder(Request $request)
+    {
+        $urlNavigationVNPay = $this->vnpay_PaymentAgain($request->input('Purchase_order_ID') . '_again', $request->input('Purchase_order_ID'), $request->input('TotalAmount'));
         return redirect()->to($urlNavigationVNPay);
     }
     protected function vnpay_Payment($Purchase_order_ID, $TotalAmount)
@@ -293,11 +313,11 @@ class VerificationOrderController extends Controller
             return $vnp_Url;
         }
     }
-    protected function vnpay_PaymentAgain($Purchase_order_ID_Again,$Purchase_order_ID, $TotalAmount)
+    protected function vnpay_PaymentAgain($Purchase_order_ID_Again, $Purchase_order_ID, $TotalAmount)
     {
 
         $vnp_Url = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
-        $vnp_Returnurl = "http://localhost:8000/payment-successful?Purchase_order_ID=".$Purchase_order_ID;
+        $vnp_Returnurl = "http://localhost:8000/payment-successful?Purchase_order_ID=" . $Purchase_order_ID;
         $vnp_TmnCode = "XM23TBBT"; //Mã website tại VNPAY 
         $vnp_HashSecret = "HETYMABOLHRWRFTEERNVJDCMPFPISEQU"; //Chuỗi bí mật
 
@@ -373,5 +393,4 @@ class VerificationOrderController extends Controller
             ]);
         }
     }
-    
 }
