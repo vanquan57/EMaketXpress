@@ -26,7 +26,5 @@
  ##  Mở 2 cửa sổ terminal trong vscode thực hiện việc chạy project
     `npm run dev`
     `php artisan serve`
+![image](https://github.com/vanquan57/EMaketXpress/assets/127461813/b504a446-afd2-4d7e-8495-2f3b0b481d34)
 
-
-    
-huy
